@@ -1,14 +1,14 @@
 /* Components */
-import UserInputForm from './components/UserInputForm';
+import UserPrompt from './components/UserPrompt';
 
 /* Styles */
 import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <UserInputForm />
-    </div>
+    <>
+      <UserPrompt />
+    </>
   );
 }
 
