@@ -1,12 +1,21 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
 body {
   background-color: aqua;
 }
 
-.user-input-area {
+.user-input-form {
   display: flex;
   flex-direction: column;
+  width: -webkit-fill-available;
+  position: fixed;
+  bottom: 0;
 
-  & input {
+  & textarea {
     margin-bottom: 1rem;
+    margin-right: .5rem;
   }
 }
