@@ -22,14 +22,30 @@ body {
 
 .user-input-form {
   display: flex;
-  flex-direction: column;
   position: fixed;
   margin: 1rem;
-  width: -webkit-fill-available;
   bottom: 0;
 
   & textarea {
+    width: 70vw;
     resize: none;
+  }
+}
+
+.submit-button {
+  border: none;
+  width: 4rem;
+  aspect-ratio: 1 / 1;
+  background-color: lemonchiffon;
+  cursor: pointer;
+  border-radius: 50%;
+  transform: rotate(90deg);
+
+  & .button-icon {
+    position: relative;
+    bottom: 3px;
+    font-size: 2rem;
+    color: green;
   }
 }
 

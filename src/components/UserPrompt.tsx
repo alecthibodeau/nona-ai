@@ -14,6 +14,7 @@ function UserPrompt() {
   const [promptText, setPromptText] = useState<string>('');
   const [result, setResult] = useState<string>('');
   const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
+  const pleaseTryAgain: string = 'It looks like there was a problem finding an answer for you. Please try again.';
 
   useEffect(() => {
     const keydown = 'keydown';
@@ -41,32 +42,34 @@ function UserPrompt() {
     }
   }
 
-  async function evaluateKeyForSpaceOrEnter(): Promise<void> {
-    if (keyPressed === 'Enter') {
-      const response = await doPrompt(promptText);
-      setResult(response);
-    }
+  function evaluateKeyForEnter(): void {
+    if (keyPressed === 'Enter') onSubmit();
+  }
+
+  async function onSubmit(): Promise<void> {
+    console.log(promptText);
+    const response = await doPrompt(promptText);
+    setResult(response);
   }
 
   return (
     <div className="user-prompt">
-      {result ? <p>{result}</p> : null}
+      {result ? <p>{result === '' ? pleaseTryAgain : result}</p> : null}
       {isAwaitingResult ? <div className="loader"></div> : null}
       <form className="user-input-form">
         <textarea
           placeholder="Enter a prompt here"
           value={promptText}
           onChange={(e) => setPromptText(e.target.value)}
-          onKeyUp={evaluateKeyForSpaceOrEnter}
+          onKeyUp={evaluateKeyForEnter}
         />
-        {/* <button
-          onClick={async () => {
-            const response = await doPrompt(prompt);
-            setResult(response);
-          }}
+        <button
+          type="button"
+          className="submit-button"
+          onClick={onSubmit}
         >
-          Prompt
-        </button> */}
+          <span className="button-icon">&#9650;</span>
+        </button>
       </form>
     </div>
   );
