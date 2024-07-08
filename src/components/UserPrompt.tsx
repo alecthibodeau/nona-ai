@@ -11,19 +11,26 @@ declare global {
 }
 
 function UserPrompt(props: UserPromptProps) {
-  const [keyPressed, setKeyPressed] = useState<string>('');
+  const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
   const [promptText, setPromptText] = useState<string>('');
 
   useEffect(() => {
     const keydown = 'keydown';
+    const keyup = 'keyup';
     window.addEventListener(keydown, keyDownHandler);
-    return function cleanupEventListener() {
+    window.addEventListener(keyup, keyUpHandler);
+    return function cleanupEventListeners() {
       window.removeEventListener(keydown, keyDownHandler);
+      window.removeEventListener(keyup, keyUpHandler);
     };
   }, []);
 
   function keyDownHandler({ key }: KeyboardEvent): void {
-    setKeyPressed(key);
+    if (key === 'Shift') setIsShiftPressed(true);
+  }
+
+  function keyUpHandler({ key }: KeyboardEvent): void {
+    if (key === 'Shift') setIsShiftPressed(false);
   }
 
   async function doPrompt(promptText: string) {
@@ -40,8 +47,8 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
-  function evaluateKeyForEnter(): void {
-    if (keyPressed === 'Enter') onSubmit();
+  function evaluateKeyForEnter(key: string): void {
+    if (key === 'Enter' && !isShiftPressed) onSubmit();
   }
 
   async function onSubmit(): Promise<void> {
@@ -57,7 +64,7 @@ function UserPrompt(props: UserPromptProps) {
           placeholder="Enter a prompt here"
           value={promptText}
           onChange={(e) => setPromptText(e.target.value)}
-          onKeyUp={evaluateKeyForEnter}
+          onKeyDown={(e) => evaluateKeyForEnter(e.key)}
         />
         <button
           type="button"
