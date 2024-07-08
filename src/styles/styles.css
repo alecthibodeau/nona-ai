@@ -1,7 +1,7 @@
 @import url('./_variables');
 
 body {
-  background-color: aqua;
+  background-color: rgb(28, 181, 48);
 }
 
 main {
@@ -30,30 +30,71 @@ main {
 
 .user-input-form {
   display: flex;
+  align-items: end;
   position: fixed;
+  padding: 1rem 1rem 1rem 1.5rem;
+  border-radius: 3rem;
   margin: 1rem;
   bottom: 0;
+  background-color: lightskyblue;
+}
 
-  & textarea {
-    width: 70vw;
-    resize: none;
+.user-input-textarea-container {
+  display: flex;
+  align-items: center;
+  padding: .875rem 0;
+}
+
+.user-input-textarea {
+  width: 70vw;
+  max-width: 700px;
+  height: 1rem;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1rem;
+
+  &::placeholder {
+    color: blue;
   }
+}
+
+.submit-button-container {
+  margin-left: .75rem;
 }
 
 .submit-button {
   border: none;
-  width: 4rem;
+  width: 3rem;
   aspect-ratio: 1 / 1;
   background-color: lemonchiffon;
   cursor: pointer;
   border-radius: 50%;
   transform: rotate(90deg);
 
-  & .button-icon {
-    position: relative;
-    bottom: 3px;
-    font-size: 2rem;
-    color: green;
+  &:disabled {
+    background-color: lightgray;
+    cursor: default;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: yellow;
+    & .submit-button-icon {
+      color: red;
+    }
+  }
+}
+
+.submit-button-icon {
+  position: relative;
+  bottom: 2px;
+  font-size: 1.5rem;
+  color: green;
+
+  &.disabled {
+    color: gray;
   }
 }
 

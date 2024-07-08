@@ -12,11 +12,14 @@ declare global {
 
 function UserPrompt(props: UserPromptProps) {
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
+  const [isUserInputDisabled, setIsUserInputDisabled] = useState<boolean>(false);
   const [promptText, setPromptText] = useState<string>('');
+  const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
   const keyEnter: string = 'Enter';
   const keyShift: string = 'Shift';
+  const userInputTextArea: string = 'userInputTextArea';
 
   useEffect(() => {
     window.addEventListener(keydown, keyDownHandler);
@@ -37,10 +40,13 @@ function UserPrompt(props: UserPromptProps) {
 
   async function doPrompt(promptText: string) {
     props.onUpdateIsAwaitingResult(true);
+    setIsUserInputDisabled(true);
     const session = await window.ai.createTextSession();
     try {
       const result: string = await session.prompt(promptText);
       props.onUpdateIsAwaitingResult(false);
+      setIsUserInputDisabled(false);
+      setPromptText('');
       console.log('Prompt result:', result);
       return result;
     } catch (error) {
@@ -49,8 +55,27 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
-  function evaluateKeyForEnter(key: string): void {
-    if (key === keyEnter && !isShiftPressed) onSubmit();
+  function modifyTextAreaHeight(key: string, textarea: HTMLTextAreaElement): void {
+    if (key === keyEnter && isShiftPressed) {
+      textarea.style.height = `${textAreaHeight + 1}rem`;
+    } else {
+      const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
+      textarea.style.height = `${scrollHeightToRem}rem`;
+      setTextAreaHeight(scrollHeightToRem);
+    }
+  }
+
+  function checkUserInputKey(key: string): void {
+    const textarea = document.getElementById(userInputTextArea) as HTMLTextAreaElement;
+    if (textarea) {
+      modifyTextAreaHeight(key, textarea);
+      if (textarea.value.length < 2) textarea.style.height = '1rem';
+      if (key === keyEnter && !isShiftPressed) {
+        textarea.style.height = '1rem';
+        textarea.value = '';
+        onSubmit();
+      }
+    }
   }
 
   async function onSubmit(): Promise<void> {
@@ -62,19 +87,29 @@ function UserPrompt(props: UserPromptProps) {
   return (
     <div className="user-prompt">
       <form className="user-input-form">
-        <textarea
-          placeholder="Enter a prompt here"
-          value={promptText}
-          onChange={(e) => setPromptText(e.target.value)}
-          onKeyDown={(e) => evaluateKeyForEnter(e.key)}
-        />
-        <button
-          type="button"
-          className="submit-button"
-          onClick={onSubmit}
-        >
-          <span className="button-icon">&#9650;</span>
-        </button>
+        <div className="user-input-textarea-container">
+          <textarea
+            id={userInputTextArea}
+            className="user-input-textarea"
+            disabled={isUserInputDisabled}
+            placeholder="Enter a prompt here"
+            value={promptText}
+            onChange={(e) => setPromptText(e.target.value)}
+            onKeyDown={(e) => checkUserInputKey(e.key)}
+          />
+        </div>
+        <div className="submit-button-container">
+          <button
+            disabled={!promptText || isUserInputDisabled}
+            type="button"
+            className="submit-button"
+            onClick={onSubmit}
+          >
+            <span className={`${!promptText ? 'disabled' : ''} submit-button-icon`}>
+              &#9650;
+            </span>
+          </button>
+        </div>
       </form>
     </div>
   );
