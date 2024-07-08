@@ -13,10 +13,12 @@ declare global {
 function UserPrompt(props: UserPromptProps) {
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
   const [promptText, setPromptText] = useState<string>('');
+  const keydown: keyof WindowEventMap = 'keydown';
+  const keyup: keyof WindowEventMap = 'keyup';
+  const keyEnter: string = 'Enter';
+  const keyShift: string = 'Shift';
 
   useEffect(() => {
-    const keydown = 'keydown';
-    const keyup = 'keyup';
     window.addEventListener(keydown, keyDownHandler);
     window.addEventListener(keyup, keyUpHandler);
     return function cleanupEventListeners() {
@@ -26,11 +28,11 @@ function UserPrompt(props: UserPromptProps) {
   }, []);
 
   function keyDownHandler({ key }: KeyboardEvent): void {
-    if (key === 'Shift') setIsShiftPressed(true);
+    if (key === keyShift) setIsShiftPressed(true);
   }
 
   function keyUpHandler({ key }: KeyboardEvent): void {
-    if (key === 'Shift') setIsShiftPressed(false);
+    if (key === keyShift) setIsShiftPressed(false);
   }
 
   async function doPrompt(promptText: string) {
@@ -48,7 +50,7 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function evaluateKeyForEnter(key: string): void {
-    if (key === 'Enter' && !isShiftPressed) onSubmit();
+    if (key === keyEnter && !isShiftPressed) onSubmit();
   }
 
   async function onSubmit(): Promise<void> {
