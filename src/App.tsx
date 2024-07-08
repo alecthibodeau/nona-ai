@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 /* Components */
 import UserPrompt from './components/UserPrompt';
 
@@ -5,9 +7,20 @@ import UserPrompt from './components/UserPrompt';
 import './App.css';
 
 function App() {
+  const [result, setResult] = useState<string>('');
+  const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
+  const pleaseTryAgain: string = 'It looks like there was a problem finding an answer for you. Please try again.';
+
   return (
     <>
-      <UserPrompt />
+      <main>
+        {result ? <p>{result === '' ? pleaseTryAgain : result}</p> : null}
+        {isAwaitingResult ? <div className="loader"></div> : null}
+      </main>
+      <UserPrompt
+        onUpdateIsAwaitingResult={setIsAwaitingResult}
+        onUpdateResult={setResult}
+      />
     </>
   );
 }

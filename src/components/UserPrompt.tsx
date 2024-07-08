@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
 
 /* Interfaces */
-import UserPromptProps from '../interfaces/UserPrompProps';
+import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
+import UserPromptProps from '../interfaces/UserPromptProps';
 
 declare global {
   interface Window {
-    ai: { createTextSession: () => Promise<UserPromptProps>; };
+    ai: { createTextSession: () => Promise<CreateTextSessionProps>; };
   }
 }
 
-function UserPrompt() {
+function UserPrompt(props: UserPromptProps) {
   const [keyPressed, setKeyPressed] = useState<string>('');
   const [promptText, setPromptText] = useState<string>('');
-  const [result, setResult] = useState<string>('');
-  const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
-  const pleaseTryAgain: string = 'It looks like there was a problem finding an answer for you. Please try again.';
 
   useEffect(() => {
     const keydown = 'keydown';
@@ -29,11 +27,11 @@ function UserPrompt() {
   }
 
   async function doPrompt(promptText: string) {
-    setIsAwaitingResult(true);
+    props.onUpdateIsAwaitingResult(true);
     const session = await window.ai.createTextSession();
     try {
       const result: string = await session.prompt(promptText);
-      setIsAwaitingResult(false);
+      props.onUpdateIsAwaitingResult(false);
       console.log('Prompt result:', result);
       return result;
     } catch (error) {
@@ -49,13 +47,11 @@ function UserPrompt() {
   async function onSubmit(): Promise<void> {
     console.log(promptText);
     const response = await doPrompt(promptText);
-    setResult(response);
+    props.onUpdateResult(response);
   }
 
   return (
     <div className="user-prompt">
-      {result ? <p>{result === '' ? pleaseTryAgain : result}</p> : null}
-      {isAwaitingResult ? <div className="loader"></div> : null}
       <form className="user-input-form">
         <textarea
           placeholder="Enter a prompt here"
