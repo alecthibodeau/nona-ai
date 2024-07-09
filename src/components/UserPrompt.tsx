@@ -20,6 +20,7 @@ function UserPrompt(props: UserPromptProps) {
   const keyup: keyof WindowEventMap = 'keyup';
   const keyEnter: string = 'Enter';
   const keyShift: string = 'Shift';
+  const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
 
   useEffect(() => {
     window.addEventListener(keydown, keyDownHandler);
@@ -43,7 +44,6 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   async function onSubmit(): Promise<void> {
-    console.log(promptText);
     props.onUpdatePrompt(promptText);
     const response = await doPrompt(promptText);
     props.onUpdateResult(response);
@@ -55,7 +55,7 @@ function UserPrompt(props: UserPromptProps) {
     const session = await window.ai.createTextSession();
     try {
       const result: string = await session.prompt(promptText);
-      onResult(result);
+      onResult();
       return result;
     } catch (error) {
       console.error('Error occurred during prompt:', error);
@@ -63,19 +63,18 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
-  function onResult(result: string): void {
+  function onResult(): void {
     props.onUpdateIsAwaitingResult(false);
     setIsUserInputDisabled(false);
     setPromptText('');
-    console.log('Prompt result:', result, textareaRef.current);
   }
 
   function checkUserInputKey(key: string): void {
     const textarea = textareaRef.current;
     if (textarea) {
       modifyTextAreaHeight(key, textarea);
-      if (textarea.value.length < 2) textarea.style.height = '1rem';
-      if (key === keyEnter && !isShiftPressed) {
+      if (textarea.value.length < 3) textarea.style.height = '1rem';
+      if (key === keyEnter && !isShiftPressed && !isOnlyNewLinesAndSpaces) {
         textarea.style.height = '1rem';
         textarea.value = '';
         onSubmit();
@@ -84,8 +83,8 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function modifyTextAreaHeight(key: string, textarea: HTMLTextAreaElement): void {
-    if (key === keyEnter && isShiftPressed) {
-      textarea.style.height = `${textAreaHeight + 1}rem`;
+    if (key === keyEnter) {
+      if (isShiftPressed) textarea.style.height = `${textAreaHeight + 1}rem`;
     } else {
       const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
       textarea.style.height = `${scrollHeightToRem}rem`;

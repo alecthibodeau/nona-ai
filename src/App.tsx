@@ -3,27 +3,27 @@ import { useEffect, useRef, useState } from 'react';
 /* Components */
 import UserPrompt from './components/UserPrompt';
 
+/* Constants */
+import text from './constants/text';
+
 /* Styles */
 import './App.css';
 
 function App() {
-  const [result, setResult] = useState<string>('');
   const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
-  // const pleaseTryAgain: string = 'It looks like there was a problem finding an answer for you. Please try again.';
   const [cards, setCards] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (result) setCards(cards.concat(result));
-    setResult('');
-  }, [result]);
+  const { pleaseTryAgain, prompt, result } = text;
 
   useEffect(() => {
     const container = containerRef.current;
-    if (container) {
-      container.scrollTop = container.scrollHeight;
-    }
+    if (container) container.scrollTop = container.scrollHeight;
   }, [cards]);
+
+  function updateCards(cardText: string, textType: string): void {
+    if (textType === result && !cardText) cardText = pleaseTryAgain;
+    setCards(previousCards => [...previousCards, cardText]);
+  }
 
   function renderCard(text: string, index: number): JSX.Element {
     return (
@@ -46,8 +46,8 @@ function App() {
         </div>
         <UserPrompt
           onUpdateIsAwaitingResult={setIsAwaitingResult}
-          onUpdatePrompt={(prompt) => {setCards(cards.concat(prompt.toString()))}}
-          onUpdateResult={setResult}
+          onUpdatePrompt={(promptText) => updateCards(promptText.toString(), prompt)}
+          onUpdateResult={(resultText) => updateCards(resultText.toString(), result)}
         />
       </main>
     </div>
