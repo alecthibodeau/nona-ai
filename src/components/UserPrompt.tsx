@@ -80,6 +80,7 @@ function UserPrompt(props: UserPromptProps) {
 
   async function onSubmit(): Promise<void> {
     console.log(promptText);
+    props.onUpdatePrompt(promptText);
     const response = await doPrompt(promptText);
     props.onUpdateResult(response);
   }
