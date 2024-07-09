@@ -72,19 +72,22 @@ function UserPrompt(props: UserPromptProps) {
   function checkUserInputKey(key: string): void {
     const textarea = textareaRef.current;
     if (textarea) {
-      modifyTextAreaHeight(key, textarea);
-      if (textarea.value.length < 3) textarea.style.height = '1rem';
-      if (key === keyEnter && !isShiftPressed && !isOnlyNewLinesAndSpaces) {
+      modifyHeightFromKeyPressed(key, textarea);
+      if (textarea.value.length < 3 || isOnlyNewLinesAndSpaces) {
         textarea.style.height = '1rem';
-        textarea.value = '';
-        onSubmit();
       }
     }
   }
 
-  function modifyTextAreaHeight(key: string, textarea: HTMLTextAreaElement): void {
+  function modifyHeightFromKeyPressed(key: string, textarea: HTMLTextAreaElement): void {
     if (key === keyEnter) {
-      if (isShiftPressed) textarea.style.height = `${textAreaHeight + 1}rem`;
+      if (isShiftPressed) {
+        textarea.style.height = `${textAreaHeight + 1}rem`;
+      } else if (!isOnlyNewLinesAndSpaces) {
+        textarea.style.height = '1rem';
+        textarea.value = '';
+        onSubmit();
+      }
     } else {
       const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
       textarea.style.height = `${scrollHeightToRem}rem`;
