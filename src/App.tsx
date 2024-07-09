@@ -25,7 +25,7 @@ function App() {
     }
   }, [cards]);
 
-  function renderCard(text: string, index: number) {
+  function renderCard(text: string, index: number): JSX.Element {
     return (
       <div
         key={`card${index}${text.length > 9 ? text.substring(0, 11) : text}`}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /* Interfaces */
 import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
@@ -15,6 +15,7 @@ function UserPrompt(props: UserPromptProps) {
   const [isUserInputDisabled, setIsUserInputDisabled] = useState<boolean>(false);
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
   const keyEnter: string = 'Enter';
@@ -30,6 +31,10 @@ function UserPrompt(props: UserPromptProps) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isUserInputDisabled && textareaRef.current) textareaRef.current.focus();
+  }, [isUserInputDisabled]);
+
   function keyDownHandler({ key }: KeyboardEvent): void {
     if (key === keyShift) setIsShiftPressed(true);
   }
@@ -38,16 +43,20 @@ function UserPrompt(props: UserPromptProps) {
     if (key === keyShift) setIsShiftPressed(false);
   }
 
-  async function doPrompt(promptText: string) {
+  async function onSubmit(): Promise<void> {
+    console.log(promptText);
+    props.onUpdatePrompt(promptText);
+    const response = await doPrompt(promptText);
+    props.onUpdateResult(response);
+  }
+
+  async function doPrompt(promptText: string): Promise<string> {
     props.onUpdateIsAwaitingResult(true);
     setIsUserInputDisabled(true);
     const session = await window.ai.createTextSession();
     try {
       const result: string = await session.prompt(promptText);
-      props.onUpdateIsAwaitingResult(false);
-      setIsUserInputDisabled(false);
-      setPromptText('');
-      console.log('Prompt result:', result);
+      onResult(result);
       return result;
     } catch (error) {
       console.error('Error occurred during prompt:', error);
@@ -55,14 +64,11 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
-  function modifyTextAreaHeight(key: string, textarea: HTMLTextAreaElement): void {
-    if (key === keyEnter && isShiftPressed) {
-      textarea.style.height = `${textAreaHeight + 1}rem`;
-    } else {
-      const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
-      textarea.style.height = `${scrollHeightToRem}rem`;
-      setTextAreaHeight(scrollHeightToRem);
-    }
+  function onResult(result: string): void {
+    props.onUpdateIsAwaitingResult(false);
+    setIsUserInputDisabled(false);
+    setPromptText('');
+    console.log('Prompt result:', result, textareaRef.current);
   }
 
   function checkUserInputKey(key: string): void {
@@ -78,11 +84,14 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
-  async function onSubmit(): Promise<void> {
-    console.log(promptText);
-    props.onUpdatePrompt(promptText);
-    const response = await doPrompt(promptText);
-    props.onUpdateResult(response);
+  function modifyTextAreaHeight(key: string, textarea: HTMLTextAreaElement): void {
+    if (key === keyEnter && isShiftPressed) {
+      textarea.style.height = `${textAreaHeight + 1}rem`;
+    } else {
+      const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
+      textarea.style.height = `${scrollHeightToRem}rem`;
+      setTextAreaHeight(scrollHeightToRem);
+    }
   }
 
   return (
@@ -92,6 +101,7 @@ function UserPrompt(props: UserPromptProps) {
           {!isUserInputDisabled ?
             <textarea
               id={userInputTextArea}
+              ref={textareaRef}
               className="user-input-textarea"
               placeholder="Enter a prompt here"
               value={promptText}
