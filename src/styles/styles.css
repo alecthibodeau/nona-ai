@@ -32,6 +32,6 @@ main {
   color: var(--color-brown);
 
   &:first-of-type {
-    margin-top: 5rem;
+    margin-top: 10rem;
   }
 }

@@ -6,14 +6,13 @@ import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
-import mockData from './constants/mock-data';
+// import mockData from './constants/mock-data';
 
 /* Styles */
 import './App.css';
 
 function App() {
-  const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
-  const [cards, setCards] = useState<string[]>(mockData.cardsLoremIpsum);
+  const [cards, setCards] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
@@ -42,12 +41,10 @@ function App() {
     <div className="app" >
       <Header />
       <main>
-        {isAwaitingResult ? <div></div> : null}
         <div className="cards-container" ref={containerRef}>
           {cards.map(renderCard)}
         </div>
         <UserPrompt
-          onUpdateIsAwaitingResult={setIsAwaitingResult}
           onUpdatePrompt={(promptText) => updateCards(promptText.toString(), prompt)}
           onUpdateResult={(resultText) => updateCards(resultText.toString(), result)}
         />
