@@ -16,6 +16,11 @@ main {
   bottom: 0;
 }
 
+.cards-container {
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
 .card {
   padding: 1rem;
   border-radius: 1rem;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /* Components */
 import UserPrompt from './components/UserPrompt';
@@ -11,10 +11,19 @@ function App() {
   const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
   // const pleaseTryAgain: string = 'It looks like there was a problem finding an answer for you. Please try again.';
   const [cards, setCards] = useState<string[]>([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (result) setCards(cards.concat(result));
+    setResult('');
   }, [result]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [cards]);
 
   function renderCard(text: string, index: number) {
     return (
@@ -32,7 +41,7 @@ function App() {
       <header>HEADER</header>
       <main>
         {isAwaitingResult ? <div></div> : null}
-        <div className="card-container">
+        <div className="cards-container" ref={containerRef}>
           {cards.map(renderCard)}
         </div>
         <UserPrompt
