@@ -28,7 +28,8 @@ function App() {
   }
 
   return (
-    <>
+    <div className="app" >
+      <header>HEADER</header>
       <main>
         {isAwaitingResult ? <div></div> : null}
         <div className="card-container">
@@ -40,7 +41,7 @@ function App() {
           onUpdateResult={setResult}
         />
       </main>
-    </>
+    </div>
   );
 }
 
