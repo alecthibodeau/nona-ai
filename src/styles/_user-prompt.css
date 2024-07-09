@@ -59,8 +59,6 @@
   transform: rotate(90deg);
   border: none;
   border-radius: 50%;
-  outline: 3px solid transparent;
-  outline-offset: 3px;
   cursor: pointer;
   background-color: var(--color-yellow-warm);
 
@@ -69,8 +67,10 @@
     background-color: var(--color-gray-light);
   }
 
-  &:hover:not(:disabled) {
-    outline-color: var(--color-white);
+  &:hover:not(:disabled),
+  &:focus {
+    outline: 3px solid var(--color-white);
+    outline-offset: 3px;
     background-color: var(--color-green-kelly);
 
     & .submit-button-icon {
