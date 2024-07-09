@@ -1,0 +1,45 @@
+header {
+  z-index: 1;
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: var(--color-violet-dark);
+}
+
+.name {
+  margin-left: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-gray-muted);
+}
+
+.icon-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  margin-right: .5rem;
+  background-color: var(--color-gray-muted);
+}
+
+.icon-inner {
+  width: 14px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--color-green-kelly);
+
+  box-shadow:
+    0 14px var(--color-coral-light),
+    0 -14px var(--color-coral-light),
+    14px 0 var(--color-coral-light),
+    -14px 0 var(--color-coral-light),
+    14px 14px var(--color-violet-dark),
+    -14px 14px var(--color-violet-dark),
+    14px -14px var(--color-violet-dark),
+    -14px -14px var(--color-violet-dark)
+  ;
+}

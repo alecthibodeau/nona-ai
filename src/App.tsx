@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 
 /* Components */
+import Header from './components/Header';
 import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
+import mockData from './constants/mock-data';
 
 /* Styles */
 import './App.css';
 
 function App() {
   const [isAwaitingResult, setIsAwaitingResult] = useState<boolean>(false);
-  const [cards, setCards] = useState<string[]>([]);
+  const [cards, setCards] = useState<string[]>(mockData.cardsLoremIpsum);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
@@ -38,7 +40,7 @@ function App() {
 
   return (
     <div className="app" >
-      <header>HEADER</header>
+      <Header />
       <main>
         {isAwaitingResult ? <div></div> : null}
         <div className="cards-container" ref={containerRef}>

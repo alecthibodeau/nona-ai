@@ -8,7 +8,7 @@
   display: flex;
   padding: 1rem 1rem 1rem 1.5rem;
   border-radius: 3rem;
-  background-color: lightskyblue;
+  background-color: var(--color-blue-sky);
 }
 
 .user-input-textarea-container {
@@ -28,7 +28,7 @@
   background-color: transparent;
 
   &::placeholder {
-    color: blue;
+    color: var(--color-blue-deep);
   }
 }
 
@@ -59,19 +59,22 @@
   transform: rotate(90deg);
   border: none;
   border-radius: 50%;
+  outline: 3px solid transparent;
+  outline-offset: 3px;
   cursor: pointer;
-  background-color: lemonchiffon;
+  background-color: var(--color-yellow-warm);
 
   &:disabled {
     cursor: default;
-    background-color: lightgray;
+    background-color: var(--color-gray-light);
   }
 
   &:hover:not(:disabled) {
-    background-color: yellow;
+    outline-color: var(--color-white);
+    background-color: var(--color-green-kelly);
 
     & .submit-button-icon {
-      color: red;
+      color: var(--color-white);
     }
   }
 }
@@ -80,28 +83,28 @@
   position: relative;
   bottom: 2px;
   font-size: 1.5rem;
-  color: green;
+  color: var(--color-green-kelly);
 
   &.disabled {
-    color: gray;
+    color: var(--color-gray);
   }
 }
 
 @keyframes loader-keyframes {
   0% {
-    box-shadow: 1.5rem 0 var(--color-black), -1.5rem 0 var(--color-black-transparent);
-    background: var(--color-black)
+    box-shadow: 1.5rem 0 var(--color-brown), -1.5rem 0 var(--color-brown-transparent);
+    background-color: var(--color-brown)
   }
   33.3% {
-    box-shadow: 1.5rem 0 var(--color-black), -1.5rem 0 var(--color-black-transparent);
-    background: var(--color-black-transparent)
+    box-shadow: 1.5rem 0 var(--color-brown), -1.5rem 0 var(--color-brown-transparent);
+    background-color: var(--color-brown-transparent)
   }
   66.6% {
-    box-shadow: 1.5rem 0 var(--color-black-transparent), -1.5rem 0 var(--color-black);
-    background: var(--color-black-transparent)
+    box-shadow: 1.5rem 0 var(--color-brown-transparent), -1.5rem 0 var(--color-brown);
+    background-color: var(--color-brown-transparent)
   }
   100% {
-    box-shadow: 1.5rem 0 var(--color-black-transparent), -1.5rem 0 var(--color-black);
-    background: var(--color-black)
+    box-shadow: 1.5rem 0 var(--color-brown-transparent), -1.5rem 0 var(--color-brown);
+    background-color: var(--color-brown)
   }
 }
