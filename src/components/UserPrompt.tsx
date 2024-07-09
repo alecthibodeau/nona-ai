@@ -50,7 +50,6 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   async function doPrompt(promptText: string): Promise<string> {
-    props.onUpdateIsAwaitingResult(true);
     setIsUserInputDisabled(true);
     const session = await window.ai.createTextSession();
     try {
@@ -64,7 +63,6 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function onResult(): void {
-    props.onUpdateIsAwaitingResult(false);
     setIsUserInputDisabled(false);
     setPromptText('');
   }
