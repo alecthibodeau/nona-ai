@@ -15,7 +15,7 @@ function App() {
     <>
       <main>
         {result ? <p>{result === '' ? pleaseTryAgain : result}</p> : null}
-        {isAwaitingResult ? <div className="loader"></div> : null}
+        {isAwaitingResult ? <div></div> : null}
       </main>
       <UserPrompt
         onUpdateIsAwaitingResult={setIsAwaitingResult}

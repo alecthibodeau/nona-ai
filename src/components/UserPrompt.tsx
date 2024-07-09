@@ -88,15 +88,19 @@ function UserPrompt(props: UserPromptProps) {
     <div className="user-prompt">
       <form className="user-input-form">
         <div className="user-input-textarea-container">
-          <textarea
-            id={userInputTextArea}
-            className="user-input-textarea"
-            disabled={isUserInputDisabled}
-            placeholder="Enter a prompt here"
-            value={promptText}
-            onChange={(e) => setPromptText(e.target.value)}
-            onKeyDown={(e) => checkUserInputKey(e.key)}
-          />
+          {!isUserInputDisabled ?
+            <textarea
+              id={userInputTextArea}
+              className="user-input-textarea"
+              placeholder="Enter a prompt here"
+              value={promptText}
+              onChange={(e) => setPromptText(e.target.value)}
+              onKeyDown={(e) => checkUserInputKey(e.key)}
+            /> :
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
+          }
         </div>
         <div className="submit-button-container">
           <button
