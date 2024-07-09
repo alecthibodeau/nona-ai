@@ -20,7 +20,6 @@ function UserPrompt(props: UserPromptProps) {
   const keyup: keyof WindowEventMap = 'keyup';
   const keyEnter: string = 'Enter';
   const keyShift: string = 'Shift';
-  const userInputTextArea: string = 'userInputTextArea';
 
   useEffect(() => {
     window.addEventListener(keydown, keyDownHandler);
@@ -72,7 +71,7 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function checkUserInputKey(key: string): void {
-    const textarea = document.getElementById(userInputTextArea) as HTMLTextAreaElement;
+    const textarea = textareaRef.current;
     if (textarea) {
       modifyTextAreaHeight(key, textarea);
       if (textarea.value.length < 2) textarea.style.height = '1rem';
@@ -100,7 +99,6 @@ function UserPrompt(props: UserPromptProps) {
         <div className="user-input-textarea-container">
           {!isUserInputDisabled ?
             <textarea
-              id={userInputTextArea}
               ref={textareaRef}
               className="user-input-textarea"
               placeholder="Enter a prompt here"
