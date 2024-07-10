@@ -62,7 +62,7 @@
 
 .cancel-button-icon {
   position: relative;
-  bottom: 1.05rem;
+  bottom: 1.1rem;
   color: var(--color-green-kelly);
 
   &:hover {
@@ -80,17 +80,17 @@
   width: 10px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: var(--color-yellow-pale);
+  background-color: var(--color-coral-light);
 
   box-shadow:
-    0 10px var(--color-yellow-pale),
-    0 -10px var(--color-yellow-pale),
-    10px 0 var(--color-yellow-pale),
-    -10px 0 var(--color-yellow-pale),
-    10px 10px var(--color-yellow-pale),
-    -10px 10px var(--color-yellow-pale),
-    10px -10px var(--color-yellow-pale),
-    -10px -10px var(--color-yellow-pale);
+    0 10px var(--color-coral-light),
+    0 -10px var(--color-coral-light),
+    10px 0 var(--color-coral-light),
+    -10px 0 var(--color-coral-light),
+    10px 10px var(--color-coral-light),
+    -10px 10px var(--color-coral-light),
+    10px -10px var(--color-coral-light),
+    -10px -10px var(--color-coral-light);
   ;
 }
 

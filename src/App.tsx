@@ -14,16 +14,17 @@ import CardProps from './interfaces/CardProps';
 /* Styles */
 import './App.css';
 import Card from './components/Card';
+import mockData from './constants/mock-data';
 
 function App() {
-  const [cards, setCards] = useState<CardProps[]>([]);
+  const [cards, setCards] = useState<CardProps[]>(mockData.miscPrompts);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
 
   useEffect(() => {
     const container = cardsScrollRef.current;
-    if (container) container.scrollTop = container.scrollHeight + 100;
+    if (container) container.scrollTop = container.scrollHeight;
   }, [cards]);
 
   function updateCards(cardText: string, cardVariant: string): void {

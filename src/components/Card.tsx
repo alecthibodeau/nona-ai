@@ -28,7 +28,7 @@ function Card(props: CardProps) {
             props.variant === text.result ?
             <Typewriter
               text={props.text}
-              delay={50}
+              delay={40}
               isStopped={isResultDisplayStopped}
               onResultIsLoaded={() => setIsCancelButtonShown(false)}
             /> :
