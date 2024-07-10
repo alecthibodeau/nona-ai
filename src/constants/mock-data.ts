@@ -1,5 +1,5 @@
 /* Interfaces */
-import Card from '../interfaces/Card';
+import Card from '../interfaces/CardProps';
 
 const cardsLoremIpsum: string[] = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',

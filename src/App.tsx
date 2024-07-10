@@ -6,55 +6,38 @@ import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
-import mockData from './constants/mock-data';
+// import mockData from './constants/mock-data';
 
 /* Interfaces */
-import Card from './interfaces/Card';
+import CardProps from './interfaces/CardProps';
 
 /* Styles */
 import './App.css';
+import Card from './components/Card';
 
 function App() {
-  const [cards, setCards] = useState<Card[]>(mockData.variantsCardsLoremIpsum);
+  const [cards, setCards] = useState<CardProps[]>([]);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
   useEffect(() => {
     const container = cardsScrollRef.current;
     if (container) container.scrollTop = container.scrollHeight;
+    console.log('cards:', cards)
   }, [cards]);
 
-  function updateCards(cardText: string, textVariant: string): void {
-    if (textVariant === result && !cardText) cardText = pleaseTryAgain;
-    const card: Card = { text: cardText, variant: textVariant };
+  function updateCards(cardText: string, cardVariant: string): void {
+    if (cardVariant === result && !cardText) cardText = pleaseTryAgain;
+    const card: CardProps = {
+      text: cardText,
+      variant: cardVariant
+    };
     setCards(previousCards => [...previousCards, card]);
   }
 
-  function generateCardRowKey(cardText: string, cardRowIndex: number) {
-    let cardSequence: string;
-    if (cardText.length > 9) {
-      cardSequence = cardText.replace(/ /g, '').slice(0, 9);
-    } else {
-      cardSequence = cardText;
-    }
-    return `cardRow${cardRowIndex}${cardSequence}`;
-  }
-
-  function renderCard(card: Card, index: number): JSX.Element {
+  function renderCard(card: CardProps): JSX.Element {
     return (
-      <div
-        key={generateCardRowKey(card.text, index)}
-        className={`card-row ${card.variant}`}
-      >
-        <div className="card">
-          {card.variant === result ? <div>ICON</div> : null}
-          <div
-            className={`card-text ${card.variant}`}
-          >
-            <p>{card.text}</p>
-          </div>
-        </div>
-      </div>
+      <Card text={card.text} variant={card.variant} />
     );
   }
 
