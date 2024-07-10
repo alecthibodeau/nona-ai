@@ -6,7 +6,7 @@ import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
-import mockData from './constants/mock-data';
+// import mockData from './constants/mock-data';
 
 /* Interfaces */
 import CardProps from './interfaces/CardProps';
@@ -16,13 +16,13 @@ import './App.css';
 import Card from './components/Card';
 
 function App() {
-  const [cards, setCards] = useState<CardProps[]>(mockData.variantsCardsLoremIpsum);
+  const [cards, setCards] = useState<CardProps[]>([]);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
   useEffect(() => {
     const container = cardsScrollRef.current;
-    if (container) container.scrollTop = container.scrollHeight;
+    if (container) container.scrollTop = container.scrollHeight + 100;
     console.log('cards:', cards)
   }, [cards]);
 
