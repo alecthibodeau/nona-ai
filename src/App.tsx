@@ -19,11 +19,11 @@ function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
+  const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
 
   useEffect(() => {
     const container = cardsScrollRef.current;
     if (container) container.scrollTop = container.scrollHeight + 100;
-    console.log('cards:', cards)
   }, [cards]);
 
   function updateCards(cardText: string, cardVariant: string): void {
@@ -35,9 +35,23 @@ function App() {
     setCards(previousCards => [...previousCards, card]);
   }
 
-  function renderCard(card: CardProps): JSX.Element {
+  function generateCardKey(cardText: string, cardIndex: number): string {
+    let cardSequence: string;
+    if (cardText.length > 9) {
+      cardSequence = cardText.replace(allButLettersAndNumbers, '').slice(0, 9);
+    } else {
+      cardSequence = cardText;
+    }
+    return `card${cardIndex}${cardSequence}`;
+  }
+
+  function renderCard(card: CardProps, index: number): JSX.Element {
     return (
-      <Card text={card.text} variant={card.variant} />
+      <Card
+        key={generateCardKey(card.text, index)}
+        text={card.text}
+        variant={card.variant}
+      />
     );
   }
 

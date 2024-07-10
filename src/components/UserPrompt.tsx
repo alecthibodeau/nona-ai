@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
 
+/* Comstants */
+import text from '../constants/text';
 declare global {
   interface Window {
     ai: { createTextSession: () => Promise<CreateTextSessionProps>; };
@@ -13,13 +15,13 @@ declare global {
 function UserPrompt(props: UserPromptProps) {
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
   const [isUserInputDisabled, setIsUserInputDisabled] = useState<boolean>(false);
+  const [mostRecentPrompt, setMostRecentPrompt] = useState<string>('');
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { keyArrowUp, keyEnter, keyShift } = text;
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
-  const keyEnter: string = 'Enter';
-  const keyShift: string = 'Shift';
   const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
 
   useEffect(() => {
@@ -45,6 +47,7 @@ function UserPrompt(props: UserPromptProps) {
 
   async function onSubmit(): Promise<void> {
     props.onUpdatePrompt(promptText);
+    setMostRecentPrompt(promptText);
     const response = await doPrompt(promptText);
     props.onUpdateResult(response);
   }
@@ -86,6 +89,9 @@ function UserPrompt(props: UserPromptProps) {
         textarea.value = '';
         onSubmit();
       }
+    } else if (key === keyArrowUp && !promptText && mostRecentPrompt) {
+      setPromptText(mostRecentPrompt);
+      textarea.value = mostRecentPrompt;
     } else {
       const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
       textarea.style.height = `${scrollHeightToRem}rem`;
