@@ -6,13 +6,13 @@ import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
-// import mockData from './constants/mock-data';
+import mockData from './constants/mock-data';
 
 /* Styles */
 import './App.css';
 
 function App() {
-  const [cards, setCards] = useState<string[]>([]);
+  const [cards, setCards] = useState<string[]>(mockData.cardsLoremIpsum);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
@@ -29,10 +29,17 @@ function App() {
   function renderCard(text: string, index: number): JSX.Element {
     return (
       <div
-        key={`card${index}${text.length > 9 ? text.substring(0, 11) : text}`}
-        className="card"
+        key={`cardRow${index}${text.length > 9 ? text.replace(/ /g, '').slice(0, 9) : text}`}
+        className="card-row"
       >
-        <p>{text}</p>
+        <div className="card">
+          <div>ICON</div>
+          <div
+            className="card-text"
+          >
+            <p>{text}</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -41,7 +48,7 @@ function App() {
     <div className="app" >
       <Header />
       <main>
-        <div className="cards-container" ref={containerRef}>
+        <div ref={containerRef} className="cards-container">
           {cards.map(renderCard)}
         </div>
         <UserPrompt
