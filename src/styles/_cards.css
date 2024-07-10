@@ -5,7 +5,7 @@
 .cards-scroll {
   max-height: 80vh;
   overflow-y: auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .card-row {
@@ -38,6 +38,31 @@
   &.result {
     background-color: var(--color-yellow-pale);
   }
+}
+
+.card-icon-outer {
+  display: flex;
+  justify-content: center;
+  width: 60px;
+  margin-right: .125rem;
+}
+
+.card-icon-inner {
+  width: 14px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--color-yellow-pale);
+
+  box-shadow:
+    0 14px var(--color-yellow-pale),
+    0 -14px var(--color-yellow-pale),
+    14px 0 var(--color-yellow-pale),
+    -14px 0 var(--color-yellow-pale),
+    14px 14px var(--color-yellow-pale),
+    -14px 14px var(--color-yellow-pale),
+    14px -14px var(--color-yellow-pale),
+    -14px -14px var(--color-yellow-pale);
+  ;
 }
 
 @media (min-width: 1400px) {
