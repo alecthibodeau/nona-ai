@@ -1,6 +1,11 @@
 .cards-container {
+  width: 100%;
+}
+
+.cards-scroll {
   max-height: 80vh;
   overflow-y: auto;
+  padding: 0 .5rem;
 }
 
 .card-row {

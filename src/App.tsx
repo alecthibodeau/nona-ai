@@ -13,11 +13,11 @@ import './App.css';
 
 function App() {
   const [cards, setCards] = useState<string[]>(mockData.cardsLoremIpsum);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
   useEffect(() => {
-    const container = containerRef.current;
+    const container = cardsScrollRef.current;
     if (container) container.scrollTop = container.scrollHeight;
   }, [cards]);
 
@@ -48,8 +48,10 @@ function App() {
     <div className="app" >
       <Header />
       <main>
-        <div ref={containerRef} className="cards-container">
-          {cards.map(renderCard)}
+        <div className="cards-container">
+          <div ref={cardsScrollRef} className="cards-scroll">
+            {cards.map(renderCard)}
+          </div>
         </div>
         <UserPrompt
           onUpdatePrompt={(promptText) => updateCards(promptText.toString(), prompt)}
