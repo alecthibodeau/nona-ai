@@ -1,4 +1,12 @@
+/* Responsive Breakpoints for reference */
+/* --breakpoint-sm: 576px; */
+/* --breakpoint-md: 768px; */
+/* --breakpoint-lg: 992px; */
+/* --breakpoint-xl: 1200px; */
+/* --breakpoint-xxl: 1400px; */
+
 :root {
+
   /* Colors */
   --color-white: #fff;
   --color-black: #000;

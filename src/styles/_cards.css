@@ -39,3 +39,10 @@
     background-color: var(--color-yellow-pale);
   }
 }
+
+@media (min-width: 1400px) {
+
+  .card {
+    max-width: 700px;
+  }
+}
