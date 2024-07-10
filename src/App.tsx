@@ -8,11 +8,14 @@ import UserPrompt from './components/UserPrompt';
 import text from './constants/text';
 import mockData from './constants/mock-data';
 
+/* Interfaces */
+import Card from './interfaces/Card';
+
 /* Styles */
 import './App.css';
 
 function App() {
-  const [cards, setCards] = useState<string[]>(mockData.cardsLoremIpsum);
+  const [cards, setCards] = useState<Card[]>(mockData.variantsCardsLoremIpsum);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
 
@@ -21,23 +24,34 @@ function App() {
     if (container) container.scrollTop = container.scrollHeight;
   }, [cards]);
 
-  function updateCards(cardText: string, textType: string): void {
-    if (textType === result && !cardText) cardText = pleaseTryAgain;
-    setCards(previousCards => [...previousCards, cardText]);
+  function updateCards(cardText: string, textVariant: string): void {
+    if (textVariant === result && !cardText) cardText = pleaseTryAgain;
+    const card: Card = { text: cardText, variant: textVariant };
+    setCards(previousCards => [...previousCards, card]);
   }
 
-  function renderCard(text: string, index: number): JSX.Element {
+  function generateCardRowKey(cardText: string, cardRowIndex: number) {
+    let cardSequence: string;
+    if (cardText.length > 9) {
+      cardSequence = cardText.replace(/ /g, '').slice(0, 9);
+    } else {
+      cardSequence = cardText;
+    }
+    return `cardRow${cardRowIndex}${cardSequence}`;
+  }
+
+  function renderCard(card: Card, index: number): JSX.Element {
     return (
       <div
-        key={`cardRow${index}${text.length > 9 ? text.replace(/ /g, '').slice(0, 9) : text}`}
-        className="card-row"
+        key={generateCardRowKey(card.text, index)}
+        className={`card-row ${card.variant}`}
       >
         <div className="card">
-          <div>ICON</div>
+          {card.variant === result ? <div>ICON</div> : null}
           <div
-            className="card-text"
+            className={`card-text ${card.variant}`}
           >
-            <p>{text}</p>
+            <p>{card.text}</p>
           </div>
         </div>
       </div>
@@ -45,7 +59,7 @@ function App() {
   }
 
   return (
-    <div className="app" >
+    <div className="app">
       <Header />
       <main>
         <div className="cards-container">
