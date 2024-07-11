@@ -20,14 +20,7 @@ function Typewriter(props: TypewriterProps) {
       if (props.isStoppedByUser) clearTimeout(timeout);
       return () => clearTimeout(timeout);
     }
-  }, [
-       currentIndex,
-       props,
-       props.text,
-       props.delay,
-       props.isStoppedByUser,
-       isCharacterTypewritten
-  ]);
+  }, [props, currentIndex, isCharacterTypewritten]);
 
   return (
     <>

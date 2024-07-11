@@ -6,7 +6,6 @@ import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
-// import mockData from './constants/mock-data';
 
 /* Interfaces */
 import CardProps from './interfaces/CardProps';
@@ -18,21 +17,39 @@ import Card from './components/Card';
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
+  const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
+  const [isUserEventHappeningDuringTypewriter, setIsUserEventHappeningDuringTypewriter] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
 
   useEffect(() => {
     const container = cardsScrollRef.current;
-    if (container) container.scrollTop = container.scrollHeight;
-  }, [cards, isCharacterTypewritten]);
+    if (container && !isUserEventHappeningDuringTypewriter) container.scrollTop = container.scrollHeight;
+  }, [cards, isCharacterTypewritten, isUserEventHappeningDuringTypewriter]);
+
+  useEffect(() => {
+    const userEvents: string[] = ['mousemove', 'mousedown', 'keydown'];
+    if (isTypewriterRunning) {
+      userEvents.forEach(event => {
+        window.addEventListener(event, () => setIsUserEventHappeningDuringTypewriter(true));
+      });
+      return () => {
+        userEvents.forEach(event => {
+          window.removeEventListener(event, () => setIsUserEventHappeningDuringTypewriter(true));
+        });
+        setIsUserEventHappeningDuringTypewriter(false);
+      }
+    }
+  }, [isTypewriterRunning]);
 
   function updateCards(cardText: string, cardVariant: string): void {
     if (cardVariant === result && !cardText) cardText = pleaseTryAgain;
     const card: CardProps = {
       text: cardText,
       variant: cardVariant,
-      onIsCharacterTypewritten: setIsCharacterTypewritten
+      onIsCharacterTypewritten: setIsCharacterTypewritten,
+      onIsTypewriterRunning: setIsTypewriterRunning
     };
     setCards(previousCards => [...previousCards, card]);
   }
@@ -54,6 +71,7 @@ function App() {
         text={card.text}
         variant={card.variant}
         onIsCharacterTypewritten={(isTypewritten) => setIsCharacterTypewritten(isTypewritten)}
+        onIsTypewriterRunning={(isRunning) => setIsTypewriterRunning(isRunning)}
       />
     );
   }
