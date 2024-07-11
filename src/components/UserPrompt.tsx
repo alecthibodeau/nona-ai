@@ -19,7 +19,7 @@ function UserPrompt(props: UserPromptProps) {
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const { keyArrowUp, keyEnter, keyShift } = text;
+  const { characterBlackMediumRightPointingTriangle, keyArrowUp, keyEnter, keyShift } = text;
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
   const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
@@ -127,7 +127,7 @@ function UserPrompt(props: UserPromptProps) {
             <span className={
               `submit-button-icon ${!promptText || isUserInputDisabled ? 'disabled' : ''}`
             }>
-              &#9650;
+              {characterBlackMediumRightPointingTriangle}
             </span>
           </button>
         </div>

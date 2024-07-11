@@ -54,9 +54,10 @@
 }
 
 .submit-button {
+  display: flex;
+  justify-content: center;
   width: 3rem;
-  aspect-ratio: 1 / 1;
-  transform: rotate(90deg);
+  height: 3rem;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -80,9 +81,7 @@
 }
 
 .submit-button-icon {
-  position: relative;
-  bottom: 2px;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: var(--color-green-kelly);
 
   &.disabled {

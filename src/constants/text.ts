@@ -1,4 +1,5 @@
 const text: { [key: string]: string } = {
+  characterBlackMediumRightPointingTriangle: '\u23f5',
   characterVectorOrCrossProduct: '\u2A2F',
   keyArrowUp: 'ArrowUp',
   keyEnter: 'Enter',
