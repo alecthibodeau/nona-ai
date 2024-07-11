@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
 
-/* Comstants */
+/* Constants */
 import text from '../constants/text';
+
 declare global {
   interface Window {
     ai: { createTextSession: () => Promise<CreateTextSessionProps>; };
@@ -19,12 +20,19 @@ function UserPrompt(props: UserPromptProps) {
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const { characterBlackMediumRightPointingTriangle, keyArrowUp, keyEnter, keyShift } = text;
+  const { characterBlackMediumRightPointingTriangle, keyArrowUp, keyEnter } = text;
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
   const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
 
   useEffect(() => {
+    const keyShift: string = 'Shift';
+    function keyDownHandler({ key }: KeyboardEvent): void {
+      if (key === keyShift) setIsShiftPressed(true);
+    }
+    function keyUpHandler({ key }: KeyboardEvent): void {
+      if (key === keyShift) setIsShiftPressed(false);
+    }
     window.addEventListener(keydown, keyDownHandler);
     window.addEventListener(keyup, keyUpHandler);
     return function cleanupEventListeners() {
@@ -36,14 +44,6 @@ function UserPrompt(props: UserPromptProps) {
   useEffect(() => {
     if (!isUserInputDisabled && textareaRef.current) textareaRef.current.focus();
   }, [isUserInputDisabled]);
-
-  function keyDownHandler({ key }: KeyboardEvent): void {
-    if (key === keyShift) setIsShiftPressed(true);
-  }
-
-  function keyUpHandler({ key }: KeyboardEvent): void {
-    if (key === keyShift) setIsShiftPressed(false);
-  }
 
   async function onSubmit(): Promise<void> {
     props.onUpdatePrompt(promptText);
