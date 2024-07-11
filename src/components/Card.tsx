@@ -1,15 +1,18 @@
 import { useState } from 'react';
 
+/* Components */
+import Typewriter from './Typewriter';
+
 /* Interfaces */
 import CardProps from '../interfaces/CardProps';
 
 /* Constants */
 import text from '../constants/text';
-import Typewriter from './Typewriter';
 
 function Card(props: CardProps) {
-  const [isResultDisplayStopped, setIsResultDisplayStopped] = useState<boolean>(false);
-  const [isCancelButtonShown, setIsCancelButtonShown] = useState<boolean>(true);
+  const [IsStopTypewriterButtonShown, setIsStopTypewriterButtonShown] = useState<boolean>(false);
+  const [isTypewriterStoppedByUser, setIsTypewriterStoppedByUser] = useState<boolean>(false);
+  const { characterVectorOrCrossProduct, result } = text;
 
   return (
     <div
@@ -17,7 +20,7 @@ function Card(props: CardProps) {
     >
       <div className="card">
         {
-          props.variant === text.result ?
+          props.variant === result ?
           <div className="card-icon-outer">
             <div className="card-icon-inner"></div>
           </div> :
@@ -25,26 +28,27 @@ function Card(props: CardProps) {
         }
         <div className={`card-text ${props.variant}`}>
           {
-            props.variant === text.result ?
+            props.variant === result ?
             <Typewriter
               text={props.text}
               delay={40}
-              isStopped={isResultDisplayStopped}
-              onResultIsLoaded={() => setIsCancelButtonShown(false)}
+              isStoppedByUser={isTypewriterStoppedByUser}
+              onIsCharacterTypewritten={(isTypewritten) => props.onIsCharacterTypewritten(isTypewritten)}
+              onIsTypewriterRunning={(isRunning) => setIsStopTypewriterButtonShown(isRunning)}
             /> :
             props.text
           }
           {
-            props.variant === text.result && isCancelButtonShown ?
+            props.variant === result && IsStopTypewriterButtonShown ?
             <div className="cancel-button-container">
               <button
                 className="cancel-button"
                 onClick={() => {
-                  setIsResultDisplayStopped(true);
-                  setIsCancelButtonShown(false);
+                  setIsTypewriterStoppedByUser(true);
+                  setIsStopTypewriterButtonShown(false);
                 }}>
                 <span className="cancel-button-icon">
-                  &#10799;
+                  {characterVectorOrCrossProduct}
                 </span>
               </button>
             </div> :

@@ -6,21 +6,33 @@ import TypewriterProps from '../interfaces/TypewriterProps';
 function Typewriter(props: TypewriterProps) {
   const [currentText, setCurrentText] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentIndex < props.text.length) {
       const timeout: number = setTimeout(() => {
         setCurrentText(previousText => previousText + props.text[currentIndex]);
         setCurrentIndex(previousIndex => previousIndex + 1);
+        setIsCharacterTypewritten(!isCharacterTypewritten);
+        props.onIsCharacterTypewritten(isCharacterTypewritten);
+        props.onIsTypewriterRunning(currentIndex !== props.text.length - 1);
       }, props.delay);
-      if (props.isStopped) clearTimeout(timeout);
-      if (currentIndex === props.text.length - 1) props.onResultIsLoaded(true);
+      if (props.isStoppedByUser) clearTimeout(timeout);
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, props, props.delay, props.text, props.isStopped]);
+  }, [
+       currentIndex,
+       props,
+       props.text,
+       props.delay,
+       props.isStoppedByUser,
+       isCharacterTypewritten
+  ]);
 
   return (
-    <span>{currentText}</span>
+    <>
+      {currentText}
+    </>
   );
 }
 

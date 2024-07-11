@@ -14,10 +14,10 @@ import CardProps from './interfaces/CardProps';
 /* Styles */
 import './App.css';
 import Card from './components/Card';
-import mockData from './constants/mock-data';
 
 function App() {
-  const [cards, setCards] = useState<CardProps[]>(mockData.miscPrompts);
+  const [cards, setCards] = useState<CardProps[]>([]);
+  const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
@@ -25,13 +25,14 @@ function App() {
   useEffect(() => {
     const container = cardsScrollRef.current;
     if (container) container.scrollTop = container.scrollHeight;
-  }, [cards]);
+  }, [cards, isCharacterTypewritten]);
 
   function updateCards(cardText: string, cardVariant: string): void {
     if (cardVariant === result && !cardText) cardText = pleaseTryAgain;
     const card: CardProps = {
       text: cardText,
-      variant: cardVariant
+      variant: cardVariant,
+      onIsCharacterTypewritten: setIsCharacterTypewritten
     };
     setCards(previousCards => [...previousCards, card]);
   }
@@ -52,6 +53,7 @@ function App() {
         key={generateCardKey(card.text, index)}
         text={card.text}
         variant={card.variant}
+        onIsCharacterTypewritten={(isTypewritten) => setIsCharacterTypewritten(isTypewritten)}
       />
     );
   }

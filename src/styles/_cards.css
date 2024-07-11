@@ -80,17 +80,17 @@
   width: 10px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: var(--color-coral-light);
+  background-color: var(--color-gray-muted);
 
   box-shadow:
-    0 10px var(--color-coral-light),
-    0 -10px var(--color-coral-light),
-    10px 0 var(--color-coral-light),
-    -10px 0 var(--color-coral-light),
-    10px 10px var(--color-coral-light),
-    -10px 10px var(--color-coral-light),
-    10px -10px var(--color-coral-light),
-    -10px -10px var(--color-coral-light);
+    0 10px var(--color-gray-muted),
+    0 -10px var(--color-gray-muted),
+    10px 0 var(--color-gray-muted),
+    -10px 0 var(--color-gray-muted),
+    10px 10px var(--color-gray-muted),
+    -10px 10px var(--color-gray-muted),
+    10px -10px var(--color-gray-muted),
+    -10px -10px var(--color-gray-muted);
   ;
 }
 

@@ -124,7 +124,9 @@ function UserPrompt(props: UserPromptProps) {
             className="submit-button"
             onClick={onSubmit}
           >
-            <span className={`${!promptText ? 'disabled' : ''} submit-button-icon`}>
+            <span className={
+              `submit-button-icon ${!promptText || isUserInputDisabled ? 'disabled' : ''}`
+            }>
               &#9650;
             </span>
           </button>
