@@ -11,36 +11,36 @@ header {
 
 .name {
   margin-left: 2rem;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 500;
-  color: var(--color-gray-muted);
+  color: var(--color-yellow-light);
 }
 
 .icon-outer {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
+  width: 55px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   margin-right: .5rem;
-  background-color: var(--color-gray-muted);
+  background-color: var(--color-yellow-light);
 }
 
 .icon-inner {
-  width: 14px;
+  width: 12px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: var(--color-green-kelly);
+  background-color: var(--color-green-medium);
 
   box-shadow:
-    0 14px var(--color-coral-light),
-    0 -14px var(--color-coral-light),
-    14px 0 var(--color-coral-light),
-    -14px 0 var(--color-coral-light),
-    14px 14px var(--color-violet-dark),
-    -14px 14px var(--color-violet-dark),
-    14px -14px var(--color-violet-dark),
-    -14px -14px var(--color-violet-dark)
+    0 12px var(--color-coral),
+    0 -12px var(--color-coral),
+    12px 0 var(--color-coral),
+    -12px 0 var(--color-coral),
+    12px 12px var(--color-violet-dark),
+    -12px 12px var(--color-violet-dark),
+    12px -12px var(--color-violet-dark),
+    -12px -12px var(--color-violet-dark)
   ;
 }

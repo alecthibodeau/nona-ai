@@ -8,7 +8,7 @@
   display: flex;
   padding: 1rem 1rem 1rem 1.5rem;
   border-radius: 3rem;
-  background-color: var(--color-blue-sky);
+  background-color: var(--color-blue-light);
 }
 
 .user-input-textarea-container {
@@ -28,7 +28,7 @@
   background-color: transparent;
 
   &::placeholder {
-    color: var(--color-blue-deep);
+    color: var(--color-blue-dark);
   }
 }
 
@@ -61,7 +61,7 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  background-color: var(--color-yellow-warm);
+  background-color: var(--color-yellow-medium);
 
   &:disabled {
     cursor: default;
@@ -72,7 +72,7 @@
   &:focus {
     outline: 3px solid var(--color-white);
     outline-offset: 3px;
-    background-color: var(--color-green-kelly);
+    background-color: var(--color-green-medium);
 
     & .submit-button-icon {
       color: var(--color-white);
@@ -82,7 +82,7 @@
 
 .submit-button-icon {
   font-size: 2.5rem;
-  color: var(--color-green-kelly);
+  color: var(--color-green-medium);
 
   &.disabled {
     color: var(--color-gray);
