@@ -19,8 +19,12 @@ function Card(props: CardProps) {
       <div className="card">
         {
           props.variant === result ?
-          <div className="card-icon-outer">
-            <div className="card-icon-inner"></div>
+          <div className="icon-container">
+            <div className="icon-flow">
+              {Array(9).fill('icon-circle').map((dot, index) => {
+                return (<div key={`${dot}${index}`} className={dot}></div>);
+              })}
+            </div>
           </div> :
           null
         }

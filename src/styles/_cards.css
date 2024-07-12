@@ -27,10 +27,27 @@
   align-items: center;
 }
 
+.icon-container {
+  min-width: 24px;
+}
+
+.icon-flow {
+  display: flex;
+  flex-wrap: wrap;
+  width: 24px;
+
+  & .icon-circle {
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--color-yellow-light);
+    border-radius: 50%;
+  }
+}
+
 .card-text {
   max-width: 60vw;
   padding: 1rem 1.5rem;
-  border-radius: 1rem;
+  border-radius: .75rem;
   margin: 1rem;
   background-color: var(--color-green-light);
   color: var(--color-brown);
@@ -46,12 +63,14 @@
 
 .cancel-button {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 2px solid var(--color-green-medium);
   font-size: 2.5rem;
+  line-height: .6875rem;
   background-color: transparent;
 
   &:hover {
@@ -61,8 +80,6 @@
 }
 
 .cancel-button-icon {
-  position: relative;
-  bottom: 1.1rem;
   color: var(--color-green-medium);
 
   &:hover {
@@ -70,28 +87,22 @@
   }
 }
 
-.card-icon-outer {
-  display: flex;
-  justify-content: center;
-  width: 30px;
-}
+/* Media Queries*/
 
-.card-icon-inner {
-  width: 10px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background-color: var(--color-gray-light);
+@media (min-width: 576px) {
 
-  box-shadow:
-    0 10px var(--color-gray-light),
-    0 -10px var(--color-gray-light),
-    10px 0 var(--color-gray-light),
-    -10px 0 var(--color-gray-light),
-    10px 10px var(--color-gray-light),
-    -10px 10px var(--color-gray-light),
-    10px -10px var(--color-gray-light),
-    -10px -10px var(--color-gray-light);
-  ;
+  .icon-container {
+    min-width: 33px;
+  }
+
+  .icon-flow {
+    width: 33px;
+
+    & .icon-circle {
+      width: 9px;
+      height: 9px;
+    }
+  }
 }
 
 @media (min-width: 1400px) {
