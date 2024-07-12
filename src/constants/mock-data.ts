@@ -1,7 +1,9 @@
-/* Interfaces */
-import Card from '../interfaces/CardProps';
+interface MockData {
+  text: string;
+  variant: string;
+}
 
-const miscPrompts: Card[] = [
+const miscPromptsAndResults: MockData[] = [
   { text: 'What\'s 2 + 2?', variant: 'prompt' },
   { text: '4', variant: 'result' },
   { text: 'What\'s red plus yellow?', variant: 'prompt' },
@@ -15,7 +17,7 @@ const miscPrompts: Card[] = [
 ];
 
 const mockData = {
-  miscPrompts
+  miscPromptsAndResults
 };
 
 export default mockData;

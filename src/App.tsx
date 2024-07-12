@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 
 /* Components */
+import Card from './components/Card';
 import Header from './components/Header';
 import UserPrompt from './components/UserPrompt';
 
 /* Constants */
 import text from './constants/text';
+import mockData from './constants/mock-data';
 
 /* Interfaces */
 import CardProps from './interfaces/CardProps';
 
 /* Styles */
 import './App.css';
-import Card from './components/Card';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -22,6 +23,21 @@ function App() {
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
+  const isMockDataUsed: boolean = false;
+
+  useEffect(() => {
+    if (isMockDataUsed) {
+      const mockCards = mockData.miscPromptsAndResults.map((data) => {
+        return {
+          text: data.text,
+          variant: data.variant,
+          onIsCharacterTypewritten: setIsCharacterTypewritten,
+          onIsTypewriterRunning: setIsTypewriterRunning
+        };
+      });
+      setCards(mockCards);
+    }
+  }, [isMockDataUsed]);
 
   useEffect(() => {
     const container = cardsScrollRef.current;
