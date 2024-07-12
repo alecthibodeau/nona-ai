@@ -1,4 +1,7 @@
 .loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 70vw;
   max-width: 700px;
   padding-left: .25rem;

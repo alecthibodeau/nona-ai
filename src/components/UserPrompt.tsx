@@ -17,8 +17,8 @@ declare global {
 }
 
 function UserPrompt(props: UserPromptProps) {
+  const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
-  const [isUserInputDisabled, setIsUserInputDisabled] = useState<boolean>(false);
   const [mostRecentPrompt, setMostRecentPrompt] = useState<string>('');
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
@@ -45,32 +45,28 @@ function UserPrompt(props: UserPromptProps) {
   }, []);
 
   useEffect(() => {
-    if (!isUserInputDisabled && textareaRef.current) textareaRef.current.focus();
-  }, [isUserInputDisabled]);
+    if (!isAwaitingResponse && textareaRef.current) textareaRef.current.focus();
+  }, [isAwaitingResponse]);
 
   async function onSubmit(): Promise<void> {
     props.onUpdatePrompt(promptText);
     setMostRecentPrompt(promptText);
-    const response = await doPrompt(promptText);
-    props.onUpdateResult(response);
+    const result = await doPrompt(promptText);
+    props.onUpdateResult(result);
   }
 
-  async function doPrompt(promptText: string): Promise<string> {
-    setIsUserInputDisabled(true);
+  async function doPrompt(request: string): Promise<string> {
+    setIsAwaitingResponse(true);
+    setPromptText('');
     const session = await window.ai.createTextSession();
     try {
-      const result: string = await session.prompt(promptText);
-      onResult();
-      return result;
+      const response: string = await session.prompt(request);
+      setIsAwaitingResponse(false);
+      return response;
     } catch (error) {
       console.error('Error occurred during prompt:', error);
       throw error;
     }
-  }
-
-  function onResult(): void {
-    setIsUserInputDisabled(false);
-    setPromptText('');
   }
 
   function checkUserInputKey(key: string): void {
@@ -106,27 +102,29 @@ function UserPrompt(props: UserPromptProps) {
     <div className="user-prompt">
       <form className="user-input-form">
         <div className="user-input-textarea-container">
-          {!isUserInputDisabled ?
+          {
+            isAwaitingResponse ?
+            <Loader /> :
             <textarea
+              disabled={isAwaitingResponse}
               ref={textareaRef}
               className="user-input-textarea"
-              placeholder="Enter a prompt here"
+              placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
               value={promptText}
-              onChange={(e) => setPromptText(e.target.value)}
-              onKeyDown={(e) => checkUserInputKey(e.key)}
-            /> :
-            <Loader />
+              onChange={(event) => setPromptText(event.target.value)}
+              onKeyDown={(event) => checkUserInputKey(event.key)}
+            />
           }
         </div>
         <div className="submit-button-container">
           <button
-            disabled={!promptText || isUserInputDisabled}
+            disabled={!promptText || isAwaitingResponse}
             type="button"
             className="submit-button"
             onClick={onSubmit}
           >
             <span className={
-              `submit-button-icon ${!promptText || isUserInputDisabled ? 'disabled' : ''}`
+              `submit-button-icon ${!promptText || isAwaitingResponse ? 'disabled' : ''}`
             }>
               {characterBlackMediumRightPointingTriangle}
             </span>
