@@ -5,15 +5,12 @@ import Card from './components/Card';
 import Header from './components/Header';
 import UserPrompt from './components/UserPrompt';
 
-/* Constants */
-import text from './constants/text';
-import mockData from './constants/mock-data';
-
 /* Interfaces */
 import CardProps from './interfaces/CardProps';
 
-/* Styles */
-import './App.css';
+/* Constants */
+import text from './constants/text';
+import mockData from './constants/mock-data';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -27,17 +24,17 @@ function App() {
 
   useEffect(() => {
     if (isMockDataUsed) {
-      const mockCards = mockData.miscPromptsAndResults.map((data) => {
+      const mockCards = mockData.map((data, index) => {
         return {
-          text: data.text,
-          variant: data.variant,
+          text: data,
+          variant: index % 2 ? result : prompt,
           onIsCharacterTypewritten: setIsCharacterTypewritten,
           onIsTypewriterRunning: setIsTypewriterRunning
         };
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed]);
+  }, [isMockDataUsed, prompt, result]);
 
   useEffect(() => {
     const container = cardsScrollRef.current;
