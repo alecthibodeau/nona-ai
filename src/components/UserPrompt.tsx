@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
+/* Components */
+import Loader from './Loader';
+
 /* Interfaces */
 import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
@@ -112,9 +115,7 @@ function UserPrompt(props: UserPromptProps) {
               onChange={(e) => setPromptText(e.target.value)}
               onKeyDown={(e) => checkUserInputKey(e.key)}
             /> :
-            <div className="loader-container">
-              <div className="loader"></div>
-            </div>
+            <Loader />
           }
         </div>
         <div className="submit-button-container">

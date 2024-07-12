@@ -1,6 +1,7 @@
 @import url('./_variables');
 @import url('./_cards');
 @import url('./_header');
+@import url('./_loader');
 @import url('./_user-prompt');
 
 body {
