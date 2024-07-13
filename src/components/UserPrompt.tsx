@@ -57,11 +57,13 @@ function UserPrompt(props: UserPromptProps) {
 
   async function doPrompt(request: string): Promise<string> {
     setIsAwaitingResponse(true);
+    props.onIsAwaitingResponse(true);
     setPromptText('');
     const session = await window.ai.createTextSession();
     try {
       const response: string = await session.prompt(request);
       setIsAwaitingResponse(false);
+      props.onIsAwaitingResponse(false);
       return response;
     } catch (error) {
       console.error('Error occurred during prompt:', error);

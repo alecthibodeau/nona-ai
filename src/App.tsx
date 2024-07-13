@@ -14,9 +14,10 @@ import mockData from './constants/mock-data';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
+  const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
-  const [isUserEventHappeningDuringTypewriter, setIsUserEventHappeningDuringTypewriter] = useState<boolean>(false);
+  const [isUserEventHappening, setIsUserEventHappening] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
@@ -34,27 +35,33 @@ function App() {
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed, prompt, result]);
+  }, [isAwaitingResponse, isMockDataUsed, prompt, result]);
 
   useEffect(() => {
     const container = cardsScrollRef.current;
-    if (container && !isUserEventHappeningDuringTypewriter) container.scrollTop = container.scrollHeight;
-  }, [cards, isCharacterTypewritten, isUserEventHappeningDuringTypewriter]);
+    if ((isTypewriterRunning && !isUserEventHappening) || isAwaitingResponse) {
+      if (container) container.scrollTop = container.scrollHeight;
+    }
+  }, [isAwaitingResponse, isCharacterTypewritten, isTypewriterRunning, isUserEventHappening]);
 
   useEffect(() => {
     const userEvents: string[] = ['mousemove', 'mousedown', 'keydown'];
     if (isTypewriterRunning) {
       userEvents.forEach(event => {
-        window.addEventListener(event, () => setIsUserEventHappeningDuringTypewriter(true));
+        window.addEventListener(event, handleUserEvent);
       });
       return () => {
         userEvents.forEach(event => {
-          window.removeEventListener(event, () => setIsUserEventHappeningDuringTypewriter(true));
+          window.removeEventListener(event, handleUserEvent);
         });
-        setIsUserEventHappeningDuringTypewriter(false);
+        setIsUserEventHappening(false);
       }
     }
   }, [isTypewriterRunning]);
+
+  function handleUserEvent(): void {
+    setIsUserEventHappening(true);
+  }
 
   function updateCards(cardText: string, cardVariant: string): void {
     if (cardVariant === result && !cardText) cardText = pleaseTryAgain;
@@ -101,6 +108,7 @@ function App() {
         <UserPrompt
           onUpdatePrompt={(promptText) => updateCards(promptText.toString(), prompt)}
           onUpdateResult={(resultText) => updateCards(resultText.toString(), result)}
+          onIsAwaitingResponse={(isAwaiting) => setIsAwaitingResponse(isAwaiting)}
         />
       </main>
     </div>
