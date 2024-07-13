@@ -35,7 +35,7 @@ function App() {
       });
       setCards(mockCards);
     }
-  }, [isAwaitingResponse, isMockDataUsed, prompt, result]);
+  }, [isMockDataUsed, prompt, result]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserEventHappening)) {
