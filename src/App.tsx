@@ -38,15 +38,15 @@ function App() {
   }, [isAwaitingResponse, isMockDataUsed, prompt, result]);
 
   useEffect(() => {
-    const container = cardsScrollRef.current;
-    if ((isTypewriterRunning && !isUserEventHappening) || isAwaitingResponse) {
+    if (isAwaitingResponse || (isTypewriterRunning && !isUserEventHappening)) {
+      const container = cardsScrollRef.current;
       if (container) container.scrollTop = container.scrollHeight;
     }
   }, [isAwaitingResponse, isCharacterTypewritten, isTypewriterRunning, isUserEventHappening]);
 
   useEffect(() => {
-    const userEvents: string[] = ['mousemove', 'mousedown', 'keydown'];
     if (isTypewriterRunning) {
+      const userEvents: string[] = ['mousemove', 'mousedown', 'keydown'];
       userEvents.forEach(event => {
         window.addEventListener(event, handleUserEvent);
       });
