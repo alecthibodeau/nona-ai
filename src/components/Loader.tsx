@@ -1,7 +1,7 @@
 function Loader() {
   return (
-    <div className="loader-container">
-      <div className="loader"></div>
+    <div className="loader-dot-container">
+      <div className="loader-dot"></div>
     </div>
   );
 }

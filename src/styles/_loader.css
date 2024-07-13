@@ -1,13 +1,10 @@
-.loader-container {
+.loader-dot-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 70vw;
-  max-width: 700px;
-  padding-left: .25rem;
 }
 
-.loader {
+.loader-dot {
   width: 1rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -20,19 +17,27 @@
 
 @keyframes loader-keyframes {
   0% {
-    box-shadow: 1.5rem 0 var(--color-brown), -1.5rem 0 var(--color-brown-transparent);
-    background-color: var(--color-brown)
+    background-color: var(--color-brown);
+    box-shadow:
+      1.5rem 0 var(--color-brown),
+      -1.5rem 0 var(--color-brown-transparent);
   }
   33.3% {
-    box-shadow: 1.5rem 0 var(--color-brown), -1.5rem 0 var(--color-brown-transparent);
-    background-color: var(--color-brown-transparent)
+    background-color: var(--color-brown-transparent);
+    box-shadow:
+      1.5rem 0 var(--color-brown),
+      -1.5rem 0 var(--color-brown-transparent);
   }
   66.6% {
-    box-shadow: 1.5rem 0 var(--color-brown-transparent), -1.5rem 0 var(--color-brown);
-    background-color: var(--color-brown-transparent)
+    background-color: var(--color-brown-transparent);
+    box-shadow:
+      1.5rem 0 var(--color-brown-transparent),
+      -1.5rem 0 var(--color-brown);
   }
   100% {
-    box-shadow: 1.5rem 0 var(--color-brown-transparent), -1.5rem 0 var(--color-brown);
-    background-color: var(--color-brown)
+    background-color: var(--color-brown);
+    box-shadow:
+      1.5rem 0 var(--color-brown-transparent),
+      -1.5rem 0 var(--color-brown);
   }
 }

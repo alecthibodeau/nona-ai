@@ -6,7 +6,7 @@
 
 .user-input-form {
   display: flex;
-  padding: 1rem 1rem 1rem 1.5rem;
+  padding: 1rem 1rem 1rem 2rem;
   border-radius: 3rem;
   background-color: var(--color-blue-light);
 }
@@ -14,11 +14,11 @@
 .user-input-textarea-container {
   display: flex;
   padding: .875rem 0;
+  width: 70vw;
+  max-width: 44rem;
 }
 
 .user-input-textarea {
-  width: 70vw;
-  max-width: 700px;
   height: 1rem;
   border: none;
   outline: none;
