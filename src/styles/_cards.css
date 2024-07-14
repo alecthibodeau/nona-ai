@@ -72,8 +72,6 @@
   height: 30px;
   border-radius: 50%;
   border: 2px solid var(--color-green-medium);
-  font-size: 2.5rem;
-  line-height: .6875rem;
   background-color: transparent;
 
   &:hover {
@@ -83,6 +81,8 @@
 }
 
 .cancel-button-icon {
+  font-size: 2.5rem;
+  line-height: .6875rem;
   color: var(--color-green-medium);
 
   &:hover {

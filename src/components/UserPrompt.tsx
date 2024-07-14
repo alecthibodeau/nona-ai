@@ -8,7 +8,7 @@ import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
 
 /* Constants */
-import text from '../constants/text';
+import strings from '../constants/strings';
 
 declare global {
   interface Window {
@@ -23,7 +23,7 @@ function UserPrompt(props: UserPromptProps) {
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const { characterBlackMediumRightPointingTriangle, keyArrowUp, keyEnter } = text;
+  const { unicodeCharacters, keyboardKeys } = strings;
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
   const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
@@ -82,7 +82,7 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function modifyHeightFromKeyPressed(key: string, textarea: HTMLTextAreaElement): void {
-    if (key === keyEnter) {
+    if (key === keyboardKeys.keyEnter) {
       if (isShiftPressed) {
         textarea.style.height = `${textAreaHeight + 1}rem`;
       } else if (!isOnlyNewLinesAndSpaces) {
@@ -90,7 +90,7 @@ function UserPrompt(props: UserPromptProps) {
         textarea.value = '';
         onSubmit();
       }
-    } else if (key === keyArrowUp && !promptText && mostRecentPrompt) {
+    } else if (key === keyboardKeys.keyArrowUp && !promptText && mostRecentPrompt) {
       setPromptText(mostRecentPrompt);
       textarea.value = mostRecentPrompt;
     } else {
@@ -128,7 +128,7 @@ function UserPrompt(props: UserPromptProps) {
             <span className={
               `submit-button-icon ${!promptText || isAwaitingResponse ? 'disabled' : ''}`
             }>
-              {characterBlackMediumRightPointingTriangle}
+              {unicodeCharacters.characterBlackMediumRightPointingTriangle}
             </span>
           </button>
         </div>

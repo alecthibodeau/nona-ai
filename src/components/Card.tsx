@@ -7,18 +7,18 @@ import Typewriter from './Typewriter';
 import CardProps from '../interfaces/CardProps';
 
 /* Constants */
-import text from '../constants/text';
+import strings from '../constants/strings';
 
 function Card(props: CardProps) {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
-  const [isTypewriterStoppedByUser, setIsTypewriterStoppedByUser] = useState<boolean>(false);
-  const { characterVectorOrCrossProduct, result } = text;
+  const [isTypewriterCanceled, setIsTypewriterCanceled] = useState<boolean>(false);
+  const { unicodeCharacters, cardVariantValues } = strings;
 
   return (
     <div className={`card-row ${props.variant}`}>
       <div className="card">
         {
-          props.variant === result ?
+          props.variant === cardVariantValues.result ?
           <div className="icon-container">
             <div className="icon-flow">
               {Array(9).fill('icon-circle').map((dot, index) => {
@@ -31,31 +31,33 @@ function Card(props: CardProps) {
         <div className={`card-text ${props.variant}`}>
           <div>
             {
-              props.variant === result ?
+              props.variant === cardVariantValues.result ?
               <Typewriter
                 text={props.text}
                 delay={40}
-                isStoppedByUser={isTypewriterStoppedByUser}
-                onIsCharacterTypewritten={(isTypewritten) => props.onIsCharacterTypewritten(isTypewritten)}
+                isStoppedByUser={isTypewriterCanceled}
+                onIsCharacterTypewritten={(isTypewritten) => {
+                  props.onIsCharacterTypewritten(isTypewritten);
+                }}
                 onIsTypewriterRunning={(isRunning) => {
                   setIsTypewriterRunning(isRunning);
-                  props.onIsTypewriterRunning(isRunning)
+                  props.onIsTypewriterRunning(isRunning);
                 }}
               /> :
               props.text
             }
           </div>
           {
-            props.variant === result && isTypewriterRunning ?
+            props.variant === cardVariantValues.result && isTypewriterRunning ?
             <div className="cancel-button-container">
               <button
                 className="cancel-button"
                 onClick={() => {
-                  setIsTypewriterStoppedByUser(true);
+                  setIsTypewriterCanceled(true);
                   setIsTypewriterRunning(false);
                 }}>
                 <span className="cancel-button-icon">
-                  {characterVectorOrCrossProduct}
+                  {unicodeCharacters.characterVectorOrCrossProduct}
                 </span>
               </button>
             </div> :

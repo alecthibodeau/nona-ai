@@ -9,8 +9,8 @@ import UserPrompt from './components/UserPrompt';
 import CardProps from './interfaces/CardProps';
 
 /* Constants */
-import text from './constants/text';
 import mockData from './constants/mock-data';
+import strings from './constants/strings';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -19,23 +19,23 @@ function App() {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
-  const { pleaseTryAgain, prompt, result } = text;
+  const { cardVariantValues, textForUser } = strings;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
-  const isMockDataUsed: boolean = true;
+  const isMockDataUsed: boolean = false;
 
   useEffect(() => {
     if (isMockDataUsed) {
       const mockCards = mockData.map((data, index) => {
         return {
           text: data,
-          variant: index % 2 ? result : prompt,
+          variant: index % 2 ? cardVariantValues.result : cardVariantValues.prompt,
           onIsCharacterTypewritten: setIsCharacterTypewritten,
           onIsTypewriterRunning: setIsTypewriterRunning
         };
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed, prompt, result]);
+  }, [isMockDataUsed, cardVariantValues.result, cardVariantValues.prompt]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
@@ -55,17 +55,17 @@ function App() {
     }
   }, [isTypewriterRunning]);
 
-  function handleKeyDown(event: KeyboardEvent) {
+  function handleKeyDown(event: KeyboardEvent): void {
     const scrollKeys: string[] = ['ArrowUp', 'ArrowDown', 'End', 'Home', 'PageUp', 'PageDown'];
     if (scrollKeys.includes(event.key)) setIsUserScrollEvent(true);
   }
 
-  const handleMouseWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+  function handleMouseWheel(event: React.WheelEvent<HTMLDivElement>): void {
     if (event.deltaY && isTypewriterRunning) setIsUserScrollEvent(true);
-  };
+  }
 
   function updateCards(cardText: string, cardVariant: string): void {
-    if (cardVariant === result && !cardText) cardText = pleaseTryAgain;
+    if (cardVariant === cardVariantValues.result && !cardText) cardText = textForUser.pleaseTryAgain;
     const card: CardProps = {
       text: cardText,
       variant: cardVariant,
@@ -107,9 +107,15 @@ function App() {
           </div>
         </div>
         <UserPrompt
-          onUpdatePrompt={(promptText) => updateCards(promptText.toString(), prompt)}
-          onUpdateResult={(resultText) => updateCards(resultText.toString(), result)}
-          onIsAwaitingResponse={(isAwaiting) => setIsAwaitingResponse(isAwaiting)}
+          onUpdatePrompt={(promptText) => {
+            updateCards(promptText.toString(), cardVariantValues.prompt);
+          }}
+          onUpdateResult={(resultText) => {
+            updateCards(resultText.toString(), cardVariantValues.result);
+          }}
+          onIsAwaitingResponse={(isAwaiting) => {
+            setIsAwaitingResponse(isAwaiting);
+          }}
         />
       </main>
     </div>
