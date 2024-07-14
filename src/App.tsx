@@ -17,11 +17,11 @@ function App() {
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
-  const [isUserEventHappening, setIsUserEventHappening] = useState<boolean>(false);
+  const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { pleaseTryAgain, prompt, result } = text;
   const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
-  const isMockDataUsed: boolean = false;
+  const isMockDataUsed: boolean = true;
 
   useEffect(() => {
     if (isMockDataUsed) {
@@ -38,30 +38,31 @@ function App() {
   }, [isMockDataUsed, prompt, result]);
 
   useEffect(() => {
-    if (isAwaitingResponse || (isTypewriterRunning && !isUserEventHappening)) {
+    if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
       const container = cardsScrollRef.current;
       if (container) container.scrollTop = container.scrollHeight;
     }
-  }, [isAwaitingResponse, isCharacterTypewritten, isTypewriterRunning, isUserEventHappening]);
+  }, [isAwaitingResponse, isCharacterTypewritten, isTypewriterRunning, isUserScrollEvent]);
 
   useEffect(() => {
     if (isTypewriterRunning) {
-      const userEvents: string[] = ['mousemove', 'mousedown', 'keydown'];
-      userEvents.forEach(event => {
-        window.addEventListener(event, handleUserEvent);
-      });
+      const keydown: keyof WindowEventMap = 'keydown';
+      window.addEventListener(keydown, handleKeyDown);
       return () => {
-        userEvents.forEach(event => {
-          window.removeEventListener(event, handleUserEvent);
-        });
-        setIsUserEventHappening(false);
+        window.removeEventListener(keydown, handleKeyDown);
+        setIsUserScrollEvent(false);
       }
     }
   }, [isTypewriterRunning]);
 
-  function handleUserEvent(): void {
-    setIsUserEventHappening(true);
+  function handleKeyDown(event: KeyboardEvent) {
+    const scrollKeys: string[] = ['ArrowUp', 'ArrowDown', 'End', 'Home', 'PageUp', 'PageDown'];
+    if (scrollKeys.includes(event.key)) setIsUserScrollEvent(true);
   }
+
+  const handleMouseWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    if (event.deltaY && isTypewriterRunning) setIsUserScrollEvent(true);
+  };
 
   function updateCards(cardText: string, cardVariant: string): void {
     if (cardVariant === result && !cardText) cardText = pleaseTryAgain;
@@ -101,7 +102,7 @@ function App() {
       <Header />
       <main>
         <div className="cards-container">
-          <div ref={cardsScrollRef} className="cards-scroll">
+          <div ref={cardsScrollRef} className="cards-scroll" onWheel={handleMouseWheel}>
             {cards.map(renderCard)}
           </div>
         </div>
