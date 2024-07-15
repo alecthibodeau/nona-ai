@@ -14,6 +14,7 @@ const textForUser: { [key: string]: string } = {
 
 const unicodeCharacters: { [key: string]: string } = {
   characterBlackMediumRightPointingTriangle: '\u23f5',
+  characterBlackSquareForStop: '\u23f9',
   characterVectorOrCrossProduct: '\u2A2F'
 };
 

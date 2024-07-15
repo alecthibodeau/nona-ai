@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 /* Components */
 import Typewriter from './Typewriter';
 
@@ -10,9 +8,7 @@ import CardProps from '../interfaces/CardProps';
 import strings from '../constants/strings';
 
 function Card(props: CardProps) {
-  const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
-  const [isTypewriterCanceled, setIsTypewriterCanceled] = useState<boolean>(false);
-  const { unicodeCharacters, cardVariantValues } = strings;
+  const {cardVariantValues } = strings;
 
   return (
     <div className={`card-row ${props.variant}`}>
@@ -34,35 +30,18 @@ function Card(props: CardProps) {
               props.variant === cardVariantValues.result ?
               <Typewriter
                 text={props.text}
-                delay={40}
-                isStoppedByUser={isTypewriterCanceled}
+                delay={25}
+                isStoppedByUser={props.isTypewriterCanceledFromUserPrompt}
                 onIsCharacterTypewritten={(isTypewritten) => {
                   props.onIsCharacterTypewritten(isTypewritten);
                 }}
                 onIsTypewriterRunning={(isRunning) => {
-                  setIsTypewriterRunning(isRunning);
                   props.onIsTypewriterRunning(isRunning);
                 }}
               /> :
               props.text
             }
           </div>
-          {
-            props.variant === cardVariantValues.result && isTypewriterRunning ?
-            <div className="cancel-button-container">
-              <button
-                className="cancel-button"
-                onClick={() => {
-                  setIsTypewriterCanceled(true);
-                  setIsTypewriterRunning(false);
-                }}>
-                <span className="cancel-button-icon">
-                  {unicodeCharacters.characterVectorOrCrossProduct}
-                </span>
-              </button>
-            </div> :
-            null
-          }
         </div>
       </div>
     </div>

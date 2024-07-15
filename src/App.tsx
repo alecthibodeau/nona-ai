@@ -16,6 +16,7 @@ function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
+  const [isTypewriterCanceled, setIsTypewriterCanceled] = useState<boolean>(false);
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
@@ -29,13 +30,14 @@ function App() {
         return {
           text: data,
           variant: index % 2 ? cardVariantValues.result : cardVariantValues.prompt,
+          isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
           onIsCharacterTypewritten: setIsCharacterTypewritten,
           onIsTypewriterRunning: setIsTypewriterRunning
         };
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed, mockData, cardVariantValues.result, cardVariantValues.prompt]);
+  }, [isMockDataUsed, isTypewriterCanceled, mockData, cardVariantValues.result, cardVariantValues.prompt]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
@@ -65,10 +67,13 @@ function App() {
   }
 
   function updateCards(cardText: string, cardVariant: string): void {
-    if (cardVariant === cardVariantValues.result && !cardText) cardText = textForUser.pleaseTryAgain;
+    if (cardVariant === cardVariantValues.result && !cardText) {
+      cardText = textForUser.pleaseTryAgain;
+    }
     const card: CardProps = {
       text: cardText,
       variant: cardVariant,
+      isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
       onIsCharacterTypewritten: setIsCharacterTypewritten,
       onIsTypewriterRunning: setIsTypewriterRunning
     };
@@ -91,6 +96,7 @@ function App() {
         key={generateCardKey(card.text, index)}
         text={card.text}
         variant={card.variant}
+        isTypewriterCanceledFromUserPrompt={isTypewriterCanceled}
         onIsCharacterTypewritten={(isTypewritten) => setIsCharacterTypewritten(isTypewritten)}
         onIsTypewriterRunning={(isRunning) => setIsTypewriterRunning(isRunning)}
       />
@@ -107,6 +113,7 @@ function App() {
           </div>
         </div>
         <UserPrompt
+          isTypewriterRunningFromCard={isTypewriterRunning}
           onUpdatePrompt={(promptText) => {
             updateCards(promptText.toString(), cardVariantValues.prompt);
           }}
@@ -115,6 +122,10 @@ function App() {
           }}
           onIsAwaitingResponse={(isAwaiting) => {
             setIsAwaitingResponse(isAwaiting);
+          }}
+          onIsTypewriterCanceled={(isCanceled) => {
+            setIsTypewriterCanceled(isCanceled);
+            setIsTypewriterRunning(isCanceled);
           }}
         />
       </main>
