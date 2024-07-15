@@ -6,19 +6,19 @@
 
 .user-input-form {
   display: flex;
-  padding: 1rem 1rem 1rem 2rem;
-  border-radius: 3rem;
+  padding: 1rem .875rem 1rem 2rem;
+  border-radius: 2.5rem;
   background-color: var(--color-blue-light);
 }
 
 .user-input-textarea-container {
   display: flex;
   padding: .875rem 0;
-  width: 70vw;
-  max-width: 44rem;
 }
 
 .user-input-textarea {
+  width: 70vw;
+  max-width: 44rem;
   height: 1rem;
   border: none;
   outline: none;
@@ -32,7 +32,17 @@
   }
 }
 
+.loader-container {
+  display: flex;
+  width: 70vw;
+  max-width: 44rem;
+  margin-left: .25rem;
+}
+
 .submit-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
   margin-left: .75rem;
 }
 

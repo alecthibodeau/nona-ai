@@ -106,7 +106,9 @@ function UserPrompt(props: UserPromptProps) {
         <div className="user-input-textarea-container">
           {
             isAwaitingResponse ?
-            <Loader /> :
+            <div className="loader-container">
+              <Loader />
+            </div> :
             <textarea
               disabled={isAwaitingResponse}
               ref={textareaRef}
