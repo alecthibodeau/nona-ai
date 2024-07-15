@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 /* Components */
 import Typewriter from './Typewriter';
 
@@ -8,6 +10,7 @@ import CardProps from '../interfaces/CardProps';
 import strings from '../constants/strings';
 
 function Card(props: CardProps) {
+  const [cardText, setCardText] = useState<string>(props.text);
   const {cardVariantValues } = strings;
 
   return (
@@ -29,7 +32,7 @@ function Card(props: CardProps) {
             {
               props.variant === cardVariantValues.result ?
               <Typewriter
-                text={props.text}
+                text={cardText}
                 delay={25}
                 isStoppedByUser={props.isTypewriterCanceledFromUserPrompt}
                 onIsCharacterTypewritten={(isTypewritten) => {
@@ -38,8 +41,9 @@ function Card(props: CardProps) {
                 onIsTypewriterRunning={(isRunning) => {
                   props.onIsTypewriterRunning(isRunning);
                 }}
+                onTextAtCancel={(text) => setCardText(text.toString())}
               /> :
-              props.text
+              cardText
             }
           </div>
         </div>

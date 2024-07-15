@@ -62,23 +62,6 @@
 
 /* Media Queries*/
 
-@media (min-width: 576px) {
-
-  .icon-container {
-    min-width: 33px;
-    padding: .625rem;
-  }
-
-  .icon-flow {
-    width: 33px;
-
-    & .icon-circle {
-      width: 9px;
-      height: 9px;
-    }
-  }
-}
-
 @media (min-width: 1400px) {
 
   .card-text {

@@ -105,15 +105,17 @@ function UserPrompt(props: UserPromptProps) {
     if (textareaRef.current) textareaRef.current.focus();
   }
 
+  function makeButtonClass(): string {
+    return props.isTypewriterRunningFromCard ? 'stop' : 'start';
+  }
+
   return (
     <div className="user-prompt">
       <form className="user-input-form">
         <div className="user-input-textarea-container">
           {
             isAwaitingResponse ?
-            <div className="loader-container">
-              <Loader />
-            </div> :
+            <Loader /> :
             <textarea
               disabled={isAwaitingResponse}
               ref={textareaRef}
@@ -129,12 +131,10 @@ function UserPrompt(props: UserPromptProps) {
           <button
             disabled={isAwaitingResponse}
             type="button"
-            className="submit-button"
+            className={`submit-button ${makeButtonClass()}`}
             onClick={props.isTypewriterRunningFromCard ? stopTypewriter : onSubmit}
           >
-            <span className={
-              `submit-button-icon ${isAwaitingResponse ? 'disabled' : ''}`
-            }>
+            <span className={`submit-button-icon ${makeButtonClass()}`}>
               {
                 props.isTypewriterRunningFromCard ?
                 unicodeCharacters.characterBlackSquareForStop :

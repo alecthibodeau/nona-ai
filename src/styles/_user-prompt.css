@@ -6,6 +6,7 @@
 
 .user-input-form {
   display: flex;
+  justify-content: space-between;
   padding: 1rem .875rem 1rem 2rem;
   border-radius: 2.5rem;
   background-color: var(--color-blue-light);
@@ -13,12 +14,13 @@
 
 .user-input-textarea-container {
   display: flex;
+  width: 70vw;
+  max-width: 44rem;
   padding: .875rem 0;
 }
 
 .user-input-textarea {
-  width: 70vw;
-  max-width: 44rem;
+  flex: 1;
   height: 1rem;
   border: none;
   outline: none;
@@ -30,13 +32,6 @@
   &::placeholder {
     color: var(--color-blue-dark);
   }
-}
-
-.loader-container {
-  display: flex;
-  width: 70vw;
-  max-width: 44rem;
-  margin-left: .25rem;
 }
 
 .submit-button-container {
@@ -54,30 +49,53 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  background-color: var(--color-yellow-medium);
 
-  &:disabled {
-    cursor: default;
-    background-color: var(--color-gray-light);
+  &.start {
+    background-color: var(--color-yellow-medium);
+
+    &:hover:not(:disabled),
+    &:focus {
+      background-color: var(--color-green-medium);
+    }
+  }
+
+  &.stop {
+    background-color: var(--color-blue-lighter);
+
+    &:hover:not(:disabled),
+    &:focus {
+      background-color: var(--color-coral);
+    }
   }
 
   &:hover:not(:disabled),
   &:focus {
-    outline: 3px solid var(--color-white);
+    outline: var(--color-white) solid 3px;
     outline-offset: 3px;
-    background-color: var(--color-green-medium);
 
     & .submit-button-icon {
       color: var(--color-white);
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+    background-color: var(--color-gray-light);
+
+    & .submit-button-icon {
+      color: var(--color-gray);
     }
   }
 }
 
 .submit-button-icon {
   font-size: 2.5rem;
-  color: var(--color-green-medium);
 
-  &.disabled {
-    color: var(--color-gray);
+  &.start {
+    color: var(--color-green-medium);
+  }
+
+  &.stop {
+    color: var(--color-coral);
   }
 }

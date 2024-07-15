@@ -17,10 +17,14 @@ function Typewriter(props: TypewriterProps) {
         props.onIsCharacterTypewritten(isCharacterTypewritten);
         props.onIsTypewriterRunning(currentIndex !== props.text.length - 1);
       }, props.delay);
-      if (props.isStoppedByUser) clearTimeout(timeout);
+      if (props.isStoppedByUser) {
+        clearTimeout(timeout);
+        props.onTextAtCancel(currentText);
+        props.onIsTypewriterRunning(false);
+      }
       return () => clearTimeout(timeout);
     }
-  }, [props, currentIndex, isCharacterTypewritten]);
+  }, [props, isCharacterTypewritten, currentIndex, currentText]);
 
   return (
     <>
