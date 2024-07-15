@@ -8,6 +8,7 @@ import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
 
 /* Constants */
+import regularExpressions from '../constants/regular-expressions';
 import strings from '../constants/strings';
 
 declare global {
@@ -23,10 +24,11 @@ function UserPrompt(props: UserPromptProps) {
   const [promptText, setPromptText] = useState<string>('');
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { onlyNewLinesAndSpaces } = regularExpressions;
   const { unicodeCharacters, keyboardKeys } = strings;
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
-  const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
+  const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
   useEffect(() => {
