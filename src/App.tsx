@@ -9,7 +9,7 @@ import UserPrompt from './components/UserPrompt';
 import CardProps from './interfaces/CardProps';
 
 /* Constants */
-import mockData from './constants/mock-data';
+import regularExpressions from './constants/regular-expressions';
 import strings from './constants/strings';
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
-  const { cardVariantValues, textForUser } = strings;
-  const allButLettersAndNumbers: RegExp = /[^a-zA-Z0-9]/g;
+  const { cardVariantValues, mockData, textForUser } = strings;
+  const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed, cardVariantValues.result, cardVariantValues.prompt]);
+  }, [isMockDataUsed, mockData, cardVariantValues.result, cardVariantValues.prompt]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
