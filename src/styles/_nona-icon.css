@@ -1,0 +1,30 @@
+.nona-icon-container {
+  min-width: 24px;
+  padding: .5rem;
+  margin-right: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+
+  &.yellow {
+    border-color: var(--color-yellow-light);
+  }
+}
+
+.nona-icon-flow {
+  display: flex;
+  flex-wrap: wrap;
+  width: 24px;
+}
+
+& .nona-icon-circle {
+  width: 6px;
+  height: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+
+  &.yellow {
+    border-color: var(--color-yellow-light);
+  }
+}

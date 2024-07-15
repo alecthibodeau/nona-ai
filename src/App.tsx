@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import Loader from './components/Loader';
+import NonaIcon from './components/NonaIcon';
 import UserPrompt from './components/UserPrompt';
 
 /* Interfaces */
@@ -114,10 +115,15 @@ function App() {
               {cards.map(renderCard)}
             </div>
           </div>
-          {isAwaitingResponse ?
+          {
+            isAwaitingResponse ?
             <div className="container-for-loader">
-              <Loader />
-            </div>: null
+              <NonaIcon color="yellow" />
+              <div className="background-for-loader">
+                <Loader />
+              </div>
+            </div> :
+            null
           }
           <UserPrompt
             isTypewriterRunningFromCard={isTypewriterRunning}

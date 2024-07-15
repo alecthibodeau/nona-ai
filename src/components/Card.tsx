@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 /* Components */
+import NonaIcon from './NonaIcon';
 import Typewriter from './Typewriter';
 
 /* Interfaces */
@@ -16,17 +17,7 @@ function Card(props: CardProps) {
   return (
     <div className={`card-row ${props.variant}`}>
       <div className="card">
-        {
-          props.variant === textResult ?
-          <div className="icon-container">
-            <div className="icon-flow">
-              {Array(9).fill('icon-circle').map((dot, index) => {
-                return (<div key={`${dot}${index}`} className={dot}></div>);
-              })}
-            </div>
-          </div> :
-          null
-        }
+        {props.variant === textResult ? <NonaIcon color="yellow" /> : null}
         <div className={`card-text ${props.variant}`}>
           <div>
             {

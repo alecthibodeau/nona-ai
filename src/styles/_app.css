@@ -16,10 +16,14 @@
 }
 
 .container-for-loader {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 2rem;
+}
+
+.background-for-loader {
   width: 4rem;
   padding: 1.25rem 1.5rem;;
-  margin-left: 3.625rem;
-  margin-bottom: 2rem;
   border-radius: .75rem;
   background-color: var(--color-yellow-light);
 }
