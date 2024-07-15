@@ -71,6 +71,22 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
+  function validatePrompt(): void {
+    collapseTextarea();
+    if (promptText && !isOnlyNewLinesAndSpaces) {
+      onSubmit();
+    } else if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }
+
+  function collapseTextarea(): void {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '1rem';
+      textareaRef.current.value = '';
+    }
+  }
+
   function checkUserInputKey(key: string): void {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -86,9 +102,7 @@ function UserPrompt(props: UserPromptProps) {
       if (isShiftPressed) {
         textarea.style.height = `${textAreaHeight + 1}rem`;
       } else if (!isOnlyNewLinesAndSpaces) {
-        textarea.style.height = '1rem';
-        textarea.value = '';
-        onSubmit();
+        validatePrompt();
       }
     } else if (key === keyboardKeys.keyArrowUp && !promptText && mostRecentPrompt) {
       setPromptText(mostRecentPrompt);
@@ -132,7 +146,7 @@ function UserPrompt(props: UserPromptProps) {
             disabled={isAwaitingResponse}
             type="button"
             className={`submit-button ${makeButtonClass()}`}
-            onClick={props.isTypewriterRunningFromCard ? stopTypewriter : onSubmit}
+            onClick={props.isTypewriterRunningFromCard ? stopTypewriter : validatePrompt}
           >
             <span className={`submit-button-icon ${makeButtonClass()}`}>
               {
