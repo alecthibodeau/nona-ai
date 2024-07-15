@@ -20,16 +20,16 @@ function App() {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
-  const { cardVariantValues, mockData, textForUser } = strings;
+  const { cardVariantValues: { textPrompt, textResult }, mockData, textForUser } = strings;
   const { allButLettersAndNumbers } = regularExpressions;
-  const isMockDataUsed: boolean = false;
+  const isMockDataUsed: boolean = true;
 
   useEffect(() => {
     if (isMockDataUsed) {
       const mockCards = mockData.map((data, index) => {
         return {
           text: data,
-          variant: index % 2 ? cardVariantValues.result : cardVariantValues.prompt,
+          variant: index % 2 ? textResult : textPrompt,
           isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
           onIsCharacterTypewritten: setIsCharacterTypewritten,
           onIsTypewriterRunning: setIsTypewriterRunning
@@ -37,7 +37,7 @@ function App() {
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed, isTypewriterCanceled, mockData, cardVariantValues.result, cardVariantValues.prompt]);
+  }, [isMockDataUsed, isTypewriterCanceled, mockData, textResult, textPrompt]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
@@ -67,7 +67,7 @@ function App() {
   }
 
   function updateCards(cardText: string, cardVariant: string): void {
-    if (cardVariant === cardVariantValues.result && !cardText) {
+    if (cardVariant === textResult && !cardText) {
       cardText = textForUser.pleaseTryAgain;
     }
     const card: CardProps = {
@@ -114,11 +114,11 @@ function App() {
         </div>
         <UserPrompt
           isTypewriterRunningFromCard={isTypewriterRunning}
-          onUpdatePrompt={(promptText) => {
-            updateCards(promptText.toString(), cardVariantValues.prompt);
+          onUpdatePrompt={(textPrompt) => {
+            updateCards(textPrompt.toString(), textPrompt.toString());
           }}
-          onUpdateResult={(resultText) => {
-            updateCards(resultText.toString(), cardVariantValues.result);
+          onUpdateResult={(textResult) => {
+            updateCards(textResult.toString(), textResult.toString());
           }}
           onIsAwaitingResponse={(isAwaiting) => {
             setIsAwaitingResponse(isAwaiting);

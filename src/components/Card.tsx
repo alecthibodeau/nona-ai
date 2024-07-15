@@ -11,13 +11,13 @@ import strings from '../constants/strings';
 
 function Card(props: CardProps) {
   const [cardText, setCardText] = useState<string>(props.text);
-  const {cardVariantValues } = strings;
+  const { cardVariantValues: { textResult } } = strings;
 
   return (
     <div className={`card-row ${props.variant}`}>
       <div className="card">
         {
-          props.variant === cardVariantValues.result ?
+          props.variant === textResult ?
           <div className="icon-container">
             <div className="icon-flow">
               {Array(9).fill('icon-circle').map((dot, index) => {
@@ -30,7 +30,7 @@ function Card(props: CardProps) {
         <div className={`card-text ${props.variant}`}>
           <div>
             {
-              props.variant === cardVariantValues.result ?
+              props.variant === textResult ?
               <Typewriter
                 text={cardText}
                 delay={25}
