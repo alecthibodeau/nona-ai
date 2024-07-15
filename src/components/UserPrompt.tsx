@@ -27,6 +27,7 @@ function UserPrompt(props: UserPromptProps) {
   const keydown: keyof WindowEventMap = 'keydown';
   const keyup: keyof WindowEventMap = 'keyup';
   const isOnlyNewLinesAndSpaces: boolean = /^\s*(\n\s*)*$/.test(promptText);
+  const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
   useEffect(() => {
     const keyShift: string = 'Shift';
@@ -48,10 +49,10 @@ function UserPrompt(props: UserPromptProps) {
     if (!isAwaitingResponse && textareaRef.current) textareaRef.current.focus();
   }, [isAwaitingResponse]);
 
-  async function onSubmit(): Promise<void> {
-    props.onUpdatePrompt(promptText);
-    setMostRecentPrompt(promptText);
-    const result = await doPrompt(promptText);
+  async function onSubmit(validatedText: string): Promise<void> {
+    props.onUpdatePrompt(validatedText);
+    setMostRecentPrompt(validatedText);
+    const result = await doPrompt(validatedText);
     props.onUpdateResult(result);
   }
 
@@ -72,27 +73,27 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function validatePrompt(): void {
-    collapseTextarea();
-    if (promptText && !isOnlyNewLinesAndSpaces) {
-      onSubmit();
-    } else if (textareaRef.current) {
-      textareaRef.current.focus();
+    if (textArea) {
+      collapseTextArea(textArea);
+      if (promptText && !isOnlyNewLinesAndSpaces) {
+        onSubmit(promptText.trim());
+      } else {
+        textArea.focus();
+        setPromptText('');
+      }
     }
   }
 
-  function collapseTextarea(): void {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = '1rem';
-      textareaRef.current.value = '';
-    }
+  function collapseTextArea(textAreaToCollapse: HTMLTextAreaElement): void {
+    textAreaToCollapse.style.height = '1rem';
+    textAreaToCollapse.value = '';
   }
 
   function checkUserInputKey(key: string): void {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      modifyHeightFromKeyPressed(key, textarea);
-      if (textarea.value.length < 3 || isOnlyNewLinesAndSpaces) {
-        textarea.style.height = '1rem';
+    if (textArea) {
+      modifyHeightFromKeyPressed(key, textArea);
+      if (textArea.value.length < 3 || isOnlyNewLinesAndSpaces) {
+        textArea.style.height = '1rem';
       }
     }
   }
@@ -116,7 +117,7 @@ function UserPrompt(props: UserPromptProps) {
 
   function stopTypewriter(): void {
     props.onIsTypewriterCanceled(true);
-    if (textareaRef.current) textareaRef.current.focus();
+    if (textArea) textArea.focus();
   }
 
   function makeButtonClass(): string {
