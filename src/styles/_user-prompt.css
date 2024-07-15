@@ -15,7 +15,7 @@
 .user-input-textarea-container {
   display: flex;
   width: 70vw;
-  max-width: 44rem;
+  max-width: 14rem;
   padding: .875rem 0;
 }
 
@@ -97,5 +97,14 @@
 
   &.stop {
     color: var(--color-coral);
+  }
+}
+
+/* Media Queries*/
+
+@media (min-width: 576px /* --breakpoint-sm */) {
+
+  .user-input-textarea-container {
+    max-width: 44rem;
   }
 }

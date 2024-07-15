@@ -1,0 +1,34 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.main-content {
+  padding-left: 2rem;
+  padding-right: 2rem
+}
+
+.container-for-loader {
+  width: 4rem;
+  padding: 1.25rem 1.5rem;;
+  margin-left: 3.625rem;
+  margin-bottom: 2rem;
+  border-radius: .75rem;
+  background-color: var(--color-yellow-light);
+}
+
+/* Media Queries*/
+
+@media (min-width: 1400px /* --breakpoint-xxl */) {
+
+  main {
+    width: 1200px;
+  }
+}

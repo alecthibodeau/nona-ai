@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-/* Components */
-import Loader from './Loader';
-
 /* Interfaces */
 import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
@@ -55,7 +52,7 @@ function UserPrompt(props: UserPromptProps) {
     props.onUpdatePrompt(validatedText);
     setMostRecentPrompt(validatedText);
     const result = await doPrompt(validatedText);
-    props.onUpdateResult(result);
+    props.onUpdateResult(result.trim());
   }
 
   async function doPrompt(request: string): Promise<string> {
@@ -130,19 +127,15 @@ function UserPrompt(props: UserPromptProps) {
     <div className="user-prompt">
       <form className="user-input-form">
         <div className="user-input-textarea-container">
-          {
-            isAwaitingResponse ?
-            <Loader /> :
-            <textarea
-              disabled={isAwaitingResponse}
-              ref={textareaRef}
-              className="user-input-textarea"
-              placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
-              value={promptText}
-              onChange={(event) => setPromptText(event.target.value)}
-              onKeyDown={(event) => checkUserInputKey(event.key)}
-            />
-          }
+         <textarea
+           disabled={isAwaitingResponse}
+           ref={textareaRef}
+           className="user-input-textarea"
+           placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
+           value={promptText}
+           onChange={(event) => setPromptText(event.target.value)}
+           onKeyDown={(event) => checkUserInputKey(event.key)}
+         />
         </div>
         <div className="submit-button-container">
           <button

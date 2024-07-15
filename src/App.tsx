@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 /* Components */
 import Card from './components/Card';
 import Header from './components/Header';
+import Loader from './components/Loader';
 import UserPrompt from './components/UserPrompt';
 
 /* Interfaces */
@@ -22,7 +23,7 @@ function App() {
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
   const { cardVariantValues: { textPrompt, textResult }, mockData, textForUser } = strings;
   const { allButLettersAndNumbers } = regularExpressions;
-  const isMockDataUsed: boolean = true;
+  const isMockDataUsed: boolean = false;
 
   useEffect(() => {
     if (isMockDataUsed) {
@@ -106,28 +107,31 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <main>
-        <div className="cards-container">
-          <div ref={cardsScrollRef} className="cards-scroll" onWheel={handleMouseWheel}>
-            {cards.map(renderCard)}
+      <main className="main">
+        <div className="main-content">
+          <div className="cards-container">
+            <div ref={cardsScrollRef} className="cards-scroll" onWheel={handleMouseWheel}>
+              {cards.map(renderCard)}
+            </div>
           </div>
+          {isAwaitingResponse ?
+            <div className="container-for-loader">
+              <Loader />
+            </div>: null
+          }
+          <UserPrompt
+            isTypewriterRunningFromCard={isTypewriterRunning}
+            onUpdatePrompt={(text) => updateCards(text.toString(), textPrompt)}
+            onUpdateResult={(text) => updateCards(text.toString(), textResult)}
+            onIsAwaitingResponse={(isAwaiting) => {
+              setIsAwaitingResponse(isAwaiting);
+            }}
+            onIsTypewriterCanceled={(isCanceled) => {
+              setIsTypewriterCanceled(isCanceled);
+              setIsTypewriterRunning(isCanceled);
+            }}
+          />
         </div>
-        <UserPrompt
-          isTypewriterRunningFromCard={isTypewriterRunning}
-          onUpdatePrompt={(textPrompt) => {
-            updateCards(textPrompt.toString(), textPrompt.toString());
-          }}
-          onUpdateResult={(textResult) => {
-            updateCards(textResult.toString(), textResult.toString());
-          }}
-          onIsAwaitingResponse={(isAwaiting) => {
-            setIsAwaitingResponse(isAwaiting);
-          }}
-          onIsTypewriterCanceled={(isCanceled) => {
-            setIsTypewriterCanceled(isCanceled);
-            setIsTypewriterRunning(isCanceled);
-          }}
-        />
       </main>
     </div>
   );
