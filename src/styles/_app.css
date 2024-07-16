@@ -22,8 +22,8 @@
 }
 
 .background-for-loader {
-  width: 4rem;
-  padding: 1.25rem 1.5rem;;
+  width: 3.75rem;
+  padding: 1.375rem 1rem;;
   border-radius: .75rem;
   background-color: var(--color-yellow-light);
 }

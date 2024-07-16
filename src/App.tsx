@@ -111,7 +111,11 @@ function App() {
       <main className="main">
         <div className="main-content">
           <div className="cards-container">
-            <div ref={cardsScrollRef} className="cards-scroll" onWheel={handleMouseWheel}>
+            <div
+              ref={cardsScrollRef}
+              className="cards-scroll"
+              onWheel={handleMouseWheel}
+            >
               {cards.map(renderCard)}
             </div>
           </div>
