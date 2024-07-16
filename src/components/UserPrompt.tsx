@@ -16,6 +16,7 @@ declare global {
 
 function UserPrompt(props: UserPromptProps) {
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
+  const [isFormHighlighted, setIsFormHighlighted] = useState<boolean>(false);
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
   const [mostRecentPrompt, setMostRecentPrompt] = useState<string>('');
   const [promptText, setPromptText] = useState<string>('');
@@ -90,14 +91,14 @@ function UserPrompt(props: UserPromptProps) {
 
   function checkUserInputKey(key: string): void {
     if (textArea) {
-      modifyHeightFromKeyPressed(key, textArea);
+      modifyHeightFromKeyPress(key, textArea);
       if (textArea.value.length < 3 || isOnlyNewLinesAndSpaces) {
         textArea.style.height = '1rem';
       }
     }
   }
 
-  function modifyHeightFromKeyPressed(key: string, textarea: HTMLTextAreaElement): void {
+  function modifyHeightFromKeyPress(key: string, textarea: HTMLTextAreaElement): void {
     if (key === keyboardKeys.keyEnter) {
       if (isShiftPressed) {
         textarea.style.height = `${textAreaHeight + 1}rem`;
@@ -125,7 +126,10 @@ function UserPrompt(props: UserPromptProps) {
 
   return (
     <div className="user-prompt">
-      <form className="user-input-form">
+      <form
+        className={
+          `user-input-form ${isFormHighlighted ? 'text-area-focused' : ''}`
+        }>
         <div className="user-input-textarea-container">
          <textarea
            disabled={isAwaitingResponse}
@@ -133,14 +137,18 @@ function UserPrompt(props: UserPromptProps) {
            className="user-input-textarea"
            placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
            value={promptText}
+           onFocus={() => setIsFormHighlighted(true)}
+           onBlur={() => setIsFormHighlighted(false)}
            onChange={(event) => setPromptText(event.target.value)}
            onKeyDown={(event) => checkUserInputKey(event.key)}
          />
         </div>
         <div className="submit-button-container">
           <button
-            disabled={isAwaitingResponse}
             type="button"
+            onFocus={() => setIsFormHighlighted(true)}
+            onBlur={() => setIsFormHighlighted(false)}
+            disabled={isAwaitingResponse}
             className={`submit-button ${makeButtonClass()}`}
             onClick={props.isTypewriterRunningFromCard ? stopTypewriter : validatePrompt}
           >

@@ -17,27 +17,27 @@
 
 @keyframes loader-keyframes {
   0% {
-    background-color: var(--color-brown);
+    background-color: var(--color-violet-dark);
     box-shadow:
-      1.5rem 0 var(--color-brown),
-      -1.5rem 0 var(--color-brown-transparent);
+      1.5rem 0 var(--color-violet-dark),
+      -1.5rem 0 var(--color-violet-dark-transparent);
   }
   33.3% {
-    background-color: var(--color-brown-transparent);
+    background-color: var(--color-violet-dark-transparent);
     box-shadow:
-      1.5rem 0 var(--color-brown),
-      -1.5rem 0 var(--color-brown-transparent);
+      1.5rem 0 var(--color-violet-dark),
+      -1.5rem 0 var(--color-violet-dark-transparent);
   }
   66.6% {
-    background-color: var(--color-brown-transparent);
+    background-color: var(--color-violet-dark-transparent);
     box-shadow:
-      1.5rem 0 var(--color-brown-transparent),
-      -1.5rem 0 var(--color-brown);
+      1.5rem 0 var(--color-violet-dark-transparent),
+      -1.5rem 0 var(--color-violet-dark);
   }
   100% {
-    background-color: var(--color-brown);
+    background-color: var(--color-violet-dark);
     box-shadow:
-      1.5rem 0 var(--color-brown-transparent),
-      -1.5rem 0 var(--color-brown);
+      1.5rem 0 var(--color-violet-dark-transparent),
+      -1.5rem 0 var(--color-violet-dark);
   }
 }

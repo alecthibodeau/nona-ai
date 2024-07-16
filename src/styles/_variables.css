@@ -12,7 +12,9 @@
   --color-black: #000;
   --color-gray: #808080;
   --color-gray-light: #d3d3d3;
+  --color-blue-darker: #030387;
   --color-blue-dark: #0000b3;
+  --color-blue-medium-light: #79b9d4;
   --color-blue-light: #87ceeb;
   --color-blue-lighter: #c8f1fc;
   --color-yellow-medium: #f9d58b;
@@ -23,4 +25,5 @@
   --color-brown: #331111;
   --color-brown-transparent: rgb(51 17 17 / 33%);
   --color-violet-dark: #313b7d;
+  --color-violet-dark-transparent: rgb(49 59 125 / 33%);
 }

@@ -9,7 +9,16 @@
   justify-content: space-between;
   padding: 1rem .875rem 1rem 2rem;
   border-radius: 2.5rem;
-  background-color: var(--color-blue-light);
+  background-color: var(--color-blue-medium-light);
+
+  &:hover,
+  &.text-area-focused {
+    background-color: var(--color-blue-light);
+
+    & .user-input-textarea-container .user-input-textarea::placeholder {
+      color: var(--color-blue-dark);
+    }
+  }
 }
 
 .user-input-textarea-container {
@@ -30,7 +39,7 @@
   background-color: transparent;
 
   &::placeholder {
-    color: var(--color-blue-dark);
+    color: var(--color-blue-darker);
   }
 }
 
