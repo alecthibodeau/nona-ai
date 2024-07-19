@@ -5,7 +5,8 @@ const cardVariantValues: { [key: string]: string } = {
 
 const keyboardKeys: { [key: string]: string } = {
   keyArrowUp: 'ArrowUp',
-  keyEnter: 'Enter'
+  keyEnter: 'Enter',
+  keyShift: 'Shift'
 };
 
 const textForUser: { [key: string]: string } = {

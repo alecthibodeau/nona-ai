@@ -23,27 +23,9 @@ function UserPrompt(props: UserPromptProps) {
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { onlyNewLinesAndSpaces } = regularExpressions;
-  const { unicodeCharacters, keyboardKeys } = strings;
-  const keydown: keyof WindowEventMap = 'keydown';
-  const keyup: keyof WindowEventMap = 'keyup';
+  const { keyboardKeys: { keyArrowUp, keyEnter, keyShift }, unicodeCharacters } = strings;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
-
-  useEffect(() => {
-    const keyShift: string = 'Shift';
-    function keyDownHandler({ key }: KeyboardEvent): void {
-      if (key === keyShift) setIsShiftPressed(true);
-    }
-    function keyUpHandler({ key }: KeyboardEvent): void {
-      if (key === keyShift) setIsShiftPressed(false);
-    }
-    window.addEventListener(keydown, keyDownHandler);
-    window.addEventListener(keyup, keyUpHandler);
-    return function cleanupEventListeners() {
-      window.removeEventListener(keydown, keyDownHandler);
-      window.removeEventListener(keyup, keyUpHandler);
-    };
-  }, []);
 
   useEffect(() => {
     if (!isAwaitingResponse && textareaRef.current) textareaRef.current.focus();
@@ -89,7 +71,8 @@ function UserPrompt(props: UserPromptProps) {
     textAreaToCollapse.value = '';
   }
 
-  function checkUserInputKey(key: string): void {
+  function checkKeyDown(key: string): void {
+    if (key === keyShift) setIsShiftPressed(true);
     if (textArea) {
       modifyHeightFromKeyPress(key, textArea);
       if (textArea.value.length < 3 || isOnlyNewLinesAndSpaces) {
@@ -99,13 +82,13 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function modifyHeightFromKeyPress(key: string, textarea: HTMLTextAreaElement): void {
-    if (key === keyboardKeys.keyEnter) {
+    if (key === keyEnter) {
       if (isShiftPressed) {
         textarea.style.height = `${textAreaHeight + 1}rem`;
       } else if (!isOnlyNewLinesAndSpaces) {
         validatePrompt();
       }
-    } else if (key === keyboardKeys.keyArrowUp && !promptText && mostRecentPrompt) {
+    } else if (key === keyArrowUp && !promptText && mostRecentPrompt) {
       setPromptText(mostRecentPrompt);
       textarea.value = mostRecentPrompt;
       moveCursorToEndOfText(textarea);
@@ -146,7 +129,8 @@ function UserPrompt(props: UserPromptProps) {
           onFocus={() => setIsFormHighlighted(true)}
           onBlur={() => setIsFormHighlighted(false)}
           onChange={(event) => setPromptText(event.target.value)}
-          onKeyDown={(event) => checkUserInputKey(event.key)}
+          onKeyDown={(event) => checkKeyDown(event.key)}
+          onKeyUp={(event) => {if (event.key === keyShift) setIsShiftPressed(false)}}
         />
         </div>
         <div className="submit-button-container">
