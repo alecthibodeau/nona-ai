@@ -28,8 +28,8 @@ function UserPrompt(props: UserPromptProps) {
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
   useEffect(() => {
-    if (!isAwaitingResponse && textareaRef.current) textareaRef.current.focus();
-  }, [isAwaitingResponse]);
+    if (!isAwaitingResponse && textArea) textArea.focus();
+  }, [isAwaitingResponse, textArea]);
 
   async function onSubmit(validatedText: string): Promise<void> {
     props.onUpdatePrompt(validatedText);
