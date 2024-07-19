@@ -108,11 +108,17 @@ function UserPrompt(props: UserPromptProps) {
     } else if (key === keyboardKeys.keyArrowUp && !promptText && mostRecentPrompt) {
       setPromptText(mostRecentPrompt);
       textarea.value = mostRecentPrompt;
+      moveCursorToEndOfText(textarea);
     } else {
       const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
       textarea.style.height = `${scrollHeightToRem}rem`;
       setTextAreaHeight(scrollHeightToRem);
     }
+  }
+
+  function moveCursorToEndOfText(textarea: HTMLTextAreaElement): void {
+    const length: number = textarea.value.length;
+    setTimeout(() => textarea.setSelectionRange(length, length), 50);
   }
 
   function stopTypewriter(): void {
@@ -131,17 +137,17 @@ function UserPrompt(props: UserPromptProps) {
           `user-input-form ${isFormHighlighted ? 'text-area-focused' : ''}`
         }>
         <div className="user-input-textarea-container">
-         <textarea
-           disabled={isAwaitingResponse}
-           ref={textareaRef}
-           className="user-input-textarea"
-           placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
-           value={promptText}
-           onFocus={() => setIsFormHighlighted(true)}
-           onBlur={() => setIsFormHighlighted(false)}
-           onChange={(event) => setPromptText(event.target.value)}
-           onKeyDown={(event) => checkUserInputKey(event.key)}
-         />
+        <textarea
+          disabled={isAwaitingResponse}
+          ref={textareaRef}
+          className="user-input-textarea"
+          placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
+          value={promptText}
+          onFocus={() => setIsFormHighlighted(true)}
+          onBlur={() => setIsFormHighlighted(false)}
+          onChange={(event) => setPromptText(event.target.value)}
+          onKeyDown={(event) => checkUserInputKey(event.key)}
+        />
         </div>
         <div className="submit-button-container">
           <button
