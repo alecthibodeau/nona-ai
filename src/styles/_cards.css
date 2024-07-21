@@ -28,6 +28,7 @@
 
 .card-text {
   max-width: 60vw;
+  min-height: 1.5rem;
   padding: 1rem 1.5rem;
   border-radius: .75rem;
   margin: 1rem 0;
