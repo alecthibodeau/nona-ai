@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 /* Interfaces */
 import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
+import UserHistoryProps from '../interfaces/UserHistoryProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
 
 /* Constants */
@@ -25,11 +26,18 @@ function UserPrompt(props: UserPromptProps) {
   const { onlyNewLinesAndSpaces } = regularExpressions;
   const { keyboardKeys: { keyArrowUp, keyEnter, keyShift }, unicodeCharacters } = strings;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
+  const isSubmitEnabled: boolean = !props.isTypewriterRunningFromCard && !isAwaitingResponse;
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
   useEffect(() => {
     if (!isAwaitingResponse && textArea) textArea.focus();
   }, [isAwaitingResponse, textArea]);
+
+  useEffect(() => {
+    if (props.mostRecentPromptSaved && !mostRecentPrompt) {
+      setMostRecentPrompt(props.mostRecentPromptSaved);
+    }
+  }, [props.mostRecentPromptSaved, mostRecentPrompt]);
 
   async function onSubmit(validatedText: string): Promise<void> {
     props.onUpdatePrompt(validatedText);
@@ -104,13 +112,22 @@ function UserPrompt(props: UserPromptProps) {
     setTimeout(() => textarea.setSelectionRange(length, length), 50);
   }
 
-  function stopTypewriter(): void {
-    props.onIsTypewriterCanceled(true);
-    if (textArea) textArea.focus();
+  function onClickStopButton(): void {
+    if (props.isTypewriterRunningFromCard) {
+      props.onIsTypewriterCanceled(true);
+      if (textArea) textArea.focus();
+    } else {
+      const userHistory: UserHistoryProps = {
+        cards: props.cardsSaved,
+        mostRecentPrompt: mostRecentPrompt
+      }
+      localStorage.setItem(strings.localStorageKeyHistory, JSON.stringify(userHistory));
+      window.location.reload();
+    }
   }
 
   function makeButtonClass(): string {
-    return props.isTypewriterRunningFromCard ? 'stop' : 'start';
+    return isSubmitEnabled ? 'start' : 'stop';
   }
 
   return (
@@ -138,15 +155,14 @@ function UserPrompt(props: UserPromptProps) {
             type="button"
             onFocus={() => setIsFormHighlighted(true)}
             onBlur={() => setIsFormHighlighted(false)}
-            disabled={isAwaitingResponse}
             className={`submit-button ${makeButtonClass()}`}
-            onClick={props.isTypewriterRunningFromCard ? stopTypewriter : validatePrompt}
+            onClick={isSubmitEnabled ? validatePrompt : onClickStopButton}
           >
             <span className={`submit-button-icon ${makeButtonClass()}`}>
               {
-                props.isTypewriterRunningFromCard ?
-                unicodeCharacters.characterBlackSquareForStop :
-                unicodeCharacters.characterBlackMediumRightPointingTriangle
+                isSubmitEnabled ?
+                unicodeCharacters.characterBlackMediumRightPointingTriangle :
+                unicodeCharacters.characterBlackSquareForStop
               }
             </span>
           </button>

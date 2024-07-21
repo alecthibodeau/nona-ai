@@ -9,6 +9,7 @@ import UserPrompt from './components/UserPrompt';
 
 /* Interfaces */
 import CardProps from './interfaces/CardProps';
+import UserHistoryProps from './interfaces/UserHistoryProps';
 
 /* Constants */
 import regularExpressions from './constants/regular-expressions';
@@ -16,6 +17,7 @@ import strings from './constants/strings';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
+  const [mostRecentPromptSaved, setMostRecentPromptSaved] = useState<string>('');
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
   const [isTypewriterCanceled, setIsTypewriterCanceled] = useState<boolean>(false);
@@ -25,6 +27,16 @@ function App() {
   const { cardVariantValues: { textPrompt, textResult }, mockData, textForUser } = strings;
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
+
+  useEffect(() => {
+    const storedHistory = localStorage.getItem(strings.localStorageKeyHistory);
+    if (storedHistory) {
+      const userHistory: UserHistoryProps = JSON.parse(storedHistory);
+      setCards(userHistory.cards);
+      setMostRecentPromptSaved(userHistory.mostRecentPrompt);
+      localStorage.removeItem(strings.localStorageKeyHistory);
+    }
+  }, []);
 
   useEffect(() => {
     if (isMockDataUsed) {
@@ -130,6 +142,8 @@ function App() {
             null
           }
           <UserPrompt
+            cardsSaved={cards}
+            mostRecentPromptSaved={mostRecentPromptSaved}
             isTypewriterRunningFromCard={isTypewriterRunning}
             onUpdatePrompt={(text) => updateCards(text.toString(), textPrompt)}
             onUpdateResult={(text) => updateCards(text.toString(), textResult)}

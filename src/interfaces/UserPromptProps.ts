@@ -1,6 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 
+/* Interfaces */
+import CardProps from './CardProps';
+
 interface UserPromptProps {
+  cardsSaved: CardProps[];
+  mostRecentPromptSaved: string;
   isTypewriterRunningFromCard: boolean;
   onIsAwaitingResponse: Dispatch<SetStateAction<boolean>>;
   onIsTypewriterCanceled: Dispatch<SetStateAction<boolean>>;

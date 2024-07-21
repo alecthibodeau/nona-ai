@@ -1,3 +1,5 @@
+const localStorageKeyHistory = 'nonaAiHistory';
+
 const cardVariantValues: { [key: string]: string } = {
   textPrompt: 'prompt',
   textResult: 'result'
@@ -33,6 +35,7 @@ const mockData: string[] = [
 ];
 
 const strings = {
+  localStorageKeyHistory,
   cardVariantValues,
   keyboardKeys,
   textForUser,
