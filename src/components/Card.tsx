@@ -12,17 +12,17 @@ import CardProps from '../interfaces/CardProps';
 import strings from '../constants/strings';
 
 function Card(props: CardProps) {
-  const [cardText, setCardText] = useState<string>(props.text);
+  const [cardText, setCardText] = useState<string>(props.textContent);
   const { cardVariantValues: { vartiantNameResult } } = strings;
 
   return (
-    <div className={`card-row ${props.variant}`}>
+    <div className={`card-row ${props.variantName}`}>
       <div className="card">
-        {props.variant === vartiantNameResult ? <NonaIcon color="yellow" /> : null}
-        <div className={`card-text ${props.variant}`}>
+        {props.variantName === vartiantNameResult ? <NonaIcon color="yellow" /> : null}
+        <div className={`card-text ${props.variantName}`}>
           <div>
             {
-              props.variant === vartiantNameResult && props.isLastCard ?
+              props.variantName === vartiantNameResult && props.isLastCard ?
               <>
                 {
                   props.isAwaitingResponse ?

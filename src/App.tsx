@@ -28,8 +28,8 @@ function App() {
     if (isMockDataUsed) {
       const mockCards = mockData.map((data, index) => {
         return {
-          text: data,
-          variant: index % 2 ? vartiantNameResult : vartiantNamePrompt,
+          textContent: data,
+          variantName: index % 2 ? vartiantNameResult : vartiantNamePrompt,
           isAwaitingResponse: isAwaitingResponse,
           isLastCard: true,
           isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
@@ -70,22 +70,22 @@ function App() {
 
   function updateCards(cardText: string, cardVariant: string): void {
     if (cardVariant === vartiantNamePrompt) {
-      setCards(previousCards => [...previousCards,prepCard(cardText, cardVariant)]);
-      setCards(previousCards => [...previousCards,prepCard('', vartiantNameResult)]);
+      setCards(previousCards => [...previousCards, prepCard(cardText, cardVariant)]);
+      setCards(previousCards => [...previousCards, prepCard('', vartiantNameResult)]);
     } else if (cardVariant === vartiantNameResult) {
       if (!cardText) cardText = textForUser.pleaseTryAgain;
       setCards(previousCards => {
         const updatedCards = [...previousCards];
-        updatedCards[updatedCards.length - 1].text = cardText;
+        updatedCards[updatedCards.length - 1].textContent = cardText;
         return updatedCards;
       });
     }
   }
 
-  function prepCard(text: string, variantName: string): CardProps {
+  function prepCard(cardText: string, cardVariant: string): CardProps {
     return {
-      text: text,
-      variant: variantName,
+      textContent: cardText,
+      variantName: cardVariant,
       isAwaitingResponse: isAwaitingResponse,
       isLastCard: false,
       isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
@@ -107,9 +107,9 @@ function App() {
   function renderCard(card: CardProps, index: number): JSX.Element {
     return (
       <Card
-        key={generateCardKey(card.text, index)}
-        text={card.text}
-        variant={card.variant}
+        key={generateCardKey(card.textContent, index)}
+        textContent={card.textContent}
+        variantName={card.variantName}
         isAwaitingResponse={isAwaitingResponse}
         isLastCard={isMockDataUsed ? true : index === cards.length - 1}
         isTypewriterCanceledFromUserPrompt={isTypewriterCanceled}
