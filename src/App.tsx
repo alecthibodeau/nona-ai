@@ -10,7 +10,7 @@ import CardProps from './interfaces/CardProps';
 
 /* Constants */
 import regularExpressions from './constants/regular-expressions';
-import strings from './constants/strings';
+import stringValues from './constants/string-values';
 
 function App() {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -20,7 +20,7 @@ function App() {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
-  const { cardVariantValues: { vartiantNamePrompt, vartiantNameResult }, mockData, textForUser } = strings;
+  const { cardVariantNames: { vartiantNamePrompt, vartiantNameResult }, mockData, textForUser } = stringValues;
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
 

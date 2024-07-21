@@ -9,11 +9,11 @@ import Typewriter from './Typewriter';
 import CardProps from '../interfaces/CardProps';
 
 /* Constants */
-import strings from '../constants/strings';
+import stringValues from '../constants/string-values';
 
 function Card(props: CardProps) {
   const [cardText, setCardText] = useState<string>(props.textContent);
-  const { cardVariantValues: { vartiantNameResult } } = strings;
+  const { cardVariantNames: { vartiantNameResult } } = stringValues;
 
   return (
     <div className={`card-row ${props.variantName}`}>

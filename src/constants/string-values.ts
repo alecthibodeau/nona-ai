@@ -1,4 +1,4 @@
-const cardVariantValues: { [key: string]: string } = {
+const cardVariantNames: { [key: string]: string } = {
   vartiantNamePrompt: 'prompt',
   vartiantNameResult: 'result'
 };
@@ -32,12 +32,12 @@ const mockData: string[] = [
   'Running is one of the most popular and accessible sports in the world. It is a low-cost activity that anyone can do, and it can be enjoyed at any age. Running has many health benefits, including improved cardiovascular health, weight loss, and reduced stress. It can also be a great way to improve your mood and energy levels. There are many different types of running, from sprinting to leisurely walking, and it is important to find an activity that you enjoy and that you can maintain regularly. Whether you are looking for a way to get in shape or to improve your overall health, running is a great option.'
 ];
 
-const strings = {
-  cardVariantValues,
+const stringValues = {
+  cardVariantNames,
   keyboardKeys,
   textForUser,
   unicodeCharacters,
   mockData
 };
 
-export default strings;
+export default stringValues;

@@ -6,7 +6,7 @@ import UserPromptProps from '../interfaces/UserPromptProps';
 
 /* Constants */
 import regularExpressions from '../constants/regular-expressions';
-import strings from '../constants/strings';
+import stringValues from '../constants/string-values';
 
 declare global {
   interface Window {
@@ -23,7 +23,7 @@ function UserPrompt(props: UserPromptProps) {
   const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { onlyNewLinesAndSpaces } = regularExpressions;
-  const { keyboardKeys: { keyArrowUp, keyEnter, keyShift }, unicodeCharacters } = strings;
+  const { keyboardKeys: { keyArrowUp, keyEnter, keyShift }, unicodeCharacters } = stringValues;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
