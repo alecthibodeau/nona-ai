@@ -20,10 +20,12 @@ function UserPrompt(props: UserPromptProps) {
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);
   const [mostRecentPrompt, setMostRecentPrompt] = useState<string>('');
   const [promptText, setPromptText] = useState<string>('');
-  const [textAreaHeight, setTextAreaHeight] = useState<number>(1);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { onlyNewLinesAndSpaces } = regularExpressions;
-  const { keyboardKeys: { keyArrowUp, keyEnter, keyShift }, unicodeCharacters } = stringValues;
+  const {
+    keyboardKeys: { keyArrowUp, keyBackspace, keyDelete, keyEnter, keyShift },
+    unicodeCharacters
+  } = stringValues;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
@@ -56,7 +58,8 @@ function UserPrompt(props: UserPromptProps) {
 
   function validatePrompt(): void {
     if (textArea) {
-      collapseTextArea(textArea);
+      modifyTextAreaHeight(textArea, 1);
+      textArea.value = '';
       if (promptText && !isOnlyNewLinesAndSpaces) {
         onSubmit(promptText.trim());
       } else {
@@ -66,37 +69,32 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
-  function collapseTextArea(textAreaToCollapse: HTMLTextAreaElement): void {
-    textAreaToCollapse.style.height = '1rem';
-    textAreaToCollapse.value = '';
-  }
-
-  function checkKeyDown(key: string): void {
-    if (key === keyShift) setIsShiftPressed(true);
+  function handleKeyDown(key: string): void {
     if (textArea) {
-      modifyHeightFromKeyPress(key, textArea);
-      if (textArea.value.length < 3 || isOnlyNewLinesAndSpaces) {
-        textArea.style.height = '1rem';
+      const scrollHeightToRem: number = Math.floor(textArea.scrollHeight / 16);
+      if (key === keyShift) {
+        setIsShiftPressed(true);
+      } else if (key === keyEnter) {
+        if (!isShiftPressed && !isOnlyNewLinesAndSpaces) validatePrompt();
+        modifyTextAreaHeight(textArea, scrollHeightToRem + 1);
+      } else if (key === keyArrowUp && !promptText && mostRecentPrompt) {
+        loadMostRecentPrompt(textArea);
+      } else if ((key === keyBackspace || key === keyDelete) && textArea.value.length <= 1) {
+        modifyTextAreaHeight(textArea, 1);
+      } else {
+        modifyTextAreaHeight(textArea, scrollHeightToRem);
       }
     }
   }
 
-  function modifyHeightFromKeyPress(key: string, textarea: HTMLTextAreaElement): void {
-    if (key === keyEnter) {
-      if (isShiftPressed) {
-        textarea.style.height = `${textAreaHeight + 1}rem`;
-      } else if (!isOnlyNewLinesAndSpaces) {
-        validatePrompt();
-      }
-    } else if (key === keyArrowUp && !promptText && mostRecentPrompt) {
-      setPromptText(mostRecentPrompt);
-      textarea.value = mostRecentPrompt;
-      moveCursorToEndOfText(textarea);
-    } else {
-      const scrollHeightToRem: number = Math.floor(textarea.scrollHeight / 16);
-      textarea.style.height = `${scrollHeightToRem}rem`;
-      setTextAreaHeight(scrollHeightToRem);
-    }
+  function modifyTextAreaHeight(textarea: HTMLTextAreaElement, height: number): void {
+    textarea.style.height = `${height}rem`;
+  }
+
+  function loadMostRecentPrompt(textarea: HTMLTextAreaElement): void {
+    setPromptText(mostRecentPrompt);
+    textarea.value = mostRecentPrompt;
+    moveCursorToEndOfText(textarea);
   }
 
   function moveCursorToEndOfText(textarea: HTMLTextAreaElement): void {
@@ -129,7 +127,7 @@ function UserPrompt(props: UserPromptProps) {
           onFocus={() => setIsFormHighlighted(true)}
           onBlur={() => setIsFormHighlighted(false)}
           onChange={(event) => setPromptText(event.target.value)}
-          onKeyDown={(event) => checkKeyDown(event.key)}
+          onKeyDown={(event) => handleKeyDown(event.key)}
           onKeyUp={(event) => {if (event.key === keyShift) setIsShiftPressed(false)}}
         />
         </div>

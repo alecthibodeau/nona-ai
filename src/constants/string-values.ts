@@ -5,6 +5,8 @@ const cardVariantNames: { [key: string]: string } = {
 
 const keyboardKeys: { [key: string]: string } = {
   keyArrowUp: 'ArrowUp',
+  keyBackspace: 'Backspace',
+  keyDelete: 'Delete',
   keyEnter: 'Enter',
   keyShift: 'Shift'
 };
