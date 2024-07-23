@@ -20,7 +20,11 @@ function App() {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
-  const { cardVariantNames: { variantNamePrompt, variantNameResult }, mockData, textForUser } = stringValues;
+  const {
+    cardVariantNames: { variantNamePrompt, variantNameResult },
+    messagingForUser: { messageTextTryAgain },
+    mockData
+  } = stringValues;
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
 
@@ -73,7 +77,7 @@ function App() {
       setCards(previousCards => [...previousCards, prepCard(cardText, cardVariant)]);
       setCards(previousCards => [...previousCards, prepCard('', variantNameResult)]);
     } else if (cardVariant === variantNameResult) {
-      if (!cardText) cardText = textForUser.pleaseTryAgain;
+      if (!cardText) cardText = messageTextTryAgain;
       setCards(previousCards => {
         const updatedCards = [...previousCards];
         updatedCards[updatedCards.length - 1].textContent = cardText;

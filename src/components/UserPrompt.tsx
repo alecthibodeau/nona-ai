@@ -24,6 +24,8 @@ function UserPrompt(props: UserPromptProps) {
   const { onlyNewLinesAndSpaces } = regularExpressions;
   const {
     keyboardKeys: { keyArrowUp, keyBackspace, keyDelete, keyEnter, keyShift },
+    userPromptButtonActions: { textStart, textStop },
+    messagingForUser: { messageTextError, messageTextPlaceholder },
     unicodeCharacters
   } = stringValues;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
@@ -51,7 +53,7 @@ function UserPrompt(props: UserPromptProps) {
       props.onIsAwaitingResponse(false);
       return response;
     } catch (error) {
-      console.error('Error occurred during prompt:', error);
+      console.error(messageTextError, error);
       throw error;
     }
   }
@@ -115,7 +117,7 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function makeButtonClass(): string {
-    return props.isTypewriterRunningFromCard ? 'stop' : 'start';
+    return props.isTypewriterRunningFromCard ? textStop : textStart;
   }
 
   return (
@@ -129,7 +131,7 @@ function UserPrompt(props: UserPromptProps) {
           disabled={isAwaitingResponse}
           ref={textareaRef}
           className="user-input-textarea"
-          placeholder={isAwaitingResponse ? '' : 'Enter a prompt here'}
+          placeholder={isAwaitingResponse ? '' : messageTextPlaceholder}
           value={promptText}
           onFocus={() => setIsFormHighlighted(true)}
           onBlur={() => setIsFormHighlighted(false)}

@@ -11,14 +11,21 @@ const keyboardKeys: { [key: string]: string } = {
   keyShift: 'Shift'
 };
 
-const textForUser: { [key: string]: string } = {
-  pleaseTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
+const messagingForUser: { [key: string]: string } = {
+  messageTextError: 'Error occurred during prompt: ',
+  messageTextPlaceholder: 'Enter a prompt here',
+  messageTextTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
 };
 
 const unicodeCharacters: { [key: string]: string } = {
   characterBlackMediumRightPointingTriangle: '\u23f5',
   characterBlackSquareForStop: '\u23f9',
   characterVectorOrCrossProduct: '\u2A2F'
+};
+
+const userPromptButtonActions: { [key: string]: string } = {
+  textStart: 'start',
+  textStop: 'stop'
 };
 
 const mockData: string[] = [
@@ -37,8 +44,9 @@ const mockData: string[] = [
 const stringValues = {
   cardVariantNames,
   keyboardKeys,
-  textForUser,
+  messagingForUser,
   unicodeCharacters,
+  userPromptButtonActions,
   mockData
 };
 
