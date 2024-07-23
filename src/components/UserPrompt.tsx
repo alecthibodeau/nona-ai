@@ -75,15 +75,22 @@ function UserPrompt(props: UserPromptProps) {
       if (key === keyShift) {
         setIsShiftPressed(true);
       } else if (key === keyEnter) {
-        if (!isShiftPressed && !isOnlyNewLinesAndSpaces) validatePrompt();
-        modifyTextAreaHeight(textArea, scrollHeightToRem + 1);
-      } else if (key === keyArrowUp && !promptText && mostRecentPrompt) {
+        handleEnterKey(textArea, scrollHeightToRem);
+      } else if (key === keyArrowUp && mostRecentPrompt && !promptText) {
         loadMostRecentPrompt(textArea);
       } else if ((key === keyBackspace || key === keyDelete) && textArea.value.length <= 1) {
         modifyTextAreaHeight(textArea, 1);
       } else {
         modifyTextAreaHeight(textArea, scrollHeightToRem);
       }
+    }
+  }
+
+  function handleEnterKey(textarea: HTMLTextAreaElement, scrollHeightToRem: number): void {
+    if (!isShiftPressed && !isOnlyNewLinesAndSpaces) {
+      validatePrompt();
+    } else {
+      modifyTextAreaHeight(textarea, scrollHeightToRem + 1);
     }
   }
 
