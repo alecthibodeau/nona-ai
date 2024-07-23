@@ -13,16 +13,16 @@ import stringValues from '../constants/string-values';
 
 function Card(props: CardProps) {
   const [cardText, setCardText] = useState<string>(props.textContent);
-  const { cardVariantNames: { vartiantNameResult } } = stringValues;
+  const { cardVariantNames: { variantNameResult } } = stringValues;
 
   return (
     <div className={`card-row ${props.variantName}`}>
       <div className="card">
-        {props.variantName === vartiantNameResult ? <NonaIcon color="yellow" /> : null}
+        {props.variantName === variantNameResult ? <NonaIcon color="yellow" /> : null}
         <div className={`card-text ${props.variantName}`}>
           <div>
             {
-              props.variantName === vartiantNameResult && props.isLastCard ?
+              props.variantName === variantNameResult && props.isLastCard ?
               <>
                 {
                   props.isAwaitingResponse ?

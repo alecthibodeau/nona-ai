@@ -20,7 +20,7 @@ function App() {
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
   const cardsScrollRef = useRef<HTMLDivElement | null>(null);
-  const { cardVariantNames: { vartiantNamePrompt, vartiantNameResult }, mockData, textForUser } = stringValues;
+  const { cardVariantNames: { variantNamePrompt, variantNameResult }, mockData, textForUser } = stringValues;
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
 
@@ -29,7 +29,7 @@ function App() {
       const mockCards = mockData.map((data, index) => {
         return {
           textContent: data,
-          variantName: index % 2 ? vartiantNameResult : vartiantNamePrompt,
+          variantName: index % 2 ? variantNameResult : variantNamePrompt,
           isAwaitingResponse: isAwaitingResponse,
           isLastCard: true,
           isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
@@ -39,7 +39,7 @@ function App() {
       });
       setCards(mockCards);
     }
-  }, [isMockDataUsed, isAwaitingResponse, isTypewriterCanceled, mockData, vartiantNameResult, vartiantNamePrompt]);
+  }, [isMockDataUsed, isAwaitingResponse, isTypewriterCanceled, mockData, variantNameResult, variantNamePrompt]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
@@ -69,10 +69,10 @@ function App() {
   }
 
   function updateCards(cardText: string, cardVariant: string): void {
-    if (cardVariant === vartiantNamePrompt) {
+    if (cardVariant === variantNamePrompt) {
       setCards(previousCards => [...previousCards, prepCard(cardText, cardVariant)]);
-      setCards(previousCards => [...previousCards, prepCard('', vartiantNameResult)]);
-    } else if (cardVariant === vartiantNameResult) {
+      setCards(previousCards => [...previousCards, prepCard('', variantNameResult)]);
+    } else if (cardVariant === variantNameResult) {
       if (!cardText) cardText = textForUser.pleaseTryAgain;
       setCards(previousCards => {
         const updatedCards = [...previousCards];
@@ -135,8 +135,8 @@ function App() {
           </div>
           <UserPrompt
             isTypewriterRunningFromCard={isTypewriterRunning}
-            onUpdatePrompt={(text) => updateCards(text.toString(), vartiantNamePrompt)}
-            onUpdateResult={(text) => updateCards(text.toString(), vartiantNameResult)}
+            onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
+            onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
             onIsAwaitingResponse={(isAwaiting) => {
               setIsAwaitingResponse(isAwaiting);
             }}

@@ -1,6 +1,6 @@
 const cardVariantNames: { [key: string]: string } = {
-  vartiantNamePrompt: 'prompt',
-  vartiantNameResult: 'result'
+  variantNamePrompt: 'prompt',
+  variantNameResult: 'result'
 };
 
 const keyboardKeys: { [key: string]: string } = {
