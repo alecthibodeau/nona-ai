@@ -10,11 +10,6 @@
   width: 100%;
 }
 
-.main-content {
-  padding-left: 2rem;
-  padding-right: 2rem
-}
-
 /* Media Queries*/
 
 @media (min-width: 1400px /* --breakpoint-xxl */) {

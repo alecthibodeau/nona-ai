@@ -127,29 +127,25 @@ function App() {
     <div className="app">
       <Header />
       <main className="main">
-        <div className="main-content">
-          <div className="cards-container">
-            <div
-              ref={cardsScrollRef}
-              className="cards-scroll"
-              onWheel={handleMouseWheel}
-            >
-              {cards.map(renderCard)}
-            </div>
-          </div>
-          <UserPrompt
-            isTypewriterRunningFromCard={isTypewriterRunning}
-            onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
-            onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
-            onIsAwaitingResponse={(isAwaiting) => {
-              setIsAwaitingResponse(isAwaiting);
-            }}
-            onIsTypewriterCanceled={(isCanceled) => {
-              setIsTypewriterCanceled(isCanceled);
-              setIsTypewriterRunning(isCanceled);
-            }}
-          />
+        <div
+          ref={cardsScrollRef}
+          className="cards-container"
+          onWheel={handleMouseWheel}
+        >
+          {cards.map(renderCard)}
         </div>
+        <UserPrompt
+          isTypewriterRunningFromCard={isTypewriterRunning}
+          onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
+          onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
+          onIsAwaitingResponse={(isAwaiting) => {
+            setIsAwaitingResponse(isAwaiting);
+          }}
+          onIsTypewriterCanceled={(isCanceled) => {
+            setIsTypewriterCanceled(isCanceled);
+            setIsTypewriterRunning(isCanceled);
+          }}
+        />
       </main>
     </div>
   );
