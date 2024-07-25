@@ -1,14 +1,11 @@
 .loader-dot-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: .375rem 1rem;
 }
 
 .loader-dot {
   width: .75rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  margin-left: 1.5rem;
   animation-name: loader-keyframes;
   animation-duration: 1s;
   animation-iteration-count: infinite;
@@ -17,27 +14,27 @@
 
 @keyframes loader-keyframes {
   0% {
-    background-color: var(--color-violet-dark);
+    background-color: var(--color-brown);
     box-shadow:
-      1.25rem 0 var(--color-violet-dark),
-      -1.25rem 0 var(--color-violet-dark-transparent);
-  }
-  33.3% {
-    background-color: var(--color-violet-dark-transparent);
+      1.125rem 0 var(--color-brown),
+      -1.125rem 0 var(--color-brown-transparent);
+    }
+    33.3% {
+    background-color: var(--color-brown-transparent);
     box-shadow:
-      1.25rem 0 var(--color-violet-dark),
-      -1.25rem 0 var(--color-violet-dark-transparent);
-  }
-  66.6% {
-    background-color: var(--color-violet-dark-transparent);
+      1.125rem 0 var(--color-brown),
+      -1.125rem 0 var(--color-brown-transparent);
+    }
+    66.6% {
+    background-color: var(--color-brown-transparent);
     box-shadow:
-      1.25rem 0 var(--color-violet-dark-transparent),
-      -1.25rem 0 var(--color-violet-dark);
-  }
-  100% {
-    background-color: var(--color-violet-dark);
+      1.125rem 0 var(--color-brown-transparent),
+      -1.125rem 0 var(--color-brown);
+    }
+    100% {
+    background-color: var(--color-brown);
     box-shadow:
-      1.25rem 0 var(--color-violet-dark-transparent),
-      -1.25rem 0 var(--color-violet-dark);
+      1.125rem 0 var(--color-brown-transparent),
+      -1.125rem 0 var(--color-brown);
   }
 }

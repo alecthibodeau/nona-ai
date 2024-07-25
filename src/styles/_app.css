@@ -10,24 +10,6 @@
   width: 100%;
 }
 
-.main-content {
-  padding-left: 2rem;
-  padding-right: 2rem
-}
-
-.container-for-loader {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0 2rem;
-}
-
-.background-for-loader {
-  width: 3.75rem;
-  padding: 1.375rem 1rem;;
-  border-radius: .75rem;
-  background-color: var(--color-yellow-light);
-}
-
 /* Media Queries*/
 
 @media (min-width: 1400px /* --breakpoint-xxl */) {

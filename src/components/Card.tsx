@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 /* Components */
+import Loader from './Loader';
 import NonaIcon from './NonaIcon';
 import Typewriter from './Typewriter';
 
@@ -8,32 +9,38 @@ import Typewriter from './Typewriter';
 import CardProps from '../interfaces/CardProps';
 
 /* Constants */
-import strings from '../constants/strings';
+import stringValues from '../constants/string-values';
 
 function Card(props: CardProps) {
-  const [cardText, setCardText] = useState<string>(props.text);
-  const { cardVariantValues: { textResult } } = strings;
+  const [cardText, setCardText] = useState<string>(props.textContent);
+  const { cardVariantNames: { variantNameResult } } = stringValues;
 
   return (
-    <div className={`card-row ${props.variant}`}>
+    <div className={`card-row ${props.variantName}`}>
       <div className="card">
-        {props.variant === textResult ? <NonaIcon color="yellow" /> : null}
-        <div className={`card-text ${props.variant}`}>
+        {props.variantName === variantNameResult ? <NonaIcon color="yellow" /> : null}
+        <div className={`card-text ${props.variantName}`}>
           <div>
             {
-              props.variant === textResult ?
-              <Typewriter
-                text={cardText}
-                delay={25}
-                isStoppedByUser={props.isTypewriterCanceledFromUserPrompt}
-                onIsCharacterTypewritten={(isTypewritten) => {
-                  props.onIsCharacterTypewritten(isTypewritten);
-                }}
-                onIsTypewriterRunning={(isRunning) => {
-                  props.onIsTypewriterRunning(isRunning);
-                }}
-                onTextAtCancel={(text) => setCardText(text.toString())}
-              /> :
+              props.variantName === variantNameResult && props.isLastCard ?
+              <>
+                {
+                  props.isAwaitingResponse ?
+                  <Loader /> :
+                  <Typewriter
+                    text={cardText}
+                    delay={25}
+                    isStoppedByUser={props.isTypewriterCanceledFromUserPrompt}
+                    onIsCharacterTypewritten={(isTypewritten) => {
+                      props.onIsCharacterTypewritten(isTypewritten);
+                    }}
+                    onIsTypewriterRunning={(isRunning) => {
+                      props.onIsTypewriterRunning(isRunning);
+                    }}
+                    onTextAtCancel={(text) => setCardText(text.toString())}
+                  />
+                }
+              </> :
               cardText
             }
           </div>

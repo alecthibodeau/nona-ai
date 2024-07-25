@@ -1,24 +1,33 @@
-const localStorageKeyHistory = 'nonaAiHistory';
-
-const cardVariantValues: { [key: string]: string } = {
-  textPrompt: 'prompt',
-  textResult: 'result'
+const cardVariantNames: { [key: string]: string } = {
+  variantNamePrompt: 'prompt',
+  variantNameResult: 'result'
 };
 
 const keyboardKeys: { [key: string]: string } = {
   keyArrowUp: 'ArrowUp',
+  keyBackspace: 'Backspace',
+  keyDelete: 'Delete',
   keyEnter: 'Enter',
   keyShift: 'Shift'
 };
 
-const textForUser: { [key: string]: string } = {
-  pleaseTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
+const localStorageKeyHistory = 'nonaAiHistory';
+
+const messagingForUser: { [key: string]: string } = {
+  messageTextError: 'Error occurred during prompt: ',
+  messageTextPlaceholder: 'Enter a prompt here',
+  messageTextTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
 };
 
 const unicodeCharacters: { [key: string]: string } = {
   characterBlackMediumRightPointingTriangle: '\u23f5',
   characterBlackSquareForStop: '\u23f9',
   characterVectorOrCrossProduct: '\u2A2F'
+};
+
+const userPromptButtonActions: { [key: string]: string } = {
+  textStart: 'start',
+  textStop: 'stop'
 };
 
 const mockData: string[] = [
@@ -34,13 +43,14 @@ const mockData: string[] = [
   'Running is one of the most popular and accessible sports in the world. It is a low-cost activity that anyone can do, and it can be enjoyed at any age. Running has many health benefits, including improved cardiovascular health, weight loss, and reduced stress. It can also be a great way to improve your mood and energy levels. There are many different types of running, from sprinting to leisurely walking, and it is important to find an activity that you enjoy and that you can maintain regularly. Whether you are looking for a way to get in shape or to improve your overall health, running is a great option.'
 ];
 
-const strings = {
-  localStorageKeyHistory,
-  cardVariantValues,
+const stringValues = {
+  cardVariantNames,
   keyboardKeys,
-  textForUser,
+  localStorageKeyHistory,
+  messagingForUser,
   unicodeCharacters,
+  userPromptButtonActions,
   mockData
 };
 
-export default strings;
+export default stringValues;
