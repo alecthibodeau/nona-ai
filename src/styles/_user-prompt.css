@@ -30,6 +30,7 @@
 
 .user-input-textarea {
   flex: 1;
+  overflow: hidden;
   height: 1rem;
   border: none;
   outline: none;
