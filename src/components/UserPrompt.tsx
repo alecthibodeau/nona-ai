@@ -121,17 +121,21 @@ function UserPrompt(props: UserPromptProps) {
   }
 
   function onClickStopButton(): void {
-    if (props.isTypewriterRunningFromCard) {
-      props.onIsTypewriterCanceled(true);
-      if (textArea) textArea.focus();
-    } else {
-      const userHistory: UserHistoryProps = {
-        cards: props.cardsSaved,
-        mostRecentPrompt: mostRecentPrompt
-      }
-      localStorage.setItem(localStorageKeyHistory, JSON.stringify(userHistory));
-      window.location.reload();
+    props.isTypewriterRunningFromCard ? cancelTypewriter() : cancelPrompt();
+  }
+
+  function cancelTypewriter(): void {
+    props.onIsTypewriterCanceled(true);
+    if (textArea) textArea.focus();
+  }
+
+  function cancelPrompt(): void {
+    const userHistory: UserHistoryProps = {
+      cards: props.cardsSaved,
+      mostRecentPrompt: mostRecentPrompt
     }
+    localStorage.setItem(localStorageKeyHistory, JSON.stringify(userHistory));
+    window.location.reload();
   }
 
   function makeButtonClass(): string {

@@ -42,6 +42,13 @@ function App() {
   }, [localStorageKeyHistory]);
 
   useEffect(() => {
+    const lastCard = cards[cards.length - 1];
+    if (!isAwaitingResponse && lastCard && lastCard.textContent === '') {
+      setCards(previousCards => previousCards.slice(0, -1));
+    }
+  }, [cards, isAwaitingResponse]);
+
+  useEffect(() => {
     if (isMockDataUsed) {
       const mockCards = mockData.map((data, index) => {
         return {
@@ -148,19 +155,17 @@ function App() {
           {cards.map(renderCard)}
         </div>
         <UserPrompt
-            cardsSaved={cards}
-            mostRecentPromptSaved={mostRecentPromptSaved}
-            isTypewriterRunningFromCard={isTypewriterRunning}
-            onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
-            onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
-            onIsAwaitingResponse={(isAwaiting) => {
-              setIsAwaitingResponse(isAwaiting);
-            }}
-            onIsTypewriterCanceled={(isCanceled) => {
-              setIsTypewriterCanceled(isCanceled);
-              setIsTypewriterRunning(isCanceled);
-            }}
-          />
+          cardsSaved={cards}
+          mostRecentPromptSaved={mostRecentPromptSaved}
+          isTypewriterRunningFromCard={isTypewriterRunning}
+          onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
+          onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
+          onIsAwaitingResponse={(isAwaiting) => setIsAwaitingResponse(isAwaiting)}
+          onIsTypewriterCanceled={(isCanceled) => {
+            setIsTypewriterCanceled(isCanceled);
+            setIsTypewriterRunning(isCanceled);
+          }}
+        />
       </main>
     </div>
   );
