@@ -35,8 +35,8 @@ function UserPrompt(props: UserPromptProps) {
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
 
   useEffect(() => {
-    if (!isAwaitingResponse && textArea) textArea.focus();
-  }, [isAwaitingResponse, textArea]);
+    if (!isAwaitingResponse && !!textareaRef.current) textareaRef.current.focus();
+  }, [isAwaitingResponse]);
 
   useEffect(() => {
     if (props.mostRecentPromptSaved && !mostRecentPrompt) {
