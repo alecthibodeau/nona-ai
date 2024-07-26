@@ -72,6 +72,7 @@ function UserPrompt(props: UserPromptProps) {
       modifyTextAreaHeight(textArea, 1);
       textArea.value = '';
       if (promptText && !isOnlyNewLinesAndSpaces) {
+        props.onIsTypewriterCanceled(false);
         onSubmit(promptText.trim());
       } else {
         textArea.focus();
