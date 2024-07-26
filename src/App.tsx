@@ -43,10 +43,15 @@ function App() {
 
   useEffect(() => {
     const lastCard = cards[cards.length - 1];
-    if (!isAwaitingResponse && lastCard && lastCard.textContent === '') {
+    if (
+      !isAwaitingResponse &&
+      lastCard &&
+      lastCard.variantName === variantNameResult &&
+      lastCard.textContent === ''
+    ) {
       setCards(previousCards => previousCards.slice(0, -1));
     }
-  }, [cards, isAwaitingResponse]);
+  }, [cards, isAwaitingResponse, variantNameResult]);
 
   useEffect(() => {
     if (isMockDataUsed) {
