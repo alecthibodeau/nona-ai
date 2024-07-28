@@ -37,7 +37,10 @@ function Card(props: CardProps) {
                     onIsTypewriterRunning={(isRunning) => {
                       props.onIsTypewriterRunning(isRunning);
                     }}
-                    onTextAtCancel={(text) => setCardText(text.toString())}
+                    onTextAtCancel={(text) => {
+                      setCardText(text.toString());
+                      props.onUpdateTextContent(text.toString());
+                    }}
                   />
                 }
               </> :

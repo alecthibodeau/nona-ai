@@ -8,6 +8,7 @@ interface CardProps {
   isTypewriterCanceledFromUserPrompt: boolean;
   onIsCharacterTypewritten: Dispatch<SetStateAction<boolean>>;
   onIsTypewriterRunning: Dispatch<SetStateAction<boolean>>;
+  onUpdateTextContent: Dispatch<SetStateAction<string>>;
 }
 
 export default CardProps;

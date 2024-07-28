@@ -55,15 +55,16 @@ function App() {
 
   useEffect(() => {
     if (isMockDataUsed) {
-      const mockCards = mockData.map((data, index) => {
+      const mockCards = mockData.map((cardText, index) => {
         return {
-          textContent: data,
+          textContent: cardText,
           variantName: index % 2 ? variantNameResult : variantNamePrompt,
           isAwaitingResponse: isAwaitingResponse,
           isLastCard: true,
           isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
           onIsCharacterTypewritten: setIsCharacterTypewritten,
-          onIsTypewriterRunning: setIsTypewriterRunning
+          onIsTypewriterRunning: setIsTypewriterRunning,
+          onUpdateTextContent: () => {}
         };
       });
       setCards(mockCards);
@@ -119,7 +120,8 @@ function App() {
       isLastCard: false,
       isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
       onIsCharacterTypewritten: setIsCharacterTypewritten,
-      onIsTypewriterRunning: setIsTypewriterRunning
+      onIsTypewriterRunning: setIsTypewriterRunning,
+      onUpdateTextContent: () => {}
     };
   }
 
@@ -133,6 +135,12 @@ function App() {
     return `card${cardIndex}${cardSequence}`;
   }
 
+  function updateCardText(cardText: string, cardIndex: number): void {
+    const updatedCards = [...cards];
+    updatedCards[cardIndex].textContent = cardText;
+    setCards(updatedCards);
+  }
+
   function renderCard(card: CardProps, index: number): JSX.Element {
     return (
       <Card
@@ -144,6 +152,7 @@ function App() {
         isTypewriterCanceledFromUserPrompt={isTypewriterCanceled}
         onIsCharacterTypewritten={(isTypewritten) => setIsCharacterTypewritten(isTypewritten)}
         onIsTypewriterRunning={(isRunning) => setIsTypewriterRunning(isRunning)}
+        onUpdateTextContent={(text) => updateCardText(text.toString(), index)}
       />
     );
   }
