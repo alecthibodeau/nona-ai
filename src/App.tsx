@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 /* Components */
 import Card from './components/Card';
@@ -31,6 +31,21 @@ function App() {
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
 
+  const makeMockCards = useCallback(() => {
+    return mockData.map((cardText, index) => {
+      return {
+        textContent: cardText,
+        variantName: index % 2 ? variantNameResult : variantNamePrompt,
+        isAwaitingResponse: false,
+        isLastCard: false,
+        isTypewriterCanceledFromUserPrompt: false,
+        onIsCharacterTypewritten: () => {},
+        onIsTypewriterRunning: () => {},
+        onUpdateTextContent: () => {}
+      };
+    });
+  }, [mockData, variantNamePrompt, variantNameResult]);
+
   useEffect(() => {
     const storedHistory = localStorage.getItem(localStorageKeyHistory);
     if (storedHistory) {
@@ -41,9 +56,10 @@ function App() {
       const container = cardsContainerRef.current;
       if (container) setTimeout(() => {
         container.scrollTop = container.scrollHeight
-      }, 100);
+      }, 50);
     }
-  }, [localStorageKeyHistory]);
+    if (isMockDataUsed) setCards(makeMockCards);
+  }, [localStorageKeyHistory, isMockDataUsed, makeMockCards]);
 
   useEffect(() => {
     const lastCard = cards[cards.length - 1];
@@ -56,24 +72,6 @@ function App() {
       setCards(previousCards => previousCards.slice(0, -1));
     }
   }, [cards, isAwaitingResponse, variantNameResult]);
-
-  useEffect(() => {
-    if (isMockDataUsed) {
-      const mockCards = mockData.map((cardText, index) => {
-        return {
-          textContent: cardText,
-          variantName: index % 2 ? variantNameResult : variantNamePrompt,
-          isAwaitingResponse: isAwaitingResponse,
-          isLastCard: true,
-          isTypewriterCanceledFromUserPrompt: isTypewriterCanceled,
-          onIsCharacterTypewritten: setIsCharacterTypewritten,
-          onIsTypewriterRunning: setIsTypewriterRunning,
-          onUpdateTextContent: () => {}
-        };
-      });
-      setCards(mockCards);
-    }
-  }, [isMockDataUsed, isAwaitingResponse, isTypewriterCanceled, mockData, variantNameResult, variantNamePrompt]);
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
