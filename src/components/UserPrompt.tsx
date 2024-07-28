@@ -98,6 +98,10 @@ function UserPrompt(props: UserPromptProps) {
     }
   }
 
+  function handleKeyUp(key: string): void {
+    if (key === keyShift) setIsShiftPressed(false);
+  }
+
   function handleEnterKey(textarea: HTMLTextAreaElement, scrollHeightToRem: number): void {
     if (!isShiftPressed && !isOnlyNewLinesAndSpaces) {
       validatePrompt();
@@ -160,7 +164,7 @@ function UserPrompt(props: UserPromptProps) {
           onBlur={() => setIsFormHighlighted(false)}
           onChange={(event) => setPromptText(event.target.value)}
           onKeyDown={(event) => handleKeyDown(event.key)}
-          onKeyUp={(event) => {if (event.key === keyShift) setIsShiftPressed(false)}}
+          onKeyUp={(event) => handleKeyUp(event.key)}
         />
         </div>
         <div className="submit-button-container">
