@@ -21,7 +21,7 @@ function App() {
   const [isTypewriterCanceled, setIsTypewriterCanceled] = useState<boolean>(false);
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
-  const cardsScrollRef = useRef<HTMLDivElement | null>(null);
+  const cardsContainerRef = useRef<HTMLDivElement | null>(null);
   const {
     cardVariantNames: { variantNamePrompt, variantNameResult },
     localStorageKeyHistory,
@@ -38,6 +38,10 @@ function App() {
       setCards(userHistory.cards);
       setMostRecentPromptSaved(userHistory.mostRecentPrompt);
       localStorage.removeItem(localStorageKeyHistory);
+      const container = cardsContainerRef.current;
+      if (container) setTimeout(() => {
+        container.scrollTop = container.scrollHeight
+      }, 100);
     }
   }, [localStorageKeyHistory]);
 
@@ -73,7 +77,7 @@ function App() {
 
   useEffect(() => {
     if (isAwaitingResponse || (isTypewriterRunning && !isUserScrollEvent)) {
-      const container = cardsScrollRef.current;
+      const container = cardsContainerRef.current;
       if (container) container.scrollTop = container.scrollHeight;
     }
   }, [isAwaitingResponse, isCharacterTypewritten, isTypewriterRunning, isUserScrollEvent]);
@@ -162,7 +166,7 @@ function App() {
       <Header />
       <main className="main">
         <div
-          ref={cardsScrollRef}
+          ref={cardsContainerRef}
           className="cards-container"
           onWheel={handleMouseWheel}
         >
