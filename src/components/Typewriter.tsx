@@ -7,6 +7,9 @@ function Typewriter(props: TypewriterProps) {
   const [currentText, setCurrentText] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
+  const delay: number = 25;
+  const delayDynamic: number = 50 - currentIndex > 0 ? 50 - currentIndex : 0;
+  const isTypewriterDelayDynamic: boolean = true;
 
   useEffect(() => {
     if (currentIndex < props.text.length) {
@@ -16,15 +19,23 @@ function Typewriter(props: TypewriterProps) {
         setIsCharacterTypewritten(!isCharacterTypewritten);
         props.onIsCharacterTypewritten(isCharacterTypewritten);
         props.onIsTypewriterRunning(currentIndex !== props.text.length - 1);
-      }, props.delay);
+      }, isTypewriterDelayDynamic ? delayDynamic : delay);
       if (props.isStoppedByUser) {
         clearTimeout(timeout);
         props.onTextAtCancel(currentText);
         props.onIsTypewriterRunning(false);
       }
       return () => clearTimeout(timeout);
-    }
-  }, [props, isCharacterTypewritten, currentIndex, currentText]);
+    }},
+    [
+      props,
+      isCharacterTypewritten,
+      currentIndex,
+      currentText,
+      isTypewriterDelayDynamic,
+      delayDynamic
+    ]
+  );
 
   return (
     <>

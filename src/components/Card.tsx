@@ -29,7 +29,6 @@ function Card(props: CardProps) {
                   <Loader /> :
                   <Typewriter
                     text={cardText}
-                    delay={25}
                     isStoppedByUser={props.isTypewriterCanceledFromUserPrompt}
                     onIsCharacterTypewritten={(isTypewritten) => {
                       props.onIsCharacterTypewritten(isTypewritten);
