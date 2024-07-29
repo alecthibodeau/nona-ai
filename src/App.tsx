@@ -127,14 +127,9 @@ function App() {
     };
   }
 
-  function generateCardKey(cardText: string, cardIndex: number): string {
-    let cardSequence: string;
-    if (cardText.length > 9) {
-      cardSequence = cardText.replace(allButLettersAndNumbers, '').slice(0, 9);
-    } else {
-      cardSequence = cardText;
-    }
-    return `card${cardIndex}${cardSequence}`;
+  function generateKey(text: string, index: number): string {
+    const sequence: string = text.replace(allButLettersAndNumbers, '');
+    return `key${index}${text.length > 9 ? sequence.slice(0, 9) : sequence}`;
   }
 
   function updateCardText(cardText: string, cardIndex: number): void {
@@ -146,7 +141,7 @@ function App() {
   function renderCard(card: CardProps, index: number): JSX.Element {
     return (
       <Card
-        key={generateCardKey(card.textContent, index)}
+        key={generateKey(card.textContent, index)}
         textContent={card.textContent}
         variantName={card.variantName}
         isAwaitingResponse={isAwaitingResponse}
