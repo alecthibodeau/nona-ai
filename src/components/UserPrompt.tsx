@@ -137,6 +137,7 @@ function UserPrompt(props: UserPromptProps) {
   function cancelPrompt(): void {
     const userHistory: UserHistoryProps = {
       cards: props.cardsSaved,
+      isMessageDisplayed: props.isMessageDisplayed,
       mostRecentPrompt: mostRecentPrompt
     }
     localStorage.setItem(localStorageKeyHistory, JSON.stringify(userHistory));

@@ -1,16 +1,18 @@
-header {
+.header {
   position: fixed;
   z-index: 1;
-  padding: .5rem;
+  width: 100%;
+}
+
+.header-content {
+  padding: .5rem .5rem .5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   background-color: var(--color-violet-dark);
 }
 
 .name {
-  margin-left: 2rem;
   font-size: 1.75rem;
   font-weight: 500;
   color: var(--color-yellow-light);
@@ -23,7 +25,6 @@ header {
   width: 55px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  margin-right: .5rem;
   background-color: var(--color-yellow-light);
 }
 
@@ -43,4 +44,49 @@ header {
     12px -12px var(--color-violet-dark),
     -12px -12px var(--color-violet-dark)
   ;
+}
+
+.message-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: .5rem 1rem;
+  background-color: var(--color-coral);
+  color: var(--color-black);
+}
+
+.message-text {
+
+  a {
+    color: var(--color-black);
+  }
+
+  .chrome-dev {
+    font-style: italic;
+  }
+}
+
+.button-close {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1.25rem;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--color-violet-dark);
+  border-radius: 50%;
+  margin-left: .5rem;
+  background-color: var(--color-violet-dark);
+}
+
+.button-close:focus,
+.button-close:hover {
+  outline: 2px solid var(--color-violet-dark);
+  outline-offset: 2px;
+}
+
+.close-character {
+  font-size: 1.5rem;
+  line-height: .5rem;
+  color: var(--color-yellow-light);
 }

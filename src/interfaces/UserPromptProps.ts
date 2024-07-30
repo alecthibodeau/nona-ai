@@ -6,6 +6,7 @@ import CardProps from './CardProps';
 interface UserPromptProps {
   cardsSaved: CardProps[];
   mostRecentPromptSaved: string;
+  isMessageDisplayed: boolean;
   isTypewriterRunningFromCard: boolean;
   onIsAwaitingResponse: Dispatch<SetStateAction<boolean>>;
   onIsTypewriterCanceled: Dispatch<SetStateAction<boolean>>;

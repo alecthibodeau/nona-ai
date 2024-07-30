@@ -18,6 +18,7 @@ function App() {
   const [mostRecentPromptSaved, setMostRecentPromptSaved] = useState<string>('');
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
+  const [isMessageDisplayed, setIsMessageDisplayed] = useState<boolean>(true);
   const [isTypewriterCanceled, setIsTypewriterCanceled] = useState<boolean>(false);
   const [isTypewriterRunning, setIsTypewriterRunning] = useState<boolean>(false);
   const [isUserScrollEvent, setIsUserScrollEvent] = useState<boolean>(false);
@@ -51,6 +52,7 @@ function App() {
     if (storedHistory) {
       const userHistory: UserHistoryProps = JSON.parse(storedHistory);
       setCards(userHistory.cards);
+      setIsMessageDisplayed(userHistory.isMessageDisplayed);
       setMostRecentPromptSaved(userHistory.mostRecentPrompt);
       localStorage.removeItem(localStorageKeyHistory);
       const container = cardsContainerRef.current;
@@ -156,7 +158,10 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header
+        isMessageDisplayed={isMessageDisplayed}
+        onUpdateMessageDisplayed={(isDisplayed) => setIsMessageDisplayed(isDisplayed)}
+      />
       <main className="main">
         <div
           ref={cardsContainerRef}
@@ -168,6 +173,7 @@ function App() {
         <UserPrompt
           cardsSaved={cards}
           mostRecentPromptSaved={mostRecentPromptSaved}
+          isMessageDisplayed={isMessageDisplayed}
           isTypewriterRunningFromCard={isTypewriterRunning}
           onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
           onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
