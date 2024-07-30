@@ -18,20 +18,20 @@
     box-shadow:
       1.125rem 0 var(--color-brown),
       -1.125rem 0 var(--color-brown-transparent);
-    }
-    33.3% {
+  }
+  33.3% {
     background-color: var(--color-brown-transparent);
     box-shadow:
       1.125rem 0 var(--color-brown),
       -1.125rem 0 var(--color-brown-transparent);
-    }
-    66.6% {
+  }
+  66.6% {
     background-color: var(--color-brown-transparent);
     box-shadow:
       1.125rem 0 var(--color-brown-transparent),
       -1.125rem 0 var(--color-brown);
-    }
-    100% {
+  }
+  100% {
     background-color: var(--color-brown);
     box-shadow:
       1.125rem 0 var(--color-brown-transparent),
