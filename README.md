@@ -37,13 +37,14 @@ After setting up everything you'll have the option to run this project from Chro
 7) Enjoy! With those caveats out of the way I hope you have fun interacting with Nona AI. (And check back here for project updates.)
 
 ### Screenshots of a prompt sequencce
-![Screenshot](https://i.imgur.com/D2OVMHW.jpg)
 
-![Screenshot](https://i.imgur.com/5ikCXDR.jpg)
+![nona-ai-screenshot-start](https://github.com/user-attachments/assets/00249001-3c16-4fa4-9c44-fe0e089eab44)
 
-![Screenshot](https://i.imgur.com/GE03wjd.jpg)
+![nona-ai-screenshot-text](https://github.com/user-attachments/assets/d771b24c-2b72-4120-8d54-1c1f0d00a6c5)
 
-![Screenshot](https://i.imgur.com/w70Bi48.jpg)
+![nona-ai-screenshot-prompt](https://github.com/user-attachments/assets/1ae73acc-b184-49f1-a45f-7a3d324b668a)
+
+![nona-ai-screenshot-result](https://github.com/user-attachments/assets/84db04ec-6bac-44b4-b8e6-d8c792196af7)
 
 ### The user experience
 
