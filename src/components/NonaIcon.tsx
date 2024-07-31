@@ -1,7 +1,7 @@
 /* Interfaces */
 import NonaIconProps from '../interfaces/NonaIconProps';
 
-function NonaIcon(props: NonaIconProps ) {
+function NonaIcon(props: NonaIconProps): JSX.Element {
   return (
     <div className={`nona-icon-container ${props.color}`}>
       <div className="nona-icon-flow">

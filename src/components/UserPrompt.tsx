@@ -15,7 +15,7 @@ declare global {
   }
 }
 
-function UserPrompt(props: UserPromptProps) {
+function UserPrompt(props: UserPromptProps): JSX.Element {
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isFormHighlighted, setIsFormHighlighted] = useState<boolean>(false);
   const [isShiftPressed, setIsShiftPressed] = useState<boolean>(false);

@@ -13,7 +13,7 @@ import UserHistoryProps from './interfaces/UserHistoryProps';
 import regularExpressions from './constants/regular-expressions';
 import stringValues from './constants/string-values';
 
-function App() {
+function App(): JSX.Element {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [mostRecentPromptSaved, setMostRecentPromptSaved] = useState<string>('');
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);

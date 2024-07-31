@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 /* Interfaces */
 import TypewriterProps from '../interfaces/TypewriterProps';
 
-function Typewriter(props: TypewriterProps) {
+function Typewriter(props: TypewriterProps): JSX.Element {
   const [currentText, setCurrentText] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);

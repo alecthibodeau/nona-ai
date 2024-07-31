@@ -4,7 +4,7 @@ import HeaderProps from '../interfaces/HeaderProps';
 /* Constants */
 import stringValues from '../constants/string-values';
 
-function Header(props: HeaderProps) {
+function Header(props: HeaderProps): JSX.Element {
   const { unicodeCharacters: { characterVectorOrCrossProduct } } = stringValues;
 
   function closeMessage(): void {

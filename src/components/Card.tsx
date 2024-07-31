@@ -11,7 +11,7 @@ import CardProps from '../interfaces/CardProps';
 /* Constants */
 import stringValues from '../constants/string-values';
 
-function Card(props: CardProps) {
+function Card(props: CardProps): JSX.Element {
   const [cardText, setCardText] = useState<string>(props.textContent);
   const { cardVariantNames: { variantNameResult } } = stringValues;
 
