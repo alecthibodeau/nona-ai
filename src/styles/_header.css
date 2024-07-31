@@ -68,7 +68,6 @@
 }
 
 .button-close {
-  position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -86,17 +85,6 @@
   outline-offset: 2px;
 }
 
-.closing-x-bar {
-  width: .125rem;
-  height: .75rem;
-  background-color: var(--color-yellow-light);
-}
-
-.closing-x-bar.one {
-  transform: rotate(45deg);
-}
-
-.closing-x-bar.two {
-  position: absolute;
-  transform: rotate(315deg);
+polygon {
+  fill: var(--color-yellow-light);
 }
