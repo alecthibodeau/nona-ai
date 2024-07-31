@@ -21,16 +21,17 @@ function Header(props: HeaderProps) {
       </div>
       {
         props.isMessageDisplayed ?
-        <div className="message-container">
-          <div className="message-text">
-            Please use <a href="https://github.com/alecthibodeau/nona-ai/blob/main/README.md">these
-            steps</a> to configure your <span className="chrome-dev">Chrome Dev</span> browser.
-          </div>
-          <button className="button-close" onClick={closeMessage}>
-            <span className="close-character">
-              {characterVectorOrCrossProduct}
+        <div className="message-background">
+          <div className="message-container">
+            <span className="message-text">
+              If you haven't already, please <a href="https://github.com/alecthibodeau/nona-ai/blob/main/README.md">configure</a> your <span className="chrome-dev">Chrome Dev</span> browser.
             </span>
-          </button>
+            <button className="button-close" onClick={closeMessage}>
+              <span className="close-character">
+                {characterVectorOrCrossProduct}
+              </span>
+            </button>
+          </div>
         </div> :
         null
       }

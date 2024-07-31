@@ -12,7 +12,7 @@ After setting up everything you'll have the option to run this project from Chro
 
 1) Install [Chrome Dev browser](https://www.google.com/chrome/dev) on your computer.
 2) Open Chrome Dev browser.
-3) Enable Chrome Dev browser to connect to Gemini Nano: Follow [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in "**Necessary Experimental Flags**" for setting the needed flags&hellip;
+3) Configure Chrome Dev browser to connect with Gemini Nano: Follow [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in "**Necessary Experimental Flags**" for setting the needed flags&hellip;
 
     - Step 1: chrome://flags/#prompt-api-for-gemini-nano
       - Select 'Enabled
@@ -38,7 +38,7 @@ After setting up everything you'll have the option to run this project from Chro
 
 ### The user experience
 
-I want the Nona AI interface to feel easy to use. As with all my projects digital accessibility is of the highest importance: Nona AI has semantic HTML tags, tabbable elements, mobile-first responsiveness and AAA color contrast for all text.
+I want the Nona AI interface to feel easy to use. As with all my projects digital accessibility is of the highest importance: Nona AI has semantic HTML tags, tabbable elements, responsive web design and accessible color contrast (AAA for all text).
 
 I've added other features to keep the user engaged and in control&hellip;
   - The text input expands vertically as needed to fit the user's prompt
@@ -68,6 +68,10 @@ Not sure where to start? Try any of these prompts to see what you get:
 - What are the states in New England?
 - Who were the members of the Beatles?
 - Write a paragraph about the sport of running.
+
+### Future features
+
+This initial version of Nona AI has a distinct color palette to distinguish it from achromatic LLM interfaces. However, I see the benefits of neutrally-hued design elements when users are seeking information on a wide range of topics. One of my goals for Nona AI is a Settings area where users can choose color themes: hue mode, light mode and dark mode.
 
 
 ###### Software and content Copyright (C) Alec Thibodeau. Copyright year is by commit date.
