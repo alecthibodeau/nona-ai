@@ -69,9 +69,9 @@
 
 .button-close {
   display: inline-flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 1.5rem;
+  width: 1.25rem;
   aspect-ratio: 1 / 1;
   border: 1px solid var(--color-violet-dark);
   border-radius: 50%;
@@ -85,6 +85,8 @@
   outline-offset: 2px;
 }
 
-polygon {
-  fill: var(--color-yellow-light);
+.close-character {
+  font-size: 1.5rem;
+  line-height: .535rem;
+  color: var(--color-yellow-light);
 }

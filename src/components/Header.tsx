@@ -3,7 +3,6 @@ import HeaderProps from '../interfaces/HeaderProps';
 
 /* Constants */
 import stringValues from '../constants/string-values';
-import svgPaths from '../constants/svg-paths';
 
 function Header(props: HeaderProps): JSX.Element {
   const { readmeLink } = stringValues;
@@ -29,12 +28,9 @@ function Header(props: HeaderProps): JSX.Element {
               </a> your <span className="chrome-dev">Chrome Dev</span> browser.
             </span>
             <button className="button-close" onClick={closeMessage}>
-              <svg
-                viewBox="0 0 400 400"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polygon points={svgPaths.closingX} />
-              </svg>
+              <span className="close-character">
+                {stringValues.unicodeCharacters.characterVectorOrCrossProduct}
+              </span>
             </button>
           </div>
         </div> :
