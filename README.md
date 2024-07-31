@@ -32,9 +32,18 @@ After setting up everything you'll have the option to run this project from Chro
 
     The experimental reality of Gemini Nano means you may encounter occasional performance issues &mdash; like longer than expected wait times after your prompt submission &mdash; or strange/nonsensical wording in the resulting text. While I built Nona AI from scratch for use as a front end, I have no control over the Gemini Nano back end. I can't alter its performance or claim authorship of the content in its responses.
     - If the wait time is too long hit the stop button to cancel your prompt
-    - If you have thoughts on the results text send feedback to Google
+    - If you have thoughts on any results text then send feedback to Google
 
 7) Enjoy! With those caveats out of the way I hope you have fun interacting with Nona AI. (And check back here for project updates.)
+
+### Screenshots of a prompt sequencce
+![Screenshot](https://i.imgur.com/D2OVMHW.jpg)
+
+![Screenshot](https://i.imgur.com/5ikCXDR.jpg)
+
+![Screenshot](https://i.imgur.com/GE03wjd.jpg)
+
+![Screenshot](https://i.imgur.com/w70Bi48.jpg)
 
 ### The user experience
 
