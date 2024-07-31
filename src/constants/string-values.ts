@@ -24,6 +24,8 @@ const messagingForUser: { [key: string]: string } = {
   messageTextTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
 };
 
+const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md';
+
 const unicodeCharacters: { [key: string]: string } = {
   characterBlackMediumRightPointingTriangle: '\u23f5',
   characterBlackSquareForStop: '\u23f9',
@@ -54,6 +56,7 @@ const stringValues = {
   keyboardKeys,
   localStorageKeyHistory,
   messagingForUser,
+  readmeLink,
   unicodeCharacters,
   userPromptButtonActions,
   mockData

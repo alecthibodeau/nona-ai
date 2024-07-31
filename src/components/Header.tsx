@@ -5,7 +5,7 @@ import HeaderProps from '../interfaces/HeaderProps';
 import stringValues from '../constants/string-values';
 
 function Header(props: HeaderProps): JSX.Element {
-  const { unicodeCharacters: { characterVectorOrCrossProduct } } = stringValues;
+  const { readmeLink } = stringValues;
 
   function closeMessage(): void {
     props.onUpdateMessageDisplayed(false);
@@ -24,12 +24,12 @@ function Header(props: HeaderProps): JSX.Element {
         <div className="message-background">
           <div className="message-container">
             <span className="message-text">
-              If you haven't already, please <a href="https://github.com/alecthibodeau/nona-ai/blob/main/README.md">configure</a> your <span className="chrome-dev">Chrome Dev</span> browser.
+              If you haven't already, please <a href={readmeLink}>configure
+              </a> your <span className="chrome-dev">Chrome Dev</span> browser.
             </span>
             <button className="button-close" onClick={closeMessage}>
-              <span className="close-character">
-                {characterVectorOrCrossProduct}
-              </span>
+              <div className="closing-x-bar"></div>
+              <div className="closing-x-bar"></div>
             </button>
           </div>
         </div> :
