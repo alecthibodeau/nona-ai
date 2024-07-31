@@ -3,6 +3,11 @@ const cardVariantNames: { [key: string]: string } = {
   variantNameResult: 'result'
 };
 
+const consoleMessage: { [key: string]: string } = {
+  text: '%cPlease note: Nona AI is an experimental site that currently requires using the Chrome Dev browser for connecting with Gemini Nano. Any "preloaded / not used" warnings you see here in the console are probably only appearing in Chrome Dev. These warnings are likely caused by how Google Fonts and Vite interact in this particular browser. Despite these warning Nona AI\'s fonts may be loading as expected. Future updates to Chrome Dev, Google Fonts, Vite or Nona AI might eliminate these warnings (as might Gemini Nano being made available in Google Chrome).',
+  properties: 'font-size: 12px; background: #00f; color: #fff'
+}
+
 const keyboardKeys: { [key: string]: string } = {
   keyArrowUp: 'ArrowUp',
   keyBackspace: 'Backspace',
@@ -11,7 +16,7 @@ const keyboardKeys: { [key: string]: string } = {
   keyShift: 'Shift'
 };
 
-const localStorageKeyHistory = 'nonaAiHistory';
+const localStorageKeyHistory: string = 'nonaAiHistory';
 
 const messagingForUser: { [key: string]: string } = {
   messageTextError: 'Error occurred during prompt: ',
@@ -45,6 +50,7 @@ const mockData: string[] = [
 
 const stringValues = {
   cardVariantNames,
+  consoleMessage,
   keyboardKeys,
   localStorageKeyHistory,
   messagingForUser,
