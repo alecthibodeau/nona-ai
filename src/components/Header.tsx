@@ -28,8 +28,8 @@ function Header(props: HeaderProps): JSX.Element {
               </a> your <span className="chrome-dev">Chrome Dev</span> browser.
             </span>
             <button className="button-close" onClick={closeMessage}>
-              <div className="closing-x-bar"></div>
-              <div className="closing-x-bar"></div>
+              <div className="closing-x-bar one"></div>
+              <div className="closing-x-bar two"></div>
             </button>
           </div>
         </div> :

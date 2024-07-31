@@ -89,10 +89,13 @@
   width: .125rem;
   height: .75rem;
   background-color: var(--color-yellow-light);
-  transform: rotate(45deg);
+}
 
-  &:first-of-type {
-    position: absolute;
-    transform: rotate(-45deg);
-  }
+.closing-x-bar.one {
+  transform: rotate(45deg);
+}
+
+.closing-x-bar.two {
+  position: absolute;
+  transform: rotate(315deg);
 }
