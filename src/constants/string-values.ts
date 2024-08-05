@@ -26,12 +26,6 @@ const messagingForUser: { [key: string]: string } = {
 
 const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md';
 
-const unicodeCharacters: { [key: string]: string } = {
-  characterBlackMediumRightPointingTriangle: '\u23f5',
-  characterBlackSquareForStop: '\u23f9',
-  characterVectorOrCrossProduct: '\u2A2F'
-};
-
 const userPromptButtonActions: { [key: string]: string } = {
   textStart: 'start',
   textStop: 'stop'
@@ -57,7 +51,6 @@ const stringValues = {
   localStorageKeyHistory,
   messagingForUser,
   readmeLink,
-  unicodeCharacters,
   userPromptButtonActions,
   mockData
 };

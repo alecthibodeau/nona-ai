@@ -27,8 +27,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     keyboardKeys: { keyArrowUp, keyBackspace, keyDelete, keyEnter, keyShift },
     userPromptButtonActions: { textStart, textStop },
     localStorageKeyHistory,
-    messagingForUser: { messageTextError, messageTextPlaceholder },
-    unicodeCharacters
+    messagingForUser: { messageTextError, messageTextPlaceholder }
   } = stringValues;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const isSubmitEnabled: boolean = !props.isTypewriterRunningFromCard && !isAwaitingResponse;
@@ -168,21 +167,15 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
           onKeyUp={(event) => handleKeyUp(event.key)}
         />
         </div>
-        <div className="submit-button-container">
+        <div className="button-container-user-input">
           <button
             type="button"
             onFocus={() => setIsFormHighlighted(true)}
             onBlur={() => setIsFormHighlighted(false)}
-            className={`submit-button ${makeButtonClass()}`}
+            className={`button-user-input ${makeButtonClass()}`}
             onClick={isSubmitEnabled ? validatePrompt : onClickStopButton}
           >
-            <span className={`submit-button-icon ${makeButtonClass()}`}>
-              {
-                isSubmitEnabled ?
-                unicodeCharacters.characterBlackMediumRightPointingTriangle :
-                unicodeCharacters.characterBlackSquareForStop
-              }
-            </span>
+            <div className={`button-icon-user-input ${makeButtonClass()}`}></div>
           </button>
         </div>
       </form>

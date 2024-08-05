@@ -45,70 +45,68 @@
   }
 }
 
-.submit-button-container {
+.button-container-user-input {
   display: flex;
   flex-direction: column;
   justify-content: end;
   margin-left: .75rem;
 }
 
-.submit-button {
+.button-user-input {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 3rem;
   height: 3rem;
   border: none;
   border-radius: 50%;
   cursor: pointer;
 
-  &.start {
-    background-color: var(--color-yellow-medium);
-
-    &:hover:not(:disabled),
-    &:focus {
-      background-color: var(--color-green-medium);
-    }
-  }
-
-  &.stop {
-    background-color: var(--color-blue-lighter);
-
-    &:hover:not(:disabled),
-    &:focus {
-      background-color: var(--color-coral);
-    }
-  }
-
-  &:hover:not(:disabled),
+  &:hover,
   &:focus {
     outline: var(--color-white) solid 3px;
     outline-offset: 3px;
-
-    & .submit-button-icon {
-      color: var(--color-white);
-    }
   }
+}
 
-  &:disabled {
-    cursor: default;
-    background-color: var(--color-gray-light);
+.button-user-input.start {
+  background-color: var(--color-yellow-medium);
 
-    & .submit-button-icon {
-      color: var(--color-gray);
+  &:hover,
+  &:focus {
+    background-color: var(--color-green-medium);
+
+    & .button-icon-user-input {
+      border-left-color: var(--color-white);
     }
   }
 }
 
-.submit-button-icon {
-  font-size: 2.5rem;
+.button-user-input.stop {
+  background-color: var(--color-blue-lighter);
 
-  &.start {
-    color: var(--color-green-medium);
-  }
+  &:hover,
+  &:focus {
+    background-color: var(--color-coral);
 
-  &.stop {
-    color: var(--color-coral);
+    & .button-icon-user-input {
+      background-color: var(--color-white);
+    }
   }
+}
+
+.button-icon-user-input.start {
+  position: relative;
+  left: .125rem;
+  border-style: solid;
+  border-width: .625rem 0 .625rem 1rem;
+  border-color: transparent transparent transparent var(--color-green-medium);
+}
+
+.button-icon-user-input.stop {
+  width: 1.25rem;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-coral);
 }
 
 /* Media Queries*/
