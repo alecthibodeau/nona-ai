@@ -32,7 +32,8 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const isSubmitEnabled: boolean = !props.isTypewriterRunningFromCard && !isAwaitingResponse;
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
-  const textAreaVerticalPadding: number = .875 * 2;
+  const textAreaBaseHeight: number = 1;
+  const textAreaVerticalPadding: number = .875;
 
   useEffect(() => {
     if (!isAwaitingResponse && !!textareaRef.current) textareaRef.current.focus();
@@ -69,7 +70,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
 
   function validatePrompt(): void {
     if (textArea) {
-      modifyTextAreaHeight(textArea, 1);
+      modifyTextAreaHeight(textArea, textAreaBaseHeight);
       textArea.value = '';
       if (promptText && !isOnlyNewLinesAndSpaces) {
         props.onIsTypewriterCanceled(false);
@@ -84,14 +85,15 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
   function handleKeyDown(key: string): void {
     if (textArea) {
       const scrollHeightToRem: number = Math.floor(textArea.scrollHeight / 16);
+      const subtracted: number = textAreaBaseHeight - textAreaVerticalPadding;
       if (key === keyShift) {
         setIsShiftPressed(true);
       } else if (key === keyEnter) {
         handleEnterKey(textArea, scrollHeightToRem);
       } else if (key === keyArrowUp && mostRecentPrompt && !promptText) {
         loadMostRecentPrompt(textArea);
-      } else if ((key === keyBackspace || key === keyDelete) && textArea.value.length <= 1) {
-        modifyTextAreaHeight(textArea, textAreaVerticalPadding + 1);
+      } else if (key === keyBackspace || key === keyDelete) {
+        modifyTextAreaHeight(textArea, scrollHeightToRem - subtracted);
       } else {
         modifyTextAreaHeight(textArea, scrollHeightToRem);
       }
@@ -102,16 +104,19 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     if (key === keyShift) setIsShiftPressed(false);
   }
 
-  function handleEnterKey(textarea: HTMLTextAreaElement, scrollHeightToRem: number): void {
+  function handleEnterKey(textarea: HTMLTextAreaElement, scrollHeight: number): void {
     if (!isShiftPressed && !isOnlyNewLinesAndSpaces) {
       validatePrompt();
     } else {
-      modifyTextAreaHeight(textarea, scrollHeightToRem + 1);
+      modifyTextAreaHeight(textarea, scrollHeight + textAreaBaseHeight);
     }
   }
 
   function modifyTextAreaHeight(textarea: HTMLTextAreaElement, height: number): void {
-    textarea.style.height = `${height - textAreaVerticalPadding}rem`;
+    const textAreaTotalVerticalPadding: number = textAreaVerticalPadding * 2;
+    const heightMinusPadding: number = height - textAreaTotalVerticalPadding;
+    const newHeight = heightMinusPadding > textAreaBaseHeight ? heightMinusPadding : textAreaBaseHeight;
+    textarea.style.height = `${newHeight}rem`;
   }
 
   function loadMostRecentPrompt(textarea: HTMLTextAreaElement): void {
