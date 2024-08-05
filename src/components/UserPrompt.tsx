@@ -32,6 +32,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const isSubmitEnabled: boolean = !props.isTypewriterRunningFromCard && !isAwaitingResponse;
   const textArea: HTMLTextAreaElement | null = textareaRef.current;
+  const textAreaVerticalPadding: number = .875 * 2;
 
   useEffect(() => {
     if (!isAwaitingResponse && !!textareaRef.current) textareaRef.current.focus();
@@ -90,7 +91,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
       } else if (key === keyArrowUp && mostRecentPrompt && !promptText) {
         loadMostRecentPrompt(textArea);
       } else if ((key === keyBackspace || key === keyDelete) && textArea.value.length <= 1) {
-        modifyTextAreaHeight(textArea, 1);
+        modifyTextAreaHeight(textArea, textAreaVerticalPadding + 1);
       } else {
         modifyTextAreaHeight(textArea, scrollHeightToRem);
       }
@@ -110,7 +111,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
   }
 
   function modifyTextAreaHeight(textarea: HTMLTextAreaElement, height: number): void {
-    textarea.style.height = `${height}rem`;
+    textarea.style.height = `${height - textAreaVerticalPadding}rem`;
   }
 
   function loadMostRecentPrompt(textarea: HTMLTextAreaElement): void {

@@ -25,13 +25,13 @@
   display: flex;
   width: 70vw;
   max-width: 14rem;
-  padding: .875rem 0;
 }
 
 .user-input-textarea {
   flex: 1;
   overflow: hidden;
   height: 1rem;
+  padding: .875rem 0;
   border: none;
   outline: none;
   resize: none;
