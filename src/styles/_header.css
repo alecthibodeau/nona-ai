@@ -48,6 +48,10 @@
 
 .message-background {
   background-color: var(--color-coral);
+
+  &.connected {
+    background-color: var(--color-yellow-medium);
+  }
 }
 
 .message-container {

@@ -22,22 +22,32 @@ function Header(props: HeaderProps): JSX.Element {
       </div>
       {
         props.isMessageDisplayed ?
-        <div className="message-background">
+        <div className={`message-background${window.ai ? ' connected' : ''}`}>
           <div className="message-container">
-            <span className="message-text">
-              If you haven't already, please <a href={readmeLink}>configure
-              </a> your <span className="chrome-dev">Chrome Dev</span> browser.
-            </span>
-            <button className="button-close" onClick={closeMessage}>
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 420 420"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polygon points={svgPaths.closingX} />
-              </svg>
-            </button>
+            {
+              window.ai ?
+              <span className="message-text">
+                You are connected to Gemini Nano. See <a href={`${readmeLink}#using-nona-ai`}>using Nona AI</a>.
+              </span> :
+              <span className="message-text">
+                Please use a <span className="chrome-dev">Chrome Dev</span> browser
+                to get results from Nona AI. <a href={`${readmeLink}#nona-ai`}>How to configure</a>.
+              </span>
+            }
+            {
+              window.ai ?
+              <button className="button-close" onClick={closeMessage}>
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 420 420"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polygon points={svgPaths.closingX} />
+                </svg>
+              </button> :
+              null
+            }
           </div>
         </div> :
         null

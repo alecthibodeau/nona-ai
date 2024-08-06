@@ -10,9 +10,11 @@ After setting up everything you'll have the option to run this project from Chro
 
 ### How to configure your browser for Nona AI
 
-1) Install [Chrome Dev browser](https://www.google.com/chrome/dev) on your computer.
-2) Open Chrome Dev browser.
-3) Configure Chrome Dev browser to connect with Gemini Nano by following [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in "**Necessary Experimental Flags**" for setting the correct flags&hellip;
+- Install [Chrome Dev browser](https://www.google.com/chrome/dev) on your computer.
+
+- Open Chrome Dev browser.
+
+- Configure Chrome Dev browser to connect with Gemini Nano by following [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in "**Necessary Experimental Flags**" for setting the correct flags&hellip;
 
     - Step 1: chrome://flags/#prompt-api-for-gemini-nano
       - Select 'Enabled
