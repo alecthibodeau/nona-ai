@@ -14,16 +14,11 @@ After setting up everything you'll have the option to run this project from Chro
 
 - Open Chrome Dev browser.
 
-- Configure Chrome Dev browser to connect with Gemini Nano by following [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in "**Necessary Experimental Flags**" for setting the correct flags&hellip;
+- Configure Chrome Dev browser to connect with Gemini Nano by following [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in the bottom section under **Necessary Experimental Flags**&hellip;
 
-    - Step 1: chrome://flags/#prompt-api-for-gemini-nano
-      - Select 'Enabled
+![nona-ai-chrome-dev-necessary-experimental-flags](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/chrome-dev-necessary-experimental-flags.jpg?raw=true)
 
-    - Step 2: chrome://flags/#optimization-guide-on-device-model
-      - Select 'Enabled BypassPrefRequirement'
-
-    - Step 3: chrome://components
-      - Click 'Check for Update' on Optimization Guide On Device Model to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above, relaunch your browser, and refresh the page.
+- Until your browser is configured correctly you'll see a red banner with associated messaging at the top of your screen.
 
 ### Using Nona AI
 
@@ -42,13 +37,13 @@ After setting up everything you'll have the option to run this project from Chro
 
 ### Screenshots of a prompt sequencce
 
-![nona-ai-screenshot-start](https://github.com/user-attachments/assets/00249001-3c16-4fa4-9c44-fe0e089eab44)
+![nona-ai-screenshot-start](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-start.jpg?raw=true)
 
-![nona-ai-screenshot-text](https://github.com/user-attachments/assets/d771b24c-2b72-4120-8d54-1c1f0d00a6c5)
+![nona-ai-screenshot-text](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-text.jpg?raw=true)
 
-![nona-ai-screenshot-prompt](https://github.com/user-attachments/assets/1ae73acc-b184-49f1-a45f-7a3d324b668a)
+![nona-ai-screenshot-prompt](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-prompt.jpg?raw=true)
 
-![nona-ai-screenshot-result](https://github.com/user-attachments/assets/84db04ec-6bac-44b4-b8e6-d8c792196af7)
+![nona-ai-screenshot-result](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-result.jpg?raw=true)
 
 ### The user experience
 

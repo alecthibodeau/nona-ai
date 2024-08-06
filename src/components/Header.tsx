@@ -27,11 +27,10 @@ function Header(props: HeaderProps): JSX.Element {
             {
               window.ai ?
               <span className="message-text">
-                You are connected to Gemini Nano. See <a href={`${readmeLink}#using-nona-ai`}>using Nona AI</a>.
+                Nona AI is connected to Gemini Nano. <a href={`${readmeLink}#using-nona-ai`}>Read more</a> about using Nona AI.
               </span> :
               <span className="message-text">
-                Please use a <span className="chrome-dev">Chrome Dev</span> browser
-                to get results from Nona AI. <a href={`${readmeLink}#nona-ai`}>How to configure</a>.
+                To get results from Nona AI please use a <span className="chrome-dev">Chrome Dev</span> browser that's configured with necessary experimental flags. <a href={`${readmeLink}#nona-ai`}>How to configure</a>.
               </span>
             }
             {
