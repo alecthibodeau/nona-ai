@@ -22,31 +22,22 @@ function Header(props: HeaderProps): JSX.Element {
       </div>
       {
         props.isMessageDisplayed ?
-        <div className={`message-background${window.ai ? ' connected' : ''}`}>
+        <div className="message-background">
           <div className="message-container">
-            {
-              window.ai ?
-              <span className="message-text">
-                Nona AI is connected to Gemini Nano. <a href={`${readmeLink}#using-nona-ai`}>Read more</a> about using Nona AI.
-              </span> :
-              <span className="message-text">
-                To get results from Nona AI please use a <span className="chrome-dev">Chrome Dev</span> browser that's configured with necessary experimental flags. <a href={`${readmeLink}#nona-ai`}>How to configure</a>.
-              </span>
-            }
-            {
-              window.ai ?
-              <button className="button-close" onClick={closeMessage}>
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 420 420"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polygon points={svgPaths.closingX} />
-                </svg>
-              </button> :
-              null
-            }
+            <span className="message-text">
+              If you haven't already, please <a href={readmeLink}>configure
+              </a> your <span className="chrome-dev">Chrome Dev</span> browser for Nona AI to get results from Gemini Nano.
+            </span>
+            <button className="button-close" onClick={closeMessage}>
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 420 420"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polygon points={svgPaths.closingX} />
+              </svg>
+            </button>
           </div>
         </div> :
         null

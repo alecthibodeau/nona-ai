@@ -18,8 +18,6 @@ After setting up everything you'll have the option to run this project from Chro
 
 ![nona-ai-chrome-dev-necessary-experimental-flags](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/chrome-dev-necessary-experimental-flags.jpg?raw=true)
 
-- Until your browser is configured correctly you'll see a red banner with associated messaging at the top of your screen.
-
 ### Using Nona AI
 
 - In your ***Chrome Dev*** browser (***not*** regular Chrome or any other browser) navigate to [https://alect.me/nona-ai](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome Dev you'll be able to see the Nona AI interface as expected and even submit a prompt&hellip; but you won't get a result.

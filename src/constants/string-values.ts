@@ -24,7 +24,7 @@ const messagingForUser: { [key: string]: string } = {
   messageTextTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
 };
 
-const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md';
+const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md#nona-ai';
 
 const userPromptButtonActions: { [key: string]: string } = {
   textStart: 'start',
