@@ -47,11 +47,12 @@
 }
 
 .message-background {
+  display: flex;
+  justify-content: center;
   background-color: var(--color-coral);
 }
 
 .message-container {
-  text-align: center;
   padding: .5rem 1rem;
 }
 

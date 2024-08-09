@@ -4,7 +4,7 @@ const cardVariantNames: { [key: string]: string } = {
 };
 
 const consoleMessage: { [key: string]: string } = {
-  text: '%cPlease note: Nona AI is an experimental site that currently requires using the Chrome Dev browser for connecting with Gemini Nano. Any "preloaded / not used" warnings you see here in the console are probably only appearing in Chrome Dev. These warnings are likely caused by how Google Fonts and Vite interact in this particular browser. Despite these warning Nona AI\'s fonts may be loading as expected. Future updates to Chrome Dev, Google Fonts, Vite or Nona AI might eliminate these warnings (as might Gemini Nano being made available in Google Chrome).',
+  text: '%cPlease note: Nona AI is an experimental site that currently requires using the Chrome Dev browser for connecting with Gemini Nano. Any "preloaded / not used" warnings you see here in the console are probably only appearing in Chrome Dev. These warnings are likely caused by how Google Fonts and Vite interact in this particular browser. Despite these warnings Nona AI\'s fonts may be loading as expected. Future updates to Chrome Dev, Google Fonts, Vite or Nona AI might eliminate these warnings (as might Gemini Nano being made available in other browsers beyond Chrome Dev).',
   properties: 'font-size: 12px; background: #00f; color: #fff'
 }
 

@@ -26,7 +26,8 @@ function Header(props: HeaderProps): JSX.Element {
           <div className="message-container">
             <span className="message-text">
               If you haven't already, please <a href={readmeLink}>configure
-              </a> your <span className="chrome-dev">Chrome Dev</span> browser for Nona AI to get results from Gemini Nano.
+              </a> your <span className="chrome-dev">Chrome Dev</span> browser
+              so that Nona AI can get results from Gemini Nano.
             </span>
             <button className="button-close" onClick={closeMessage}>
               <svg
