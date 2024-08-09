@@ -24,11 +24,6 @@ function Header(props: HeaderProps): JSX.Element {
         props.isMessageDisplayed ?
         <div className="message-background">
           <div className="message-container">
-            <span className="message-text">
-              If you haven't already, please <a href={readmeLink}>configure
-              </a> your <span className="chrome-dev">Chrome Dev</span> browser
-              so that Nona AI can get results from Gemini Nano.
-            </span>
             <button className="button-close" onClick={closeMessage}>
               <svg
                 width="10"
@@ -39,6 +34,11 @@ function Header(props: HeaderProps): JSX.Element {
                 <polygon points={svgPaths.closingX} />
               </svg>
             </button>
+            <span className="message-text">
+              If you haven't already, please <a href={readmeLink}>configure
+              </a> your <span className="chrome-dev">Chrome Dev</span> browser
+              so that Nona AI can get results from Gemini Nano.
+            </span>
           </div>
         </div> :
         null
