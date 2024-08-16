@@ -16,7 +16,7 @@ After setting up everything you'll have the option to run this project from Chro
 
 - Configure Chrome Dev browser to connect with Gemini Nano by following [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in the bottom section under **Necessary Experimental Flags**&hellip;
 
-![nona-ai-chrome-dev-necessary-experimental-flags](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/chrome-dev-necessary-experimental-flags.jpg?raw=true)
+![nona-ai-chrome-dev-necessary-experimental-flags](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/chrome-dev-necessary-experimental-flags.jpg?raw=true)
 
 ### Using Nona AI
 
@@ -33,15 +33,15 @@ After setting up everything you'll have the option to run this project from Chro
 
 - Enjoy! With those caveats out of the way I hope you have fun interacting with Nona AI. (And check back here for project updates.)
 
-### Screenshots of a prompt sequencce
+### Screenshots of a prompt sequence
 
-![nona-ai-screenshot-start](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-start.jpg?raw=true)
+![nona-ai-screenshot-start](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-start.jpg?raw=true)
 
-![nona-ai-screenshot-text](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-text.jpg?raw=true)
+![nona-ai-screenshot-text](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-text.jpg?raw=true)
 
-![nona-ai-screenshot-prompt](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-prompt.jpg?raw=true)
+![nona-ai-screenshot-prompt](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-prompt.jpg?raw=true)
 
-![nona-ai-screenshot-result](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-result.jpg?raw=true)
+![nona-ai-screenshot-result](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-result.jpg?raw=true)
 
 ### The user experience
 
