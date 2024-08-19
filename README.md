@@ -22,7 +22,7 @@ After configuring Chrome Dev you'll have the option to use Nona AI with no inter
 
 ### Using Nona AI
 
-- In your ***Chrome Dev*** browser &mdash; ***not*** regular Chrome or any other browser &mdash; navigate to [https://alect.me/nona-ai](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome Dev you may see the Nona AI interface as expected and even be able to submit prompts&hellip; but you won't get results. You'll simply wait.
+- In your ***Chrome Dev*** browser &mdash; ***not*** regular Chrome or any other browser &mdash; navigate to [Nona AI](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome Dev you may see the Nona AI interface as expected and even be able to submit prompts&hellip; but you won't get results. You'll simply wait.
 
 - Make a prompt in the input: Start with something simple like "What's 2 + 2?" If you get a corresponding result you'll know Nona AI is working as expected.
 - Be patient and forewarned: As Google's [Built-in AI](https://developer.chrome.com/docs/ai/built-in) description states&hellip;
