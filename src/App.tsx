@@ -15,6 +15,7 @@ import stringValues from './constants/string-values';
 
 function App(): JSX.Element {
   const [cards, setCards] = useState<CardProps[]>([]);
+  const [colorTheme, setColorTheme] = useState<string>(stringValues.colorThemeOptions[0]);
   const [mostRecentPromptSaved, setMostRecentPromptSaved] = useState<string>('');
   const [isAwaitingResponse, setIsAwaitingResponse] = useState<boolean>(false);
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
@@ -32,6 +33,7 @@ function App(): JSX.Element {
   } = stringValues;
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
+  const isDropdownMenuActive: boolean = false;
 
   const makeMockCards = useCallback(() => {
     return mockData.map((cardText, index) => {
@@ -163,6 +165,7 @@ function App(): JSX.Element {
       <Header
         isMessageDisplayed={isMessageDisplayed}
         onUpdateMessageDisplayed={(isDisplayed) => setIsMessageDisplayed(isDisplayed)}
+        onUpdateColorTheme={(theme) => setColorTheme(theme)}
       />
       <main className="main">
         <div
@@ -172,6 +175,7 @@ function App(): JSX.Element {
         >
           {cards.map(renderCard)}
         </div>
+        {isDropdownMenuActive ? <div>{colorTheme}</div> : null}
         <UserPrompt
           cardsSaved={cards}
           mostRecentPromptSaved={mostRecentPromptSaved}

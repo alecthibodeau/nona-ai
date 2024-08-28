@@ -1,3 +1,6 @@
+/* Components */
+import DropdownMenu from './DropdownMenu';
+
 /* Interfaces */
 import HeaderProps from '../interfaces/HeaderProps';
 
@@ -7,6 +10,7 @@ import svgPaths from '../constants/svg-paths';
 
 function Header(props: HeaderProps): JSX.Element {
   const { readmeLink } = stringValues;
+  const isDropdownMenuActive: boolean = false;
 
   function closeMessage(): void {
     props.onUpdateMessageDisplayed(false);
@@ -16,6 +20,11 @@ function Header(props: HeaderProps): JSX.Element {
     <header className="header">
       <div className="header-content">
         <div className="name">Nona AI</div>
+        {isDropdownMenuActive ?
+          <DropdownMenu
+            options={stringValues.colorThemeOptions}
+            onUpdateOption={(option) => props.onUpdateColorTheme(option)}
+          /> : null}
         <div className="icon-outer">
           <div className="icon-inner"></div>
         </div>
