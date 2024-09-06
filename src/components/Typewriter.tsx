@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react';
 import TypewriterProps from '../interfaces/TypewriterProps';
 
 function Typewriter(props: TypewriterProps): JSX.Element {
-  const [currentText, setCurrentText] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentText, setCurrentText] = useState<string>('');
   const [isCharacterTypewritten, setIsCharacterTypewritten] = useState<boolean>(false);
   const delay: number = 25;
-  const delayDynamic: number = 50 - currentIndex > 0 ? 50 - currentIndex : 0;
+  const delayDynamic: number = 50 - currentIndex > 0 ? 50 - currentIndex : 3;
   const isTypewriterDelayDynamic: boolean = true;
 
   useEffect(() => {
     if (currentIndex < props.text.length) {
       const timeout: number = setTimeout(() => {
-        setCurrentText(previousText => previousText + props.text[currentIndex]);
-        setCurrentIndex(previousIndex => previousIndex + 1);
+        setCurrentText(currentText + props.text[currentIndex]);
+        setCurrentIndex(currentIndex + 1);
         setIsCharacterTypewritten(!isCharacterTypewritten);
         props.onIsCharacterTypewritten(isCharacterTypewritten);
         props.onIsTypewriterRunning(currentIndex !== props.text.length - 1);
@@ -29,11 +29,11 @@ function Typewriter(props: TypewriterProps): JSX.Element {
     }},
     [
       props,
-      isCharacterTypewritten,
       currentIndex,
       currentText,
-      isTypewriterDelayDynamic,
-      delayDynamic
+      delayDynamic,
+      isCharacterTypewritten,
+      isTypewriterDelayDynamic
     ]
   );
 
