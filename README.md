@@ -1,6 +1,6 @@
 # Nona AI
 
-## A registration-free user interface for Google Gemini Nano
+## A registration-free user interface for Google Gemini Nano that also works offline
 
 Are you curious about artificial intelligence (AI)? Are you looking to experiment with AI but don't want to register for yet another online account?
 
@@ -8,23 +8,31 @@ Nona AI is a user interface (UI) I've made that connects to Google's new built-i
 
 However, **unlike** most other LLM interfaces Nona AI doesn't require any kind of account registration or sign up process. There's no need to provide your email address, name or any other personal information. Just use the correct web browser and properly configure it with a few quick steps.
 
-Currently Gemini Nano is an experimental, built-in feature of Google's Chrome Dev browser. As of this writing you must have Chrome Dev installed on your computer to use Nona AI for connecting with Gemini Nano. But that's all you need to install. Once you've configured the browser you're ready to go.
+Currently Gemini Nano is an experimental, built-in feature of Google's Chrome browser. It also works in Google's Chrome Dev browser &mdash; and was available there first. Be sure you have the latest version of Chrome or Chrome Dev installed on your computer to use Nona AI for connecting with Gemini Nano. Once you've configured your browser using the steps below then you're ready to start making prompts.
 
-After configuring Chrome Dev you'll have the option to use Nona AI with no internet signal, completely offline! Such is the built-in nature of the AI model.
+After configuring Chrome you'll have the option to use Nona AI with no internet signal, completely offline! Such is the built-in nature of the AI model.
 
 ### How to configure your browser for Nona AI
 
-- Install [Chrome Dev browser](https://www.google.com/chrome/dev) on your computer.
+- Install [Chrome](https://www.google.com/chrome) or [Chrome Dev](https://www.google.com/chrome/dev) browser on your computer
 
-- Open Chrome Dev browser.
+- If one of these browsers is already installed then confirm it's [updated](https://support.google.com/chrome/answer/95414) to the latest version
 
-- Configure Chrome Dev browser to connect with Gemini Nano by following [these quick steps](https://ai-sdk-chrome-ai.vercel.app), specifically the three numbered steps in the bottom section under **Necessary Experimental Flags**&hellip;
+- Open Chrome or Chrome Dev browser
 
-![nona-ai-chrome-dev-necessary-experimental-flags](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/chrome-dev-necessary-experimental-flags.jpg?raw=true)
+- Configure the browser to connect with Gemini Nano by following these steps to set the correct flags:
+
+    1) Go to [chrome://flags/#prompt-api-for-gemini-nano](chrome://flags/#prompt-api-for-gemini-nano) and then select 'Enabled'
+
+    2. Go to [chrome://flags/#optimization-guide-on-device-model](chrome://flags/#optimization-guide-on-device-model) and then select 'Enabled BypassPrefRequirement'
+
+    3) Go to [chrome://components](chrome://components) and click 'Check for Update' on Optimization Guide On Device Model to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above. If you still don't see Optimization Guide, run `await window.ai.assistant.create();` in your browser console, then refresh the page.
+
+    *These steps for browser configuration are originally from [here](https://ai-sdk-chrome-ai.vercel.app/).*
 
 ### Using Nona AI
 
-- In your ***Chrome Dev*** browser &mdash; ***not*** regular Chrome or any other browser &mdash; navigate to [Nona AI](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome Dev you may see the Nona AI interface as expected and even be able to submit prompts&hellip; but you won't get results. You'll simply wait.
+- In your Chrome or Chrome Dev browser navigate to [Nona AI](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome or Chrome Dev you may see the Nona AI interface as expected and even be able to submit prompts&hellip; but you won't get results. You'll simply wait.
 
 - Type a prompt in the input field: Start with something simple like "What's 2 + 2?" If you get a corresponding result you'll know Nona AI is working as expected.
 
@@ -76,7 +84,7 @@ I've added other features to keep the user engaged and in control:
 
 ### When to use
 
-From Google's Built-in AI description&hellip;
+From the description at Google's [Built-in AI](https://developer.chrome.com/docs/ai/built-in)&hellip;
 
 *When to use built-in AI*
   - *AI-enhanced content consumption: Including summarization, translation, answering questions about some content, categorization, and characterizing.*
@@ -84,7 +92,7 @@ From Google's Built-in AI description&hellip;
 
 ### Try it offline
 
-Once you're getting results try turning off your Wi-Fi signal or otherwise disconnecting from the internet. You'll find you can ***still*** send prompts and receive results with the Nona AI interface. Why is that? It's because the Gemini Nano LLM is integrated directly into the Chrome Dev browser, avoiding the need for an internet connection.
+Once you're getting results try turning off your Wi-Fi signal or otherwise disconnecting from the internet. You'll find you can ***still*** send prompts and receive results with the Nona AI interface. Why is that? It's because the Gemini Nano LLM is integrated directly into the Chrome browser, avoiding the need for an internet connection.
 
 ### Suggested prompts
 
@@ -97,7 +105,7 @@ Not sure where to start? Try any of these prompts to see what you get:
 
 ### Future features
 
-- Designing for mobile: Because Chrome Dev is currently the only browser that can interact with Gemini Nano I've prioritized responsive design for desktop viewport widths &mdash; while also being mindful of smaller ones. If and when Gemini Nano becomes available for mobile browsers I'll be able to fully test Nona AI's interface with a mobile-first approach. Until then there may be unintended UI issues when viewing Nona AI on a mobile device, in addition to the prompt functionality not working.
+- Designing for mobile: If and when Gemini Nano becomes available for browsers on all major mobile devices I'll be able to fully test Nona AI's interface with a mobile-first approach. In anticipation of mobile development the interface is already responsive for smaller viewport widths. Though there may currently be unintended UI issues when viewing Nona AI on a mobile device &mdash; in addition to the prompt functionality likely not working.
 
 - Themes: This initial version of Nona AI has a distinctive color palette to distinguish it from typically achromatic LLM interfaces. However, I see the benefits of neutrally colored design elements when users are seeking information on a wide range of topics. One of my goals for Nona AI is a Settings area where users can choose color themes: hue mode, light mode or dark mode.
 

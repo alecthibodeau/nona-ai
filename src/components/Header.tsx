@@ -45,7 +45,7 @@ function Header(props: HeaderProps): JSX.Element {
             </button>
             <span className="message-text">
               If you haven't already, please review this project's <a href={readmeLink}>README
-              </a>, including the section on how to configure your <span className="chrome-dev">Chrome Dev</span> browser
+              </a>, including the section on how to configure your <span className="chrome-dev">Chrome</span> browser
               so that Nona AI can get results from Gemini Nano.
             </span>
           </div>
