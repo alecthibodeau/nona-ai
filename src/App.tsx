@@ -26,7 +26,6 @@ function App(): JSX.Element {
   const cardsContainerRef = useRef<HTMLDivElement | null>(null);
   const {
     cardVariantNames: { variantNamePrompt, variantNameResult },
-    consoleMessage,
     localStorageKeyHistory,
     messagingForUser: { messageTextTryAgain },
     mockData
@@ -51,7 +50,6 @@ function App(): JSX.Element {
   }, [mockData, variantNamePrompt, variantNameResult]);
 
   useEffect(() => {
-    console.log(consoleMessage.text, consoleMessage.properties);
     const storedHistory = localStorage.getItem(localStorageKeyHistory);
     if (storedHistory) {
       const userHistory: UserHistoryProps = JSON.parse(storedHistory);
@@ -65,7 +63,7 @@ function App(): JSX.Element {
       }, 50);
     }
     if (isMockDataUsed) setCards(makeMockCards);
-  }, [consoleMessage, localStorageKeyHistory, isMockDataUsed, makeMockCards]);
+  }, [localStorageKeyHistory, isMockDataUsed, makeMockCards]);
 
   useEffect(() => {
     const lastCard = cards[cards.length - 1];
