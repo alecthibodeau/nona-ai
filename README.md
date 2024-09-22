@@ -64,13 +64,13 @@ I've made Nona AI using a combination of technologies:
 
 ### Screenshots of a prompt sequence
 
-![nona-ai-screenshot-start](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-start.jpg?raw=true)
+![nona-ai-screenshot-start](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-start.jpg?raw=true)
 
-![nona-ai-screenshot-text](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-text.jpg?raw=true)
+![nona-ai-screenshot-text](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-text.jpg?raw=true)
 
-![nona-ai-screenshot-prompt](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-prompt.jpg?raw=true)
+![nona-ai-screenshot-prompt](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-prompt.jpg?raw=true)
 
-![nona-ai-screenshot-result](https://github.com/alecthibodeau/resource-library/blob/main/assets/nona-ai/nona-ai-screenshot-result.jpg?raw=true)
+![nona-ai-screenshot-result](https://github.com/alecthibodeau/image-library/blob/main/assets/nona-ai/nona-ai-screenshot-result.jpg?raw=true)
 
 ### The user experience
 
