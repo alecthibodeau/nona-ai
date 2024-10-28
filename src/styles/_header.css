@@ -52,7 +52,8 @@
   background-color: var(--color-coral);
 }
 
-.message-container {
+.message-container,
+.unavailable-message {
   padding: .5rem 1rem .5rem 1.5rem;
 }
 

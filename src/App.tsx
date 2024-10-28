@@ -33,6 +33,7 @@ function App(): JSX.Element {
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
   const isDropdownMenuActive: boolean = false;
+  const isPromptEnabled: boolean = false;
 
   const makeMockCards = useCallback(() => {
     return mockData.map((cardText, index) => {
@@ -162,6 +163,7 @@ function App(): JSX.Element {
     <div className="app">
       <Header
         isMessageDisplayed={isMessageDisplayed}
+        isPromptEnabled={isPromptEnabled}
         onUpdateMessageDisplayed={(isDisplayed) => setIsMessageDisplayed(isDisplayed)}
         onUpdateColorTheme={(theme) => setColorTheme(theme)}
       />
@@ -174,19 +176,21 @@ function App(): JSX.Element {
           {cards.map(renderCard)}
         </div>
         {isDropdownMenuActive ? <div>{colorTheme}</div> : null}
-        <UserPrompt
-          cardsSaved={cards}
-          mostRecentPromptSaved={mostRecentPromptSaved}
-          isMessageDisplayed={isMessageDisplayed}
-          isTypewriterRunningFromCard={isTypewriterRunning}
-          onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
-          onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
-          onIsAwaitingResponse={(isAwaiting) => setIsAwaitingResponse(isAwaiting)}
-          onIsTypewriterCanceled={(isCanceled) => {
-            setIsTypewriterCanceled(isCanceled);
-            setIsTypewriterRunning(isCanceled);
-          }}
-        />
+        {isPromptEnabled ?
+          <UserPrompt
+            cardsSaved={cards}
+            mostRecentPromptSaved={mostRecentPromptSaved}
+            isMessageDisplayed={isMessageDisplayed}
+            isTypewriterRunningFromCard={isTypewriterRunning}
+            onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
+            onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
+            onIsAwaitingResponse={(isAwaiting) => setIsAwaitingResponse(isAwaiting)}
+            onIsTypewriterCanceled={(isCanceled) => {
+              setIsTypewriterCanceled(isCanceled);
+              setIsTypewriterRunning(isCanceled);
+            }}
+          /> :
+        null}
       </main>
     </div>
   );

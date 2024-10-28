@@ -160,18 +160,18 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
           `user-input-form ${isFormHighlighted ? 'text-area-focused' : ''}`
         }>
         <div className="user-input-textarea-container">
-        <textarea
-          disabled={isAwaitingResponse}
-          ref={textareaRef}
-          className="user-input-textarea"
-          placeholder={isAwaitingResponse ? '' : messageTextPlaceholder}
-          value={promptText}
-          onFocus={() => setIsFormHighlighted(true)}
-          onBlur={() => setIsFormHighlighted(false)}
-          onChange={(event) => setPromptText(event.target.value)}
-          onKeyDown={(event) => handleKeyDown(event.key)}
-          onKeyUp={(event) => handleKeyUp(event.key)}
-        />
+          <textarea
+            disabled={isAwaitingResponse}
+            ref={textareaRef}
+            className="user-input-textarea"
+            placeholder={isAwaitingResponse ? '' : messageTextPlaceholder}
+            value={promptText}
+            onFocus={() => setIsFormHighlighted(true)}
+            onBlur={() => setIsFormHighlighted(false)}
+            onChange={(event) => setPromptText(event.target.value)}
+            onKeyDown={(event) => handleKeyDown(event.key)}
+            onKeyUp={(event) => handleKeyUp(event.key)}
+          />
         </div>
         <div className="button-container-user-input">
           <button
