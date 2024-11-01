@@ -31,7 +31,11 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     keyboardKeys: { keyArrowUp, keyBackspace, keyDelete, keyEnter, keyShift },
     userPromptButtonActions: { textStart, textStop },
     localStorageKeyHistory,
-    messagingForUser: { messageTextError, messageTextPlaceholder }
+    messagingForUser: {
+      messageTextAlertError,
+      messageTextConsoleError,
+      messageTextPlaceholder
+    }
   } = stringValues;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
   const isSubmitEnabled: boolean = !props.isTypewriterRunningFromCard && !isAwaitingResponse;
@@ -67,7 +71,8 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
       props.onIsAwaitingResponse(false);
       return response;
     } catch (error) {
-      console.error(messageTextError, error);
+      console.error(messageTextConsoleError, error);
+      alert(messageTextAlertError);
       throw error;
     }
   }

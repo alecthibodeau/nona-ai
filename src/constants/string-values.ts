@@ -1,3 +1,6 @@
+const errorText: string = 'An error occurred during prompt';
+const localStorageKeyHistory: string = 'nonaAiHistory';
+
 const cardVariantNames: { [key: string]: string } = {
   variantNamePrompt: 'prompt',
   variantNameResult: 'result'
@@ -13,10 +16,9 @@ const keyboardKeys: { [key: string]: string } = {
   keyShift: 'Shift'
 };
 
-const localStorageKeyHistory: string = 'nonaAiHistory';
-
 const messagingForUser: { [key: string]: string } = {
-  messageTextError: 'Error occurred during prompt: ',
+  messageTextAlertError: `${errorText}. Please try again.`,
+  messageTextConsoleError: `${errorText}: `,
   messageTextPlaceholder: 'Enter a prompt here',
   messageTextTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
 };
