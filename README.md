@@ -1,7 +1,5 @@
 # Nona AI
 
-🚨 ***Due to an unexpected API change Nona AI's prompt interface is currently unavailable. Hopefully this will be sorted out soon.*** 🚨
-
 ## A registration-free user interface for Google Gemini Nano that also works offline
 
 Are you curious about artificial intelligence (AI)? Are you looking to experiment with AI but don't want to register for yet another online account?

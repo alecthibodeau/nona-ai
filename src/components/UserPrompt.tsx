@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 /* Interfaces */
-import CreateTextSessionProps from '../interfaces/CreateTextSessionProps';
+import CreateProps from '../interfaces/CreateProps';
 import UserHistoryProps from '../interfaces/UserHistoryProps';
 import UserPromptProps from '../interfaces/UserPromptProps';
 
@@ -11,7 +11,11 @@ import stringValues from '../constants/string-values';
 
 declare global {
   interface Window {
-    ai: { createTextSession: () => Promise<CreateTextSessionProps>; };
+    ai: {
+      assistant: {
+        create: () => Promise<CreateProps>;
+      };
+    };
   }
 }
 
@@ -56,7 +60,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     setIsAwaitingResponse(true);
     props.onIsAwaitingResponse(true);
     setPromptText('');
-    const session = await window.ai.createTextSession();
+    const session = await window.ai.assistant.create();
     try {
       const response: string = await session.prompt(request);
       setIsAwaitingResponse(false);
