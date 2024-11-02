@@ -25,6 +25,7 @@
   width: 55px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+  border-width: 0;
   background-color: var(--color-yellow-light);
 }
 

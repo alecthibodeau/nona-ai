@@ -12,8 +12,8 @@ function Header(props: HeaderProps): JSX.Element {
   const { readmeLink } = stringValues;
   const isDropdownMenuActive: boolean = false;
 
-  function closeMessage(): void {
-    props.onUpdateMessageDisplayed(false);
+  function toggleMessage(): void {
+    props.onUpdateMessageDisplayed(!props.isMessageDisplayed);
   }
 
   return (
@@ -25,9 +25,9 @@ function Header(props: HeaderProps): JSX.Element {
             options={stringValues.colorThemeOptions}
             onUpdateOption={(option) => props.onUpdateColorTheme(option)}
           /> : null}
-        <div className="icon-outer">
+        <button className="icon-outer" onClick={toggleMessage}>
           <div className="icon-inner"></div>
-        </div>
+        </button>
       </div>
       {
         props.isMessageDisplayed ?
@@ -35,7 +35,7 @@ function Header(props: HeaderProps): JSX.Element {
           {
             props.isPromptEnabled ?
             <div className="message-container">
-              <button className="button-close" onClick={closeMessage}>
+              <button className="button-close" onClick={toggleMessage}>
                 <svg
                   width="10"
                   height="10"
