@@ -19,12 +19,13 @@ function Header(props: HeaderProps): JSX.Element {
   return (
     <header className="header">
       <div className="header-content">
-        <div className="name">Nona AI</div>
+        <button className="name" onClick={toggleMessage}>Nona AI</button>
         {isDropdownMenuActive ?
           <DropdownMenu
             options={stringValues.colorThemeOptions}
             onUpdateOption={(option) => props.onUpdateColorTheme(option)}
-          /> : null}
+          /> :
+        null}
         <button className="icon-outer" onClick={toggleMessage}>
           <div className="icon-inner"></div>
         </button>
