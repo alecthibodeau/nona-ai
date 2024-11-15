@@ -67,14 +67,20 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     const session = await window.ai.assistant.create();
     try {
       const response: string = await session.prompt(request);
-      setIsAwaitingResponse(false);
-      props.onIsAwaitingResponse(false);
+      resetAwaitingResponse();
       return response;
     } catch (error) {
       console.error(messageTextConsoleError, error);
+      cancelTypewriter();
+      resetAwaitingResponse();
       alert(messageTextAlertError);
       throw error;
     }
+  }
+
+  function resetAwaitingResponse(): void {
+    setIsAwaitingResponse(false);
+    props.onIsAwaitingResponse(false);
   }
 
   function validatePrompt(): void {
