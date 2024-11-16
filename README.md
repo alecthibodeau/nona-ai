@@ -22,11 +22,11 @@ After configuring Chrome you'll have the option to use Nona AI with no internet 
 
 - Configure the browser to connect with Gemini Nano by following these steps to set the correct flags:
 
-1) Go to [chrome://flags/#prompt-api-for-gemini-nano](chrome://flags/#prompt-api-for-gemini-nano) and then select 'Enabled'
+1) Go to **[chrome://flags/#prompt-api-for-gemini-nano](chrome://flags/#prompt-api-for-gemini-nano)** and then select 'Enabled'
 
-2) Go to [chrome://flags/#optimization-guide-on-device-model](chrome://flags/#optimization-guide-on-device-model) and then select 'Enabled BypassPrefRequirement'
+2) Go to **[chrome://flags/#optimization-guide-on-device-model](chrome://flags/#optimization-guide-on-device-model)** and then select 'Enabled BypassPrefRequirement'
 
-3) Go to [chrome://components](chrome://components) and click 'Check for Update' on *Optimization Guide On Device Model* to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above. If you still don't see Optimization Guide, run `await window.ai.assistant.create();` in your browser console, then refresh the page.
+3) Go to **[chrome://components](chrome://components)** and click 'Check for Update' on *Optimization Guide On Device Model* to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above. If you still don't see Optimization Guide, run `await window.ai.assistant.create();` in your browser console, then refresh the page.
 
     *These steps for browser configuration are originally from [here](https://ai-sdk-chrome-ai.vercel.app/).*
 
