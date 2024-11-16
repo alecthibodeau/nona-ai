@@ -4,7 +4,7 @@
 
 Are you curious about artificial intelligence (AI)? Are you looking to experiment with AI but don't want to register for yet another online account?
 
-Nona AI is a user interface (UI) I've made that connects to Google's new built-in AI model: Gemini Nano for Chrome. Type your prompts into Nona AI's text input, then get text results back from Gemini Nano &mdash; similar to other browser-based large language model (LLM) interfaces like Google Gemini and ChatGPT.
+Nona AI is a user interface (UI) I've made that connects to [Google's built-in AI model: Gemini Nano for Chrome](https://developer.chrome.com/docs/ai/built-in). Type your prompts into Nona AI's text input, then get text results back from Gemini Nano &mdash; similar to other browser-based large language model (LLM) interfaces like Google Gemini and ChatGPT.
 
 However, **unlike** most other LLM interfaces Nona AI doesn't require any kind of account registration or sign up process. There's no need to provide your email address, name or any other personal information. Just use the correct web browser and properly configure it with a few quick steps.
 
@@ -22,11 +22,11 @@ After configuring Chrome you'll have the option to use Nona AI with no internet 
 
 - Configure the browser to connect with Gemini Nano by following these steps to set the correct flags:
 
-1) Go to **[chrome://flags/#prompt-api-for-gemini-nano](chrome://flags/#prompt-api-for-gemini-nano)** and then select 'Enabled'
+1) Go to [chrome://flags/#prompt-api-for-gemini-nano](chrome://flags/#prompt-api-for-gemini-nano) and then select 'Enabled'
 
-2) Go to **[chrome://flags/#optimization-guide-on-device-model](chrome://flags/#optimization-guide-on-device-model)** and then select 'Enabled BypassPrefRequirement'
+2) Go to [chrome://flags/#optimization-guide-on-device-model](chrome://flags/#optimization-guide-on-device-model) and then select 'Enabled BypassPrefRequirement'
 
-3) Go to **[chrome://components](chrome://components)** and click 'Check for Update' on *Optimization Guide On Device Model* to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above. If you still don't see Optimization Guide, run `await window.ai.assistant.create();` in your browser console, then refresh the page.
+3) Go to [chrome://components](chrome://components) and click 'Check for Update' on *Optimization Guide On Device Model* to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above. If you still don't see Optimization Guide, run `await window.ai.assistant.create();` in your browser console, then refresh the page.
 
     *These steps for browser configuration are originally from [here](https://ai-sdk-chrome-ai.vercel.app/).*
 
