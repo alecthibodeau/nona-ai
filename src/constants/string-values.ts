@@ -25,7 +25,7 @@ const messagingForUser: { [key: string]: string } = {
   messageTextHeaderUnavailable: 'Nona AI\'s prompt interface is currently unavailable. Hopefully this will be sorted out soon. Meanwhile, see the project\'s ',
   messageTextHeaderCreditProject: 'Nona AI by ',
   messageTextHeaderCreditAuthor: 'Alec Thibodeau',
-  messageTextHeaderCreditDescription: ' is a custom user interface for sending natural language prompts to Google\'s Gemini Nano LLM. See the project\'s '
+  messageTextHeaderCreditDescription: ' is a custom user interface for sending natural language prompts to Google\'s Gemini Nano LLM. For configuring your browser see the project\'s '
 };
 
 const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md#nona-ai';

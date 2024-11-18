@@ -92,7 +92,9 @@ function Header(props: HeaderProps): JSX.Element {
         </button>
       </div>
       {props.isMessageDisplayed ?
-        <div className={`message-container`}>
+        <div className={
+          `message-container${isCreditTextLoaded ? ' credit-background' : ''}`
+        }>
           {props.isPromptEnabled ? buttonClose() : null}
           {isCreditTextLoaded ? creditMessage() : messageForUser}
           <a href={readmeLink}>README</a>

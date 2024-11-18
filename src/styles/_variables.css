@@ -30,6 +30,7 @@
   --color-brown-transparent: rgb(51 17 17 / 33%);
   --color-violet-dark: #313b7d;
   --color-violet-dark-transparent: rgb(49 59 125 / 33%);
+  --color-violet-light: #c59be3;
 
   /* Colors Primary and Secondary */
   --primary-color: var(--color-application-light);

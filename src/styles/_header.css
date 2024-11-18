@@ -54,6 +54,10 @@
 .message-container {
   background-color: var(--color-coral);
   padding: .5rem 1rem .5rem 1.5rem;
+
+  &.credit-background {
+    background-color: var(--color-violet-light);
+  }
 }
 
 .button-close {
