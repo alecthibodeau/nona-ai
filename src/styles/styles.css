@@ -11,3 +11,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-green-medium);
 }
+
+a {
+  color: var(--color-black);
+}

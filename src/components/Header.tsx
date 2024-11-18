@@ -16,6 +16,21 @@ function Header(props: HeaderProps): JSX.Element {
     props.onUpdateMessageDisplayed(!props.isMessageDisplayed);
   }
 
+  function buttonClose(): JSX.Element {
+    return (
+      <button className="button-close" onClick={toggleMessage}>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 420 420"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon points={svgPaths.closingX} />
+        </svg>
+      </button>
+    );
+  }
+
   return (
     <header className="header">
       <div className="header-content">
@@ -30,38 +45,24 @@ function Header(props: HeaderProps): JSX.Element {
           <div className="icon-inner"></div>
         </button>
       </div>
-      {
-        props.isMessageDisplayed ?
-        <div className="message-background">
-          {
-            props.isPromptEnabled ?
-            <div className="message-container">
-              <button className="button-close" onClick={toggleMessage}>
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 420 420"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polygon points={svgPaths.closingX} />
-                </svg>
-              </button>
-              <span className="message-text">
-                Please review this project's <a href={readmeLink}>README
-                </a>, including the section on how to configure
-                your <span className="chrome-dev">Chrome</span> browser
-                so that Nona AI can get results from Gemini Nano.
-              </span>
-            </div> :
-            <div className="unavailable-message">
-              Due to an unexpected API change Nona AI's prompt interface is currently
-              unavailable. Hopefully this will be sorted out soon. Meanwhile,
-              see the project <a href={readmeLink}>README</a>.
-            </div>
+      {props.isMessageDisplayed ?
+        <div className="message-container">
+          {props.isPromptEnabled ? buttonClose() : null}
+          {props.isPromptEnabled ?
+            <span>
+              Please review this project's <a href={readmeLink}>README
+              </a>, including the section on how to configure
+              your <span className="chrome-dev">Chrome</span> browser
+              so that Nona AI can get results from Gemini Nano.
+            </span> :
+            <span>
+              Nona AI's prompt interface is currently unavailable. Hopefully
+              this will be sorted out soon. Meanwhile, see the
+              project's <a href={readmeLink}>README</a>.
+            </span>
           }
         </div> :
-        null
-      }
+      null}
     </header>
   );
 }
