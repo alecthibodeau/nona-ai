@@ -27,7 +27,7 @@ function App(): JSX.Element {
   const {
     cardVariantNames: { variantNamePrompt, variantNameResult },
     localStorageKeyHistory,
-    messagingForUser: { messageTextTryAgain },
+    messagingForUser: { messageTextCardTryAgain },
     mockData
   } = stringValues;
   const { allButLettersAndNumbers } = regularExpressions;
@@ -110,7 +110,7 @@ function App(): JSX.Element {
       setCards(previousCards => [...previousCards, prepCard(cardText, cardVariant)]);
       setCards(previousCards => [...previousCards, prepCard('', variantNameResult)]);
     } else if (cardVariant === variantNameResult) {
-      if (!cardText) cardText = messageTextTryAgain;
+      if (!cardText) cardText = messageTextCardTryAgain;
       setCards(previousCards => {
         const updatedCards = [...previousCards];
         updatedCards[updatedCards.length - 1].textContent = cardText;

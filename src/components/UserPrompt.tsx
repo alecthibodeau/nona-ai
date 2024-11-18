@@ -34,7 +34,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     messagingForUser: {
       messageTextAlertError,
       messageTextConsoleError,
-      messageTextPlaceholder
+      messageTextPromptPlaceholder
     }
   } = stringValues;
   const isOnlyNewLinesAndSpaces: boolean = onlyNewLinesAndSpaces.test(promptText);
@@ -179,7 +179,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
             disabled={isAwaitingResponse}
             ref={textareaRef}
             className="user-input-textarea"
-            placeholder={isAwaitingResponse ? '' : messageTextPlaceholder}
+            placeholder={isAwaitingResponse ? '' : messageTextPromptPlaceholder}
             value={promptText}
             onFocus={() => setIsFormHighlighted(true)}
             onBlur={() => setIsFormHighlighted(false)}

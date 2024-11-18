@@ -19,8 +19,13 @@ const keyboardKeys: { [key: string]: string } = {
 const messagingForUser: { [key: string]: string } = {
   messageTextAlertError: `${errorText}. Please try again.`,
   messageTextConsoleError: `${errorText}: `,
-  messageTextPlaceholder: 'Enter a prompt here',
-  messageTextTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.'
+  messageTextPromptPlaceholder: 'Enter a prompt here',
+  messageTextCardTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.',
+  messageTextHeaderDefault: 'So that Nona AI can get results back from Gemini Nano please configure your Chrome browser by following the steps in the project\'s ',
+  messageTextHeaderUnavailable: 'Nona AI\'s prompt interface is currently unavailable. Hopefully this will be sorted out soon. Meanwhile, see the project\'s ',
+  messageTextHeaderCreditProject: 'Nona AI by ',
+  messageTextHeaderCreditAuthor: 'Alec Thibodeau',
+  messageTextHeaderCreditDescription: ' is a custom user interface for sending natural language prompts to Google\'s Gemini Nano LLM. See the project\'s '
 };
 
 const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md#nona-ai';
