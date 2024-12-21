@@ -1,6 +1,6 @@
 # Nona AI
 
-🚨 ***Gemini Nano is an experiment which frequently has unexpected breaking changes to its API. Because of these changes Nona AI's prompt interface may not work optimally at all times. For instance, as of this writing on December 20, 2024 a prompt which contains numerical digits in its text (i.e. "What's 2 + 2?") will likely cause an error, but a prompt such as "What's two plus two" or "What's two + two?" will likely return a coherent result. I'm working to stay on top of these developments.*** 🚨
+🚨 ***Caveat: Gemini Nano is an experiment. Google frequently makes unexpected changes to it. These back-end changes can in turn cause breaking changes in Nona AI's front-end user interface, which means prompt functionality may not work optimally at all times. For instance, as of this writing on December 21, 2024 a prompt which contains numerical digits in its text &mdash; such as "What's 2 + 2?" &mdash; will likely cause an error in the Chrome browser. But a prompt such as "What's two plus two" or "What's two + two?" will likely return a coherent result. I'm working to stay on top of these ongoing Gemini Nano developments.*** 🚨
 
 ## A registration-free user interface for Google Gemini Nano that also works offline
 
@@ -8,9 +8,9 @@ Are you curious about artificial intelligence (AI)? Are you looking to experimen
 
 Nona AI is a user interface (UI) I've made that connects to [Google's built-in AI model: Gemini Nano for Chrome](https://developer.chrome.com/docs/ai/built-in). Type your prompts into Nona AI's text input, then get text results back from Gemini Nano &mdash; similar to other browser-based large language model (LLM) interfaces like Google Gemini and ChatGPT.
 
-However, **unlike** most other LLM interfaces Nona AI doesn't require any kind of account registration or sign up process. There's no need to provide your email address, name or any other personal information. Just use the correct web browser and properly configure it with a few quick steps.
+However, unlike some other LLM interfaces Nona AI doesn't require any kind of account registration or sign up process. There's no need to provide your email address, name or any other personal information. Just use the correct web browser and properly configure it with a few quick steps.
 
-Currently Gemini Nano is an experimental, built-in feature of Google's Chrome browser. It also works in Google's Chrome Dev browser &mdash; and was available there first. Be sure you have the latest version of Chrome or Chrome Dev installed on your computer to use Nona AI for connecting with Gemini Nano. Once you've configured your browser using the steps below then you're ready to start making prompts.
+Currently Gemini Nano is an experimental, built-in feature of Google's Chrome browser for desktop and laptop computers. It also works in Google's Chrome Dev browser &mdash; and was available there first. Be sure you have the latest version of Chrome or Chrome Dev installed on your computer to use Nona AI for connecting with Gemini Nano. Once you've configured your browser using the steps below then you're ready to start making prompts.
 
 After configuring Chrome you'll have the option to use Nona AI with no internet signal, completely offline! Such is the built-in nature of the AI model.
 
@@ -30,7 +30,9 @@ After configuring Chrome you'll have the option to use Nona AI with no internet 
 
 3) Go to **[chrome://components](chrome://components)** and click 'Check for Update' on *Optimization Guide On Device Model* to download the model. If you don't see Optimization Guide, ensure you have set the flags correctly above. If you still don't see Optimization Guide, run `await window.ai.assistant.create();` in your browser console, then refresh the page.
 
-    *These steps for browser configuration are originally from [here](https://ai-sdk-chrome-ai.vercel.app/).*
+4) Optional step to allow prompts to accept numerical digits (currently only available for Chrome Dev browser): Go to **[chrome://flags/#text-safety-classifier](chrome://flags/#text-safety-classifier)** and then select 'Disabled'
+
+    *These steps for browser configuration are modified from [here](https://ai-sdk-chrome-ai.vercel.app/).*
 
 ### Using Nona AI
 
