@@ -19,9 +19,9 @@ const keyboardKeys: { [key: string]: string } = {
 const messagingForUser: { [key: string]: string } = {
   messageTextAlertError: `${errorText}. Please try again.`,
   messageTextConsoleError: `${errorText}: `,
-  messageTextPromptPlaceholder: 'Enter a prompt here (avoid digits)',
+  messageTextPromptPlaceholder: 'Enter prompt (avoid digits)',
   messageTextCardTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.',
-  messageTextHeaderDefault: 'So that Nona AI can get results back from Gemini Nano please configure your Chrome browser by following the steps in the project\'s ',
+  messageTextHeaderDefault: 'Before starting please configure your Chrome browser by following the steps in Nona AI\'s ',
   messageTextHeaderUnavailable: 'Nona AI\'s prompt interface is currently unavailable. Hopefully this will be sorted out soon. Meanwhile, see the project\'s ',
   messageTextHeaderCreditProject: 'Nona AI by ',
   messageTextHeaderCreditAuthor: 'Alec Thibodeau',
