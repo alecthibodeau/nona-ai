@@ -38,7 +38,7 @@ After configuring Chrome you'll have the option to use Nona AI with no internet 
 
 - In your Chrome or Chrome Dev browser navigate to [Nona AI](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome or Chrome Dev you may see the Nona AI interface as expected and even be able to submit prompts&hellip; but you won't get results. You'll simply wait.
 
-- Type a prompt in the input field: Start with something simple like "What's 2 + 2?" If you get a corresponding result you'll know Nona AI is working as expected.
+- Type a prompt in the input field: Start with something simple like "What's two plus two?" If you get a corresponding result you'll know Nona AI is working as expected.
 
 ### Caveats
 
