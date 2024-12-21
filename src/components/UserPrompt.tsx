@@ -12,7 +12,7 @@ import stringValues from '../constants/string-values';
 declare global {
   interface Window {
     ai: {
-      assistant: {
+      languageModel: {
         create: () => Promise<CreateProps>;
       };
     };
@@ -64,7 +64,7 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
     setIsAwaitingResponse(true);
     props.onIsAwaitingResponse(true);
     setPromptText('');
-    const session = await window.ai.assistant.create();
+    const session = await window.ai.languageModel.create();
     try {
       const response: string = await session.prompt(request);
       resetAwaitingResponse();
