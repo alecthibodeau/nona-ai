@@ -1,6 +1,6 @@
 # Nona AI
 
-🚨 ***Due to an unexpected API change Nona AI's prompt interface is currently unavailable. Hopefully this will be sorted out soon.*** 🚨
+🚨 ***Gemini Nano is an experiment which frequently has unexpected breaking changes to its API. Because of these changes Nona AI's prompt interface may not work optimally at all times. For instance, as of this writing on December 20, 2024 a prompt which contains numerical digits in its text (i.e. "What's 2 + 2?") will likely cause an error, but a prompt such as "What's two plus two" or "What's two + two?" will likely return a coherent result. I'm working to stay on top of these developments.*** 🚨
 
 ## A registration-free user interface for Google Gemini Nano that also works offline
 
@@ -98,8 +98,8 @@ Once you're getting results try turning off your Wi-Fi signal or otherwise disco
 
 ### Suggested prompts
 
-Not sure where to start? Try any of these prompts to see what you get:
-- What's 2 + 2?
+Not sure where to start? Try any of these prompts to see what you get (avoid numerical digits):
+- What's two plus two?
 - What's red plus yellow?
 - What are the states in New England?
 - Who were the members of the Beatles?
