@@ -71,7 +71,6 @@ function UserPrompt(props: UserPromptProps): JSX.Element {
       return response;
     } catch (error) {
       console.error(messageTextConsoleError, error);
-      cancelTypewriter();
       resetAwaitingResponse();
       alert(messageTextAlertError);
       throw error;

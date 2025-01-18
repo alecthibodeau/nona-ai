@@ -185,10 +185,7 @@ function App(): JSX.Element {
             onUpdatePrompt={(text) => updateCards(text.toString(), variantNamePrompt)}
             onUpdateResult={(text) => updateCards(text.toString(), variantNameResult)}
             onIsAwaitingResponse={(isAwaiting) => setIsAwaitingResponse(isAwaiting)}
-            onIsTypewriterCanceled={(isCanceled) => {
-              setIsTypewriterCanceled(isCanceled);
-              setIsTypewriterRunning(isCanceled);
-            }}
+            onIsTypewriterCanceled={(isCanceled) => setIsTypewriterCanceled(isCanceled)}
           /> :
         null}
       </main>
