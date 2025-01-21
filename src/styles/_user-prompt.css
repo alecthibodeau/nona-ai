@@ -8,7 +8,8 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem .875rem 1rem 2rem;
-  border-radius: 2.5rem;
+  border: 3px solid var(--color-green-html);
+  border-radius: 2.6875rem;
   background-color: var(--color-blue-medium-light);
 
   &:hover,
