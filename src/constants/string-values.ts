@@ -1,5 +1,6 @@
 const errorText: string = 'An error occurred during prompt';
 const localStorageKeyHistory: string = 'nonaAiHistory';
+const messageTextHeaderDefault: string = 'Before starting please configure your Chrome browser by following the steps in the Nona AI project\'s ';
 
 const cardVariantNames: { [key: string]: string } = {
   variantNamePrompt: 'prompt',
@@ -21,11 +22,11 @@ const messagingForUser: { [key: string]: string } = {
   messageTextConsoleError: `${errorText}: `,
   messageTextPromptPlaceholder: 'Enter prompt (avoid digits)',
   messageTextCardTryAgain: 'It looks like there was a problem finding an answer for you. Please try again.',
-  messageTextHeaderDefault: 'Before starting please configure your Chrome browser by following the steps in Nona AI\'s ',
+  messageTextHeaderDefault: messageTextHeaderDefault,
   messageTextHeaderUnavailable: 'Nona AI\'s prompt interface is currently unavailable. Hopefully this will be sorted out soon. Meanwhile, see the project\'s ',
   messageTextHeaderCreditProject: 'Nona AI by ',
   messageTextHeaderCreditAuthor: 'Alec Thibodeau',
-  messageTextHeaderCreditDescription: ' is a custom user interface for sending natural language prompts to Google\'s Gemini Nano LLM. For configuring your browser see the project\'s '
+  messageTextHeaderCreditDescription: ` is a custom user interface for sending natural language prompts to Google's Gemini Nano LLM. ${messageTextHeaderDefault} `
 };
 
 const readmeLink: string = 'https://github.com/alecthibodeau/nona-ai/blob/main/README.md#nona-ai';

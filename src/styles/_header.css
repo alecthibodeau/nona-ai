@@ -53,7 +53,7 @@
 
 .message-container {
   background-color: var(--color-coral);
-  padding: .5rem 1rem .5rem 1.5rem;
+  padding: .5rem 1rem .5rem 2rem;
 
   &.credit-background {
     background-color: var(--color-violet-light);
