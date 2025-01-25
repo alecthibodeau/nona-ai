@@ -1,6 +1,6 @@
 # Nona AI
 
-🚨 ***Caveat: Gemini Nano is an experiment. Google frequently makes unexpected changes to it. These back-end changes can in turn cause breaking changes in Nona AI's front-end user interface, which means prompt functionality may not work optimally at all times. For instance, as of this writing on December 21, 2024 a prompt which contains numerical digits in its text &mdash; such as "What's 2 + 2?" &mdash; will likely cause an error in the Chrome browser. But a prompt such as "What's two plus two" or "What's two + two?" will likely return a coherent result. I'm working to stay on top of these ongoing Gemini Nano developments.*** 🚨
+🚨 **Gemini Nano is an experiment. Google frequently makes unexpected changes to it. These back-end changes can in turn cause breaking changes in Nona AI's front-end user interface, which means prompt functionality may not work optimally at all times. For instance, as of this writing on December 21, 2024 a prompt which contains numerical digits in its text &mdash; such as "What's 2 + 2?" &mdash; will likely cause an error in the Chrome browser. But a prompt such as "What's two plus two" or "What's two + two?" will likely return a coherent result. I'm working to stay on top of these ongoing Gemini Nano developments.** 🚨
 
 ## A registration-free user interface for Google Gemini Nano that also works offline
 
@@ -39,6 +39,9 @@ After configuring Chrome you'll have the option to use Nona AI with no internet 
 - In your Chrome or Chrome Dev browser navigate to [Nona AI](https://alect.me/nona-ai).  Note: If you use a different browser than Chrome or Chrome Dev you may see the Nona AI interface as expected and even be able to submit prompts&hellip; but you won't get results. You'll simply wait.
 
 - Type a prompt in the input field: Start with something simple like "What's two plus two?" If you get a corresponding result you'll know Nona AI is working as expected.
+
+### Text
+The resulting text you get back from Gemini Nano may sometimes have asterisk characters mixed in with the expected language. This is a variant of [Markdown](https://en.wikipedia.org/wiki/Markdown) that Gemini Nano includes automatically. See the [Future features](#future-features) section below.
 
 ### Caveats
 
@@ -108,6 +111,8 @@ Not sure where to start? Try any of these prompts to see what you get (avoid num
 - Write a paragraph about the sport of running.
 
 ### Future features
+
+- Formatting special characters: For complex, lengthy answers Gemini Nano sometimes wraps parts of the resulting text in asterisk characters as a variant of [Markdown](https://en.wikipedia.org/wiki/Markdown). I plan to add functionality that would format these as semantic HTML tags.
 
 - Designing for mobile: If and when Gemini Nano becomes available for browsers on all major mobile devices I'll be able to fully test Nona AI's interface with a mobile-first approach. In anticipation of mobile development the interface is already responsive for smaller viewport widths. Though there may currently be unintended UI issues when viewing Nona AI on a mobile device &mdash; in addition to the prompt functionality likely not working.
 
