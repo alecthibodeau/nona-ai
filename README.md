@@ -1,6 +1,6 @@
 # Nona AI
 
-🚨 **Gemini Nano is an experiment. Google frequently makes unexpected changes to it. These back-end changes can in turn cause breaking changes in Nona AI's front-end user interface, which means prompt functionality may not work optimally at all times. For instance, as of this writing on December 21, 2024 a prompt which contains numerical digits in its text &mdash; such as "What's 2 + 2?" &mdash; will likely cause an error in the Chrome browser. But a prompt such as "What's two plus two" or "What's two + two?" will likely return a coherent result. I'm working to stay on top of these ongoing Gemini Nano developments.** 🚨
+ 🚨 *Gemini Nano is an experiment. Google's frequent modifications to its back end can in turn cause breaking changes in Nona AI's front-end user interface. At times you might find prompt functionality not working optimally (or at all). On rare occasions I'll need to disable Nona AI's prompt feature &mdash; by removing the text input field &mdash; as I respond to Google's changes and deploy updated code.* 🚨
 
 ## A registration-free user interface for Google Gemini Nano that also works offline
 
