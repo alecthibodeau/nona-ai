@@ -33,7 +33,7 @@ function App(): JSX.Element {
   const { allButLettersAndNumbers } = regularExpressions;
   const isMockDataUsed: boolean = false;
   const isDropdownMenuActive: boolean = false;
-  const isPromptEnabled: boolean = true;
+  const isPromptEnabled: boolean = false;
 
   const makeMockCards = useCallback(() => {
     return mockData.map((cardText, index) => {
